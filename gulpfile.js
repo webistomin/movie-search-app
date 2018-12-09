@@ -1,117 +1,143 @@
 "use strict";
 
+// Переменные для галпа. Каждая переменная – отдельный плагин из package.json
 var gulp = require("gulp");
-var less = require("gulp-less");
+var sass = require("gulp-sass");
 var plumber = require("gulp-plumber");
 var postcss = require("gulp-postcss");
-var svgstore = require("gulp-svgstore");
-var svgmin = require("gulp-svgmin");
 var autoprefixer = require("autoprefixer");
-var server = require("browser-sync").create();
-var imagemin = require("gulp-imagemin");
-var mqpacker = require("css-mqpacker");
 var csso = require("gulp-csso");
 var rename = require("gulp-rename");
-var uglify = require("gulp-uglify");
-var concat = require("gulp-concat");
+var imagemin = require("gulp-imagemin");
+var webp = require("gulp-webp");
+var svgstore = require("gulp-svgstore");
+var posthtml = require("gulp-posthtml");
+var include = require("posthtml-include");
 var del = require("del");
-var runSequence = require("run-sequence");
-var csscomb = require("gulp-csscomb");
+var server = require("browser-sync").create();
+var uglify = require("gulp-uglify");
+var babel = require('gulp-babel');
+var concat = require("gulp-concat");
+var sourcemaps = require('gulp-sourcemaps');
 
-gulp.task("style", function() {
-  gulp.src("src/less/style.less")
-    .pipe(plumber())
-    .pipe(less())
-    .pipe(postcss([
-      autoprefixer({browsers: [
-          "last 1 version",
-          "last 2 Chrome versions",
-          "last 2 Firefox versions",
-          "last 2 Opera versions",
-          "last 2 Edge versions"
-        ]})
-    ]))
-    .pipe(gulp.dest("build/css"))
-    .pipe(csso())
-    .pipe(rename("style.min.css"))
-    .pipe(gulp.dest("build/css"))
-    .pipe(server.stream());
+// Таск css.
+gulp.task("css", function () {
+  return gulp.src("source/sass/style.{sass, scss}") // Берет на вход основной файл scss, где происходят импорты
+    .pipe(sourcemaps.init()) // Иницициализируем плагин для генерации source map. Если не знаешь зачем они, напиши
+      .pipe(plumber()) // Плагин для отслеживания ошибок
+      .pipe(sass()) // Переводим из sass в css
+      .pipe(postcss([ // Применяем пост процессор PostCSS. Расставляем префиксы для других браузеров.
+        autoprefixer()
+      ]))
+      .pipe(gulp.dest("build/css")) // Скадываем полученный css в папку build
+      .pipe(csso()) // Минифицируем css. Убираем лишние пробелы и т.д.
+      .pipe(rename("style.min.css")) // Переименовываем минифицированную версию в style.min.css
+    .pipe(sourcemaps.write()) // Добавляем source map
+    .pipe(gulp.dest("build/css")) // Ложим ее рядом с простым css. В итоге 2 файла: style.css и style.min.css
+    .pipe(server.stream()); // Вызываем отслеживание browser sync
 });
 
-
-gulp.task("csscomb", function() {
-  return gulp.src("src/less/blocks/*.less")
-    .pipe(csscomb(require("./.csscomb.json")))
-    .pipe(gulp.dest("src/less/blocks"));
-});
-
-gulp.task("imagemin", function() {
-  return gulp.src("build/img/**/*.{png,jpg,gif}")
+// Таск для картинок
+gulp.task("images", function () {
+  return gulp.src("source/img/**/*.{png,jpg,svg}") // Берем все картинки из source/img
     .pipe(imagemin([
-      imagemin.optipng({optimizationLevel: 3}),
-      imagemin.jpegtran({progressive: true})
+      imagemin.optipng({optimizationLevel: 3}), // Применяем сжатие картинок
+      imagemin.jpegtran({progressive: true}), // JPEG делаем прогрессивными, т.е. они теперь загружаются постепенно и видны сразу
+      imagemin.svgo() // Минифицируем svg
     ]))
-    .pipe(gulp.dest("build/img"));
+    .pipe(gulp.dest("source/img")); // Складываем в папку
 });
 
-gulp.task("svgmin", function() {
-  return gulp.src("build/img/**/*.svg")
-    .pipe(svgmin())
-    .pipe(gulp.dest("build/img"));
+// Таск для генерации webp
+gulp.task("webp", function () {
+  return gulp.src("source/img/**/*.{png,jpg}") // Берем все jpeg и png из source/img
+    .pipe(webp({quality: 90})) // Выставляем качество 90, чтобы не было артефактов
+    .pipe(gulp.dest("source/img")) // Складываем в папку
 });
 
-gulp.task("symbols", function() {
-  return gulp.src("build/img/*.svg")
-    .pipe(svgmin())
+// Таск для генерации svg спрайта
+gulp.task("sprite", function () {
+  return gulp.src("source/img/**/*.svg") // Берем все svg из source/img
     .pipe(svgstore({
-      inlineSvg: true
+      inlineSvg: true // Делаем спрайт вида <svg><symbol>....</symbol></svg>
     }))
-    .pipe(rename("symbols.svg"))
-    .pipe(gulp.dest("build/img"));
+    .pipe(rename("sprite.svg")) // Переименовываем в sprite.svg
+    .pipe(gulp.dest("build/img")); // Складываем в папку build/img
 });
 
-gulp.task("serve", function() {
-  server.init({
-    server: "build",
+// Таск для встраивания спрайта в  html
+gulp.task("html", function () {
+  return gulp.src("source/*.html") // Берем все странички
+    .pipe(posthtml([
+      include() // Вставляем svg спрайт в страничку
+    ]))
+    .pipe(gulp.dest("build")); // Складываем в build/
+});
+
+// Таск для сбора скриптов
+gulp.task("scripts", function() {
+  return gulp.src("source/js/*.js") // Берем все скрипты из src/js
+    .pipe(sourcemaps.init())
+      .pipe(concat("script.js")) // Склеиваем их в один scripts.js
+      .pipe(gulp.dest("build/js")) // Складываем build/js
+      .pipe(rename("script.min.js")) // Переименовываем в scripts.min.js
+      .pipe(babel({
+        presets: ['@babel/env'] // Прогоняем через babel. Переводит ES6+ в ES5
+      }))
+      .pipe(uglify()) // Минифицируем
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest("build/js")); //Скдываем в build/js
+});
+
+// Таск для очистки папки
+gulp.task("clean", function () {
+  return del("build"); // Удаляем папку build
+});
+
+// Таск для переноса всех статичных файлов
+gulp.task("copy", function () {
+  return gulp.src([
+    "source/fonts/**/*.{woff,woff2}", // Переносим шрифты
+    "source/img/**", // Переносим картинки
+    "source/js/**", // Переносим js
+    "source/*.{png,xml,ico,webmanifest,svg}" // Переносим фавиконки
+  ], {
+    base: "source"
+  })
+  .pipe(gulp.dest("build")); // Складываем в build/
+});
+
+// Таск для сборки
+gulp.task("build", gulp.series(
+  "clean",
+  "copy",
+  "css",
+  "scripts",
+  "sprite",
+  "html"
+  ));
+
+// Таск для отслеживания изменений. Browser Sync
+gulp.task("server", function () {
+  server.init({ // Инициализурем с конфигом
+    server: "build/",
     notify: false,
     open: true,
+    cors: true,
     ui: false
   });
-
-  gulp.watch("src/less/**/*.less", ["style"]);
-  gulp.watch("src/*.html", ["copyhtml"]);
-  gulp.watch("build/*.html").on("change", server.reload);
+  // Смотрит за файлами и перезагружает, если есть изменение
+  gulp.watch("source/sass/**/*.{sass, scss}", gulp.series("css", "refresh"));
+  gulp.watch("source/img/**/*.svg", gulp.series("sprite", "html", "refresh"));
+  gulp.watch("source/*.html", gulp.series("html", "refresh"));
+  gulp.watch("source/js/*.js", gulp.series("scripts", "refresh"));
 });
 
-gulp.task("copy", function() {
-  return gulp.src([
-    "src/fonts/**/*.{woff,woff2}",
-    "src/*.html",
-    "src/js/*.js",
-    "src/img/*.*",
-    "src/*.png"
-  ], { base: "src"})
-    .pipe(gulp.dest("build"));
+// Перезагрузка отслеживания
+gulp.task("refresh", function(done) {
+  server.reload();
+  done();
 });
 
-gulp.task("copyhtml", function() {
-  return gulp.src("src/*.html", { base: "src"})
-    .pipe(gulp.dest("build"));
-});
-
-gulp.task("scripts", function() {
-  return gulp.src("src/js/*.js")
-    .pipe(concat("script.js"))
-    .pipe(gulp.dest("build/js"))
-    .pipe(rename("script.min.js"))
-    .pipe(uglify())
-    .pipe(gulp.dest("build/js"));
-});
-
-gulp.task("clean", function() {
-  return del("build");
-});
-
-gulp.task("build", function(fn) {
-  runSequence("clean", "copy", "style","imagemin","svgmin","symbols", "scripts", fn)
-});
+// npm start запустит автоматически слежение и сборку. т.е. вводишь npm start и работаешь, не загядывая больше в консоль, все будут делать за тебя :)
+gulp.task("start", gulp.series("build", "server"));

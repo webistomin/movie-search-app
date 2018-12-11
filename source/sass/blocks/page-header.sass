@@ -47,12 +47,18 @@
     background-color: transparent
     position: relative
 
+    &:hover
+      span
+        background-color: $color-gold
+        transition: all 0.3s ease-in-out
+
     & span
       display: block
       width: inherit
       height: 2px
       background-color: $color-text--secondary
       position: absolute
+      transition: all 0.3s ease-in-out
 
       &:first-child
         top: 0
@@ -68,6 +74,7 @@
     position: relative
 
   &__icon
+    transition: all 0.3s ease-in-out
     fill: $color-brown
 
     &--absolute
@@ -75,10 +82,11 @@
       right: 10px
       top: 50%
       transform: translateY(-50%)
+      fill: #d4d8da
 
   &__input
     width: 100%
-    padding: 6.5px 10px
+    padding: 16.5px 10px
     padding-right: 30px
     box-sizing: border-box
     border: 1px solid #d4d8da
@@ -87,6 +95,20 @@
     font-size: 13px
     background-color: transparent
     color: $color-brown--secondary
+    transition: all 0.3s ease-in-out
+
+    &:hover
+      border-color: $color-brown
+
+      & + .page-header__icon--absolute
+        fill: $color-brown
+
+    &:focus
+      border-color: $color-gold
+      outline-color: $color-gold
+
+      & + .page-header__icon
+        fill: $color-gold
 
     &::placeholder
       color: $color-brown--secondary
@@ -106,6 +128,13 @@
     display: none
 
   &__button
+    transition: all 0.3s ease-in-out
+
+    &:hover
+      .page-header__icon
+        transition: all 0.3s ease-in-out
+        fill: $color-gold
+
     &--arrow
       width: 32px
       height: 32px
@@ -129,3 +158,6 @@
       bottom: -2px
       left: 0
       background-image: url("../img/wave_outline.svg")
+
+  &__dropdown
+    position: relative

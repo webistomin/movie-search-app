@@ -1,0 +1,57 @@
+.socials
+  &__title
+    padding-top: 24px
+    padding-bottom: 24px
+    text-align: center
+    background-color: $color-brown
+
+  &__block
+    &--flex
+      display: flex
+      align-items: center
+      margin-bottom: 20px
+
+  &__pic
+    margin-right: 16px
+
+  &__avatar
+    border-radius: 50%
+    border: 2px solid $color-blue
+
+  &__list
+    padding: 30px 0
+
+  &__item
+    position: relative
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    width: 300px
+    margin: 0 auto
+
+  &__message
+    position: relative
+    box-sizing: border-box
+    padding: 15px
+    background-color: $color-blue
+    max-width: 300px
+    border-radius: 10px
+    font-size: 11px
+    line-height: 17px
+    font-weight: 400
+    color: $color-text--secondary
+
+    &::after
+      content: ''
+      position: absolute
+      top: 0
+      left: 50%
+      width: 0
+      height: 0
+      border: 16px solid transparent
+      border-bottom-color: $color-blue
+      border-top: 0
+      border-left: 0
+      margin-left: -11px
+      margin-top: -14px

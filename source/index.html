@@ -25,6 +25,9 @@
     <symbol id="trailers" viewBox="0 0 15 15">
       <defs><path id="e8gsa" d="M54 200v15H39v-15zm-12 13h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm0-6h-2v1h2zm8 7h-7v6h7zm0-7h-7v6h7zm3 12h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm-11 0h-2v1h2zm0-2h-2v1h2zm11 0h-2v1h2zm0-2h-2v1h2z"/></defs><g><g transform="translate(-39 -200)"><use xlink:href="#e8gsa"/></g></g>
     </symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24">
+      <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.848 12.459c.202.038.202.333.001.372-1.907.361-6.045 1.111-6.547 1.111-.719 0-1.301-.582-1.301-1.301 0-.512.77-5.447 1.125-7.445.034-.192.312-.181.343.014l.985 6.238 5.394 1.011z"/>
+    </symbol>
   </svg>
   <header class="page-header">
     <div class="page-header__inner">
@@ -158,8 +161,48 @@
     </aside>
     <section class="movies">
       <ul class="movies__list">
-        <li class="movie__item">
-          <img src="#" alt="#" class="movie__img">
+        <li class="movies__item">
+          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">Thor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min</span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
+        </li>
+        <li class="movies__item">
+          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+        </li>
+        <li class="movies__item">
+          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+        </li>
+        <li class="movies__item">
+          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+        </li>
+        <li class="movies__item">
+          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+        </li>
+        <li class="movies__item">
+          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+        </li>
+        <li class="movies__item">
+          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+        </li>
+        <li class="movies__item">
+          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+        </li>
+        <li class="movies__item">
+          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
         </li>
       </ul>
     </section>
@@ -168,8 +211,10 @@
         <h2 class="socials__title title">Last comments</h2>
         <ul class="socials__list">
           <li class="socials__item">
-            <div class="socials__block">
-              <img src="#" alt="#" class="socials__avatar">
+            <div class="socials__block socials__block--flex">
+              <picture class="socials__pic">
+                <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+              </picture>
               <span class="socials__name">Visual idiot</span>
             </div>
             <p class="socials__message">

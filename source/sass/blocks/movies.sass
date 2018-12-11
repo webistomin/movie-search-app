@@ -1,0 +1,74 @@
+.movies
+  padding: 30px
+
+  &__list
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+
+  &__item
+    position: relative
+    box-sizing: border-box
+    min-width: 176px
+    text-align: center
+    padding: 10px
+
+  &__block
+    display: flex
+    flex-direction: column
+    box-sizing: border-box
+    width: calc(100% - 20px)
+    height: calc(100% - 20px)
+    position: absolute
+    top: 10px
+    left: 10px
+    padding: 10px
+    background-color: $color-brown--secondary
+
+  &__name,
+  &__desc,
+  &__duration,
+  &__genre
+    color: $color-text
+    font-size: 13px
+
+  &__genres
+    margin-bottom: 10px
+
+  &__genre
+    display: inline
+    position: relative
+
+    &::after
+      content: ", "
+
+    &:last-child
+      &::after
+        display: none
+
+  &__name
+    display: block
+    margin-bottom: 20px
+    overflow: hidden
+    text-overflow: ellipsis
+
+  &__btn
+    margin-top: auto
+    box-sizing: border-box
+    display: block
+    padding: 10px 0
+    background-color: $color-action
+    color: $color-text--secondary
+    text-transform: uppercase
+
+  &__desc
+    line-height: 14px
+    margin-bottom: 10px
+
+  &__duration
+    display: block
+    margin-bottom: 10px
+    margin-top: auto
+
+  &__icon
+    fill: $color-text

@@ -4,12 +4,17 @@
   left: 0
   position: absolute
   background-color: $color-brown--secondary
+  min-height: 184px
 
   &--closed
-    display: none
+    transform: scaleY(0)
+    transform-origin: top
+    transition: transform 0.3s ease-in-out
 
   &--opened
-    display: block
+    transform: scaleY(1)
+    transform-origin: top
+    transition: transform 0.3s ease-in-out
 
   &__link
     box-sizing: border-box
@@ -30,6 +35,14 @@
 
       & .main-nav__icon
         fill: $color-text--secondary
+        transition: all 0.3s ease-in-out
+
+    &:active
+      color: $color-action
+      transition: all 0.3s ease-in-out
+
+      & .main-nav__icon
+        fill: $color-action
         transition: all 0.3s ease-in-out
 
   &__icon

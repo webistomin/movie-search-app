@@ -47,7 +47,8 @@
     background-color: transparent
     position: relative
 
-    &:hover
+    &:hover,
+    &:focus
       span
         background-color: $color-gold
         transition: all 0.3s ease-in-out
@@ -130,7 +131,8 @@
   &__button
     transition: all 0.3s ease-in-out
 
-    &:hover
+    &:hover,
+    &:focus
       .page-header__icon
         transition: all 0.3s ease-in-out
         fill: $color-gold
@@ -161,3 +163,19 @@
 
   &__dropdown
     position: relative
+
+  @media (min-width: $screen-sm)
+
+    &__inner
+      display: flex
+      flex-wrap: wrap
+
+    &__block
+      box-sizing: border-box
+
+      &--brown
+        width: 100%
+
+      &--lightgrey,
+      &--grey
+        width: 50%

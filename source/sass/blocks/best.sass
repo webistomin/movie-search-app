@@ -61,3 +61,17 @@
     &--padding
       padding: 5px 0
 
+  @media (min-width: $screen-xs)
+    &__list
+      display: flex
+      flex-direction: row
+      flex-wrap: wrap
+      justify-content: space-around
+
+  @media (min-width: $screen-sm)
+    &__list
+      padding-top: 25px
+
+    &__item
+      margin-bottom: 25px
+

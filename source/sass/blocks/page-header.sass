@@ -61,14 +61,30 @@
       position: absolute
       transition: all 0.3s ease-in-out
 
-      &:first-child
-        top: 0
+    &--closed
+      & span
+        &:first-child
+          top: 0
 
-      &:nth-child(2)
-        top: 9px
+        &:nth-child(2)
+          top: 9px
 
-      &:last-child
-        bottom: 0
+        &:last-child
+          bottom: 0
+
+    &--opened
+      & span
+        &:first-child
+          top: 8px
+          transform: rotate(45deg)
+
+        &:nth-child(2)
+          top: 9px
+          opacity: 0
+
+        &:last-child
+          transform: rotate(-45deg)
+          bottom: 10px
 
   &__wrapper
     width: 100%
@@ -125,9 +141,6 @@
     margin-right: 16px
     border: 3px solid $color-gold
 
-  &__list
-    display: none
-
   &__button
     transition: all 0.3s ease-in-out
 
@@ -141,6 +154,12 @@
       width: 32px
       height: 32px
       font-size: 0
+
+    &--closed
+      transform: rotate(0deg)
+
+    &--opened
+      transform: rotate(-180deg)
 
   &__userblock
     display: flex
@@ -161,8 +180,54 @@
       left: 0
       background-image: url("../img/wave_outline.svg")
 
-  &__dropdown
+  &__list
+    display: block
+    position: absolute
+    top: 254px
+    left: 0
+    width: 100%
+    background-color: $color-brown--secondary
+
+    &--closed
+    transform: scaleY(0)
+    transform-origin: top
+    transition: transform 0.3s ease-in-out
+
+    &--opened
+      transform: scaleY(1)
+      transform-origin: top
+      transition: transform 0.3s ease-in-out
+
+  &__link
+    box-sizing: border-box
     position: relative
+    padding: 24px 0
+    display: flex
+    align-items: center
+    justify-content: center
+    font-size: 13px
+    font-weight: 400
+    color: $color-text
+    transition: all 0.3s ease-in-out
+    outline: none
+
+    &:hover,
+    &:focus
+      color: $color-text--secondary
+      transition: all 0.3s ease-in-out
+
+      & .main-nav__icon
+        fill: $color-text--secondary
+        transition: all 0.3s ease-in-out
+
+    &:active
+      color: $color-action
+      transition: all 0.3s ease-in-out
+
+      & .main-nav__icon
+        fill: $color-action
+        transition: all 0.3s ease-in-out
+
 
   @media (min-width: $screen-sm)
 
@@ -197,10 +262,22 @@
         width: 60vw
         padding: 13px 12px
         flex-shrink: 0
+        padding-left: 30px
+        padding-right: 56px
 
       &--brown
+        position: relative
         padding: 19px 12px
         padding-left: 45px
+
+        &::after
+          content: ""
+          position: absolute
+          top: 0
+          right: 0
+          width: 5px
+          height: 100%
+          background-color: rgba(255, 255, 255, 0.1)
 
       &--grey
         padding: 11px 12px
@@ -211,3 +288,15 @@
     &__input
       padding-top: 8.5px
       padding-bottom: 8.5px
+
+    &__buttons
+      display: flex
+      margin-left: 42px
+
+    &__button
+      font-size: 0
+      width: 34px
+      height: 34px
+
+    &__account
+      justify-content: flex-start

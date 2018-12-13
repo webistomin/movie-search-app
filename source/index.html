@@ -34,12 +34,18 @@
     <symbol id="icon-clock" viewBox="0 0 24 24">
       <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.848 12.459c.202.038.202.333.001.372-1.907.361-6.045 1.111-6.547 1.111-.719 0-1.301-.582-1.301-1.301 0-.512.77-5.447 1.125-7.445.034-.192.312-.181.343.014l.985 6.238 5.394 1.011z"/>
     </symbol>
+    <symbol id="icon-details" viewBox="0 0 17 13">
+      <defs><path id="ee7pa" d="M918 34h3v3h-3zm5 0h12v3h-12zm-5-5h3v3h-3zm5 0h12v3h-12zm-5-5h3v3h-3zm17 0v3h-12v-3z"/></defs><g><g transform="translate(-918 -24)"><use xlink:href="#ee7pa"/></g></g>
+    </symbol>
+    <symbol id="icon-grid" viewBox="0 0 13 13">
+      <defs><path id="rkewa" d="M960 24h3v3h-3zm5 10h3v3h-3zm-5-5h3v3h-3zm-5 0h3v3h-3zm5 5h3v3h-3zm-5 0h3v3h-3zm0-10h3v3h-3zm13 0v3h-3v-3zm-3 5h3v3h-3z"/></defs><g><g transform="translate(-955 -24)"><use xlink:href="#rkewa"/></g></g>
+    </symbol>
   </svg>
   <header class="page-header">
     <div class="page-header__inner">
       <div class="page-header__block page-header__block--brown">
         <h1 class="page-header__logo"><span class="page-header__decor">A</span>Movie</h1>
-        <button class="page-header__toggler">Открыть меню
+        <button class="page-header__toggler page-header__toggler--closed">Открыть меню
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -51,8 +57,18 @@
           </svg>
         </div>
         <div class="page-header__buttons">
-          <button class="page-header__button">Row view</button>
-          <button class="page-header__button">Grid view</button>
+          <button class="page-header__button">
+            <svg class="page-header__icon" width="17" height="13">
+              <use xlink:href="#icon-details"></use>
+            </svg>
+            Row view
+          </button>
+          <button class="page-header__button">
+            <svg class="page-header__icon" width="17" height="13">
+              <use xlink:href="#icon-grid"></use>
+            </svg>
+            Grid view
+          </button>
         </div>
       </div>
       <div class="page-header__block page-header__block--grey">
@@ -62,15 +78,15 @@
             <p class="page-header__text">Hello, <span class="page-header__name">Olia</span>!</p>
           </div>
           <div class="page-header__dropdown">
-            <button class="page-header__button page-header__button--arrow">
+            <button class="page-header__button page-header__button--closed page-header__button--arrow">
               Открыть меню
-              <svg class="page-header__icon page-header__icon--arrow" width="24" height="24">
+              <svg class="page-header__icon page-header__icon--arrow" width="12" height="12">
                 <use xlink:href="#icon-arrow"></use>
               </svg>
             </button>
-            <ul class="page-header__list">
+            <ul class="page-header__list page-header__list--closed">
               <li class="page-header__item">
-                <a href="#" class="page-header__link">Избранное</a>
+                <a href="#" class="page-header__link">Favorite list</a>
               </li>
             </ul>
           </div>

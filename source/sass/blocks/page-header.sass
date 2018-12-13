@@ -101,6 +101,12 @@
       transform: translateY(-50%)
       fill: #d4d8da
 
+    &--left
+      fill: $color-text
+      position: absolute
+      left: calc(50% - 70px)
+      transition: all 0.3s ease-in-out
+
   &__input
     width: 100%
     padding: 16.5px 10px
@@ -216,7 +222,7 @@
       color: $color-text--secondary
       transition: all 0.3s ease-in-out
 
-      & .main-nav__icon
+      & .page-header__icon
         fill: $color-text--secondary
         transition: all 0.3s ease-in-out
 
@@ -224,7 +230,7 @@
       color: $color-action
       transition: all 0.3s ease-in-out
 
-      & .main-nav__icon
+      & .page-header__icon
         fill: $color-action
         transition: all 0.3s ease-in-out
 
@@ -244,6 +250,9 @@
       &--lightgrey,
       &--grey
         width: 50%
+
+    &__list
+      top: 168px
 
   @media (min-width: $screen-md)
     &__inner
@@ -300,3 +309,9 @@
 
     &__account
       justify-content: flex-start
+
+    &__list
+      width: 20vw
+      top: 60px
+      left: 80%
+      z-index: 10

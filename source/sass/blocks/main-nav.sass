@@ -28,6 +28,7 @@
     font-weight: 400
     color: $color-text
     transition: all 0.3s ease-in-out
+    outline: none
 
     &:hover,
     &:focus
@@ -51,3 +52,18 @@
     position: absolute
     left: calc(50% - 70px)
     transition: all 0.3s ease-in-out
+
+  @media (min-width: $screen-md)
+    position: static
+    transform: none
+    min-height: auto
+
+    &__list
+      padding: 15px 0
+
+    &__link
+      justify-content: flex-start
+      padding-left: 67px
+
+    &__icon
+      left: 38px

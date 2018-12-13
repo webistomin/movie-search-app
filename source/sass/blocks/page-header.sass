@@ -179,3 +179,35 @@
       &--lightgrey,
       &--grey
         width: 50%
+
+  @media (min-width: $screen-md)
+    &__inner
+      flex-wrap: nowrap
+      align-items: flex-start
+
+    &__block
+      box-sizing: border-box
+      flex-shrink: 0
+
+      &--brown,
+      &--grey
+        width: 20vw
+
+      &--lightgrey
+        width: 60vw
+        padding: 13px 12px
+        flex-shrink: 0
+
+      &--brown
+        padding: 19px 12px
+        padding-left: 45px
+
+      &--grey
+        padding: 11px 12px
+
+    &__toggler
+      display: none
+
+    &__input
+      padding-top: 8.5px
+      padding-bottom: 8.5px

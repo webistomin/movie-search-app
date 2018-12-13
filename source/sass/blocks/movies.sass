@@ -1,5 +1,6 @@
 .movies
   padding: 30px
+  box-sizing: border-box
 
   &__list
     display: flex
@@ -72,3 +73,28 @@
 
   &__icon
     fill: $color-text
+
+  @media (min-width: $screen-md)
+    width: 60vw
+    flex-shrink: 0
+    border-right: 1px solid $color-border
+    overflow-y: scroll
+    height: calc(100vh - 60px)
+
+    &::-webkit-scrollbar-track
+      border-radius: 10px
+      background-color: transparent
+      background-clip: content-box
+
+
+    &::-webkit-scrollbar
+      width: 7px
+      background-color: transparent
+
+    &::-webkit-scrollbar-thumb
+      border-radius: 10px
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3)
+      background-color: $color-brown--secondary
+
+    &__item
+      padding-top: 0

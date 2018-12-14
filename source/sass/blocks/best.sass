@@ -1,4 +1,5 @@
 .best
+  display: none
   background-color: $color-brown--secondary
 
   &__title
@@ -14,14 +15,30 @@
     padding-top: 20px
 
   &__item
+    display: flex
     min-width: 122px
     margin-bottom: 20px
+
+  &__link
+    display: flex
+
+    &:hover,
+    &:focus
+      .best__name
+        color: $color-text--secondary
+        transition: all 0.3s ease-in-out
+
+    &:active
+      .best__name
+        color: $color-action
+        transition: all 0.3s ease-in-out
 
   &__name
     display: block
     font-size: 12px
     color: $color-text
     margin-bottom: 8px
+    transition: all 0.3s ease-in-out
 
   &__img
     border-radius: 4px
@@ -54,9 +71,6 @@
     background-size: contain
     background-repeat: no-repeat
 
-  &__item
-    display: flex
-
   &__block
     &--padding
       padding: 5px 0
@@ -69,6 +83,8 @@
       justify-content: space-around
 
   @media (min-width: $screen-sm)
+    display: block
+
     &__list
       padding-top: 25px
 

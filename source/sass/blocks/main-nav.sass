@@ -4,7 +4,6 @@
   left: 0
   position: absolute
   background-color: $color-brown--secondary
-  min-height: 247px
   z-index: 10
 
   &--closed
@@ -46,6 +45,12 @@
       & .main-nav__icon
         fill: $color-action
         transition: all 0.3s ease-in-out
+
+    &--active
+      color: $color-action
+
+      & .main-nav__icon
+        fill: $color-action
 
   &__icon
     fill: $color-text

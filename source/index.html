@@ -45,11 +45,18 @@
     <symbol id="icon-heart" viewBox="0 0 24 24">
       <path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/>
     </symbol>
+    <symbol id="icon-like" viewBox="0 0 24 24">
+      <path d="M21.406 9.558c-1.21-.051-2.87-.278-3.977-.744.809-3.283 1.253-8.814-2.196-8.814-1.861 0-2.351 1.668-2.833 3.329-1.548 5.336-3.946 6.816-6.4 7.401v-.73h-6v12h6v-.904c2.378.228 4.119.864 6.169 1.746 1.257.541 3.053 1.158 5.336 1.158 2.538 0 4.295-.997 5.009-3.686.5-1.877 1.486-7.25 1.486-8.25 0-1.648-1.168-2.446-2.594-2.506zm-17.406 10.442h-2v-8h2v8zm15.896-5.583s.201.01 1.069-.027c1.082-.046 1.051 1.469.004 1.563l-1.761.099c-.734.094-.656 1.203.141 1.172 0 0 .686-.017 1.143-.041 1.068-.056 1.016 1.429.04 1.551-.424.053-1.745.115-1.745.115-.811.072-.706 1.235.109 1.141l.771-.031c.822-.074 1.003.825-.292 1.661-1.567.881-4.685.131-6.416-.614-2.239-.965-4.438-1.934-6.959-2.006v-6c3.264-.749 6.328-2.254 8.321-9.113.898-3.092 1.679-1.931 1.679.574 0 2.071-.49 3.786-.921 5.533 1.061.543 3.371 1.402 6.12 1.556 1.055.059 1.024 1.455-.051 1.584l-1.394.167s-.608 1.111.142 1.116z"/>
+    </symbol>
   </svg>
   <header class="page-header">
     <div class="page-header__inner">
       <div class="page-header__block page-header__block--brown">
-        <h1 class="page-header__logo"><span class="page-header__decor">A</span>Movie</h1>
+        <h1 class="page-header__logo">
+          <a href="#" class="page-header__home">
+            <span class="page-header__decor">Movie</span>searcher
+          </a>
+        </h1>
         <button class="page-header__toggler page-header__toggler--closed">Открыть меню
           <span></span><span></span><span></span>
         </button>
@@ -68,7 +75,7 @@
             </svg>
             Row view
           </button>
-          <button class="page-header__button" id="gridView">
+          <button class="page-header__button page-header__button--active" id="gridView">
             <svg class="page-header__icon" width="17" height="13">
               <use xlink:href="#icon-grid"></use>
             </svg>
@@ -78,6 +85,7 @@
       </div>
       <div class="page-header__block page-header__block--grey">
         <div class="page-header__account">
+          <!--<a href="#" class="page-header__btn btn">Sign in</a>-->
           <div class="page-header__userblock">
             <img src="img/ava.jpg" width="32" height="32" alt="Avatar" class="page-header__avatar">
             <p class="page-header__text">Hello, <span class="page-header__name">Olia</span>!</p>
@@ -109,7 +117,7 @@
       <nav class="main-nav main-nav--closed">
         <ul class="main-nav__list">
           <li class="main__nav__item">
-            <a href="#" class="main-nav__link">
+            <a href="#" class="main-nav__link main-nav__link--active">
               <svg class="main-nav__icon" width="17" height="17">
                 <use xlink:href="#icon-movie"></use>
               </svg>
@@ -156,49 +164,59 @@
         </div>
         <ul class="best__list">
           <li class="best__item">
-            <picture class="best__pic best__pic--gold">
-              <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
-            </picture>
-            <div class="best__block best__block--padding">
-              <span class="best__name">Gravity</span>
-              <div class="best__rating"></div>
-            </div>
+            <a href="" class="best__link">
+              <picture class="best__pic best__pic--gold">
+                <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
+              </picture>
+              <div class="best__block best__block--padding">
+                <span class="best__name">Gravity</span>
+                <div class="best__rating"></div>
+              </div>
+            </a>
           </li>
           <li class="best__item">
-            <picture class="best__pic best__pic--gold">
-              <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
-            </picture>
-            <div class="best__block best__block--padding">
-              <span class="best__name">Gravity</span>
-              <div class="best__rating"></div>
-            </div>
+            <a href="#" class="best__link">
+              <picture class="best__pic best__pic--gold">
+                <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
+              </picture>
+              <div class="best__block best__block--padding">
+                <span class="best__name">Gravity</span>
+                <div class="best__rating"></div>
+              </div>
+            </a>
           </li>
           <li class="best__item">
-            <picture class="best__pic best__pic--gold">
-              <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
-            </picture>
-            <div class="best__block best__block--padding">
-              <span class="best__name">Gravity</span>
-              <div class="best__rating"></div>
-            </div>
+            <a href="#" class="best__link">
+              <picture class="best__pic best__pic--gold">
+                <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
+              </picture>
+              <div class="best__block best__block--padding">
+                <span class="best__name">Gravity</span>
+                <div class="best__rating"></div>
+              </div>
+            </a>
           </li>
           <li class="best__item">
-            <picture class="best__pic best__pic--silver">
-              <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
-            </picture>
-            <div class="best__block best__block--padding">
-              <span class="best__name">Gravity</span>
-              <div class="best__rating"></div>
-            </div>
+            <a href="#" class="best__link">
+              <picture class="best__pic best__pic--silver">
+                <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
+              </picture>
+              <div class="best__block best__block--padding">
+                <span class="best__name">Gravity</span>
+                <div class="best__rating"></div>
+              </div>
+            </a>
           </li>
           <li class="best__item">
-            <picture class="best__pic best__pic--silver">
-              <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
-            </picture>
-            <div class="best__block best__block--padding">
-              <span class="best__name">Gravity</span>
-              <div class="best__rating"></div>
-            </div>
+            <a href="#" class="best__link">
+              <picture class="best__pic best__pic--silver">
+                <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
+              </picture>
+              <div class="best__block best__block--padding">
+                <span class="best__name">Gravity</span>
+                <div class="best__rating"></div>
+              </div>
+            </a>
           </li>
         </ul>
       </section>
@@ -210,10 +228,16 @@
           <div class="movies__block">
             <span class="movies__name">ThorThorThorThorThor</span>
             <p class="movies__desc">Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.</p>
+            <span class="movies__rate">
+              <svg class="movies__icon" width="12" height="12">
+                <use xlink:href="#icon-like"></use>
+              </svg>
+              7.5 average
+            </span>
             <span class="movies__duration">
               <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
+                <use xlink:href="#icon-clock"></use>
+              </svg>
               165 min
             </span>
             <ul class="movies__genres">
@@ -222,6 +246,7 @@
               <li class="movies__genre">Drama</li>
               <li class="movies__genre">Drama</li>
             </ul>
+            <time class="movies__date">Release date: 1966-06-15</time>
             <a href="#" class="movies__btn btn">More</a>
           </div>
         </li>

@@ -3,13 +3,28 @@
     margin-right: 8px
 
   &__logo
-    position: relative
     margin: 0
+
+  &__home
+    display: block
+    position: relative
     font-family: $font-family--secondary
     font-size: 18px
     font-weight: 700
     text-transform: uppercase
     color: $color-text--secondary
+    transition: all 0.3s ease-in-out
+
+    &:hover,
+    &:focus
+      color: $color-gold
+      transition: all 0.3s ease-in-out
+
+    &:active
+      color: $color-action
+      transition: all 0.3s ease-in-out
+
+
 
     &::before
       width: 17px
@@ -172,11 +187,18 @@
     display: flex
     align-items: center
 
+  &__btn
+    width: 100px
+    text-align: center
+
   &__text
     font-size: 13px
     font-weight: 400
     color: $color-brown--secondary
     position: relative
+    max-width: 300px
+    overflow: hidden
+    text-overflow: ellipsis
 
     &::before
       width: 100%
@@ -194,6 +216,7 @@
     left: 0
     width: 100%
     background-color: $color-brown--secondary
+    z-index: 1
 
     &--closed
     transform: scaleY(0)
@@ -308,6 +331,10 @@
       width: 34px
       height: 34px
       outline: none
+
+      &--active
+        & .page-header__icon
+          fill: $color-gold
 
     &__account
       justify-content: flex-start

@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="css/style.min.css">
+  <meta name="description" content="TMDb Movie app">
+  <meta name="keywords" content="Tmdb">
 </head>
 <body>
   <!-- this svg is a container for svg icons and should not appear on the page.
@@ -60,13 +62,13 @@
           </svg>
         </div>
         <div class="page-header__buttons">
-          <button class="page-header__button">
+          <button class="page-header__button" id="rowView">
             <svg class="page-header__icon" width="17" height="13">
               <use xlink:href="#icon-details"></use>
             </svg>
             Row view
           </button>
-          <button class="page-header__button">
+          <button class="page-header__button" id="gridView">
             <svg class="page-header__icon" width="17" height="13">
               <use xlink:href="#icon-grid"></use>
             </svg>
@@ -202,9 +204,29 @@
       </section>
     </aside>
     <section class="movies">
-      <ul class="movies__list">
+      <ul class="movies__list movies__list--grid">
         <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">ThorThorThorThorThor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min
+            </span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
+        </li>
+        <li class="movies__item">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
           <div class="movies__block">
             <span class="movies__name">Thor</span>
             <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
@@ -223,52 +245,232 @@
           </div>
         </li>
         <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">Thor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min</span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
         </li>
         <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">Thor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min</span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
         </li>
         <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">Thor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min</span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
         </li>
         <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">Thor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min</span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
         </li>
         <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">Thor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min</span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
         </li>
         <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">Thor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min</span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
         </li>
         <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">Thor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min</span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
         </li>
         <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">Thor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min</span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
         </li>
         <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">Thor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min</span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
         </li>
         <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">Thor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min</span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
         </li>
         <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">Thor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min</span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
         </li>
         <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
-        </li>
-        <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
-        </li>
-        <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
-        </li>
-        <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
-        </li>
-        <li class="movies__item">
-          <img src="img/image.jpg" width="156" height="228" alt="#" class="movies__img">
+          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
+          <div class="movies__block">
+            <span class="movies__name">Thor</span>
+            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
+            <span class="movies__duration">
+              <svg class="movies__icon" width="12" height="12">
+            <use xlink:href="#icon-clock"></use>
+          </svg>
+              165 min</span>
+            <ul class="movies__genres">
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+              <li class="movies__genre">Drama</li>
+            </ul>
+            <a href="#" class="movies__btn btn">More</a>
+          </div>
         </li>
       </ul>
     </section>

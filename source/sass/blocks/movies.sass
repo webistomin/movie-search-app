@@ -1,5 +1,4 @@
 .movies
-  padding: 20px
   box-sizing: border-box
 
   &__list
@@ -8,6 +7,7 @@
     justify-content: space-around
     perspective: 2200px
     transform-style: preserve-3d
+    padding: 20px
 
   &__item
     position: relative
@@ -103,7 +103,7 @@
     border-right: 1px solid $color-border
     overflow-y: scroll
     height: calc(100vh - 60px)
-    padding: 30px
+
 
     &::-webkit-scrollbar-track
       border-radius: 10px
@@ -123,6 +123,7 @@
     &__list
       justify-content: space-between
       perspective: 1200px
+      padding: 30px
 
       &--row
         flex-direction: column

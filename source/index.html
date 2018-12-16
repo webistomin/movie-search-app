@@ -4,765 +4,368 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>TMDb Movie Application</title>
+  <title>Document</title>
   <link rel="stylesheet" href="css/style.min.css">
-  <meta name="description" content="Movie search application via TMDb API">
-  <meta name="keywords" content="TMDb, movie, search, spa, vue">
+  <meta name="description" content="TMDb Movie app">
+  <meta name="keywords" content="Tmdb">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#4c4145">
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
   <meta name="apple-mobile-web-app-title" content="MovieSearch">
   <meta name="application-name" content="MovieSearch">
-  <meta name="msapplication-TileColor" content="#4c4145">
-  <meta name="theme-color" content="#4c4145">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-<script>
-    document.body.onload = function () {
-        setTimeout(function () {
-            var preloader = document.getElementById('loader');
-            if (!preloader.classList.contains('done')) {
-                preloader.classList.add('done');
-            }
-        }, 1000)
-    };
-</script>
-<div class="loader-body" id="loader">
-    <div class="loader">
-      <svg height="400" width="400" id="preloader">
-        <g filter="url(#goo)">
-          <circle class="outer" cx="200" cy="200" r="150" />
-          <circle class="drop" cx="200" cy="200" r="20"/>
-        </g>
-        <defs>
-          <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur" />
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-          </filter>
-        </defs>
-      </svg>
+<!-- this svg is a container for svg icons and should not appear on the page.
+To emphasise this I use inline style="display: none" -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+  <symbol id="icon-magnifier" viewBox="0 0 17 17"><defs><path id="vw4wa" d="M852.69 38.5l-4.26-4.26a6.4 6.4 0 1 1 1.81-1.81l4.26 4.26zm-7.79-5.012a4.587 4.587 0 1 0 0-9.174 4.587 4.587 0 0 0 0 9.174z"/></defs><g><g transform="translate(-838 -22)"><use xlink:href="#vw4wa"/></g></g>
+  </symbol>
+  <symbol id="icon-arrow" viewBox="0 0 24 24">
+    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
+  </symbol>
+  <symbol id="icon-movie" viewBox="0 0 17 17">
+    <defs><path id="4sw7a" d="M54 105c0 .693-.323 1-1 1 0 0-13 0-13.927.002-.955.001-1.126-.31-1.073-1.002V94c.007-.564.885-.923 1.438-1.054L52.47 89.87c.651-.153 1.302.269 1.455.944l.543 2.407-10.643 2.512L54 96zm-4.55-13.441l2.107 1.405 1.625-.383-2.108-1.406zm-3.28.775l2.108 1.405 1.625-.384-2.107-1.406zm-3.198.754l2.107 1.406 1.625-.383-2.107-1.406zm-3.27.772l2.107 1.406 1.625-.384-2.107-1.406zM53 97H39v8h14zm-5 4l-3 2v-4z"/></defs><g><g transform="translate(-38 -89)"><use xlink:href="#4sw7a"/></g></g>
+  </symbol>
+  <symbol id="icon-calendar" viewBox="0 0 17 17">
+    <defs><path id="iau5a" d="M43 135h-2v-2h2zm3 0h-2v-2h2zm3 0h-2v-2h2zm-6 4h-2v-2h2zm3 0h-2v-2h2zm3 0h-2v-2h2zm2-10h-2v-3h2zm-7 0h-2v-3h2zm11 14H38v-15h3v2h4v-2h3v2h4v-2h3zm-2-12H40v10h13zm-1 4h-2v-2h2zm0 4h-2v-2h2z"/></defs><g><g transform="translate(-38 -126)"><use xlink:href="#iau5a"/></g></g>
+  </symbol>
+  <symbol id="icon-trailer" viewBox="0 0 15 15">
+    <defs><path id="e8gsa" d="M54 200v15H39v-15zm-12 13h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm0-6h-2v1h2zm8 7h-7v6h7zm0-7h-7v6h7zm3 12h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm-11 0h-2v1h2zm0-2h-2v1h2zm11 0h-2v1h2zm0-2h-2v1h2z"/></defs><g><g transform="translate(-39 -200)"><use xlink:href="#e8gsa"/></g></g>
+  </symbol>
+  <symbol id="icon-popular" viewBox="0 0 24 24">
+    <path d="M12 6.76l1.379 4.246h4.465l-3.612 2.625 1.379 4.246-3.611-2.625-3.612 2.625 1.379-4.246-3.612-2.625h4.465l1.38-4.246zm0-6.472l-2.833 8.718h-9.167l7.416 5.389-2.833 8.718 7.417-5.388 7.416 5.388-2.833-8.718 7.417-5.389h-9.167l-2.833-8.718z"/>
+  </symbol>
+  <symbol id="icon-top" viewBox="0 0 24 24">
+    <path d="M5 20v2h-2v-2h2zm2-2h-6v6h6v-6zm6-1v5h-2v-5h2zm2-2h-6v9h6v-9zm6-2v9h-2v-9h2zm2-2h-6v13h6v-13zm0-11l-6 1.221 1.716 1.708-6.85 6.733-3.001-3.002-7.841 7.797 1.41 1.418 6.427-6.39 2.991 2.993 8.28-8.137 1.667 1.66 1.201-6.001z"/>
+  </symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24">
+    <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.848 12.459c.202.038.202.333.001.372-1.907.361-6.045 1.111-6.547 1.111-.719 0-1.301-.582-1.301-1.301 0-.512.77-5.447 1.125-7.445.034-.192.312-.181.343.014l.985 6.238 5.394 1.011z"/>
+  </symbol>
+  <symbol id="icon-details" viewBox="0 0 17 13">
+    <defs><path id="ee7pa" d="M918 34h3v3h-3zm5 0h12v3h-12zm-5-5h3v3h-3zm5 0h12v3h-12zm-5-5h3v3h-3zm17 0v3h-12v-3z"/></defs><g><g transform="translate(-918 -24)"><use xlink:href="#ee7pa"/></g></g>
+  </symbol>
+  <symbol id="icon-grid" viewBox="0 0 13 13">
+    <defs><path id="rkewa" d="M960 24h3v3h-3zm5 10h3v3h-3zm-5-5h3v3h-3zm-5 0h3v3h-3zm5 5h3v3h-3zm-5 0h3v3h-3zm0-10h3v3h-3zm13 0v3h-3v-3zm-3 5h3v3h-3z"/></defs><g><g transform="translate(-955 -24)"><use xlink:href="#rkewa"/></g></g>
+  </symbol>
+  <symbol id="icon-heart" viewBox="0 0 24 24">
+    <path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/>
+  </symbol>
+  <symbol id="icon-like" viewBox="0 0 24 24">
+    <path d="M21.406 9.558c-1.21-.051-2.87-.278-3.977-.744.809-3.283 1.253-8.814-2.196-8.814-1.861 0-2.351 1.668-2.833 3.329-1.548 5.336-3.946 6.816-6.4 7.401v-.73h-6v12h6v-.904c2.378.228 4.119.864 6.169 1.746 1.257.541 3.053 1.158 5.336 1.158 2.538 0 4.295-.997 5.009-3.686.5-1.877 1.486-7.25 1.486-8.25 0-1.648-1.168-2.446-2.594-2.506zm-17.406 10.442h-2v-8h2v8zm15.896-5.583s.201.01 1.069-.027c1.082-.046 1.051 1.469.004 1.563l-1.761.099c-.734.094-.656 1.203.141 1.172 0 0 .686-.017 1.143-.041 1.068-.056 1.016 1.429.04 1.551-.424.053-1.745.115-1.745.115-.811.072-.706 1.235.109 1.141l.771-.031c.822-.074 1.003.825-.292 1.661-1.567.881-4.685.131-6.416-.614-2.239-.965-4.438-1.934-6.959-2.006v-6c3.264-.749 6.328-2.254 8.321-9.113.898-3.092 1.679-1.931 1.679.574 0 2.071-.49 3.786-.921 5.533 1.061.543 3.371 1.402 6.12 1.556 1.055.059 1.024 1.455-.051 1.584l-1.394.167s-.608 1.111.142 1.116z"/>
+  </symbol>
+</svg>
+<header class="page-header">
+  <div class="page-header__inner">
+    <div class="page-header__block page-header__block--heading">
+      <h1 class="page-header__logo">
+        <a href="/" class="page-header__home">
+          <span class="page-header__decor">Movie</span>searcher
+        </a>
+      </h1>
+      <button class="page-header__toggler page-header__toggler--closed">Открыть меню
+        <span></span><span></span><span></span>
+      </button>
     </div>
-</div>
-  <!-- this svg is a container for svg icons and should not appear on the page.
-  To emphasise this I use inline style="display: none" -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
-    <symbol id="icon-magnifier" viewBox="0 0 17 17"><defs><path id="vw4wa" d="M852.69 38.5l-4.26-4.26a6.4 6.4 0 1 1 1.81-1.81l4.26 4.26zm-7.79-5.012a4.587 4.587 0 1 0 0-9.174 4.587 4.587 0 0 0 0 9.174z"/></defs><g><g transform="translate(-838 -22)"><use xlink:href="#vw4wa"/></g></g>
-    </symbol>
-    <symbol id="icon-arrow" viewBox="0 0 24 24">
-      <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
-    </symbol>
-    <symbol id="icon-movie" viewBox="0 0 17 17">
-      <defs><path id="4sw7a" d="M54 105c0 .693-.323 1-1 1 0 0-13 0-13.927.002-.955.001-1.126-.31-1.073-1.002V94c.007-.564.885-.923 1.438-1.054L52.47 89.87c.651-.153 1.302.269 1.455.944l.543 2.407-10.643 2.512L54 96zm-4.55-13.441l2.107 1.405 1.625-.383-2.108-1.406zm-3.28.775l2.108 1.405 1.625-.384-2.107-1.406zm-3.198.754l2.107 1.406 1.625-.383-2.107-1.406zm-3.27.772l2.107 1.406 1.625-.384-2.107-1.406zM53 97H39v8h14zm-5 4l-3 2v-4z"/></defs><g><g transform="translate(-38 -89)"><use xlink:href="#4sw7a"/></g></g>
-    </symbol>
-    <symbol id="icon-calendar" viewBox="0 0 17 17">
-      <defs><path id="iau5a" d="M43 135h-2v-2h2zm3 0h-2v-2h2zm3 0h-2v-2h2zm-6 4h-2v-2h2zm3 0h-2v-2h2zm3 0h-2v-2h2zm2-10h-2v-3h2zm-7 0h-2v-3h2zm11 14H38v-15h3v2h4v-2h3v2h4v-2h3zm-2-12H40v10h13zm-1 4h-2v-2h2zm0 4h-2v-2h2z"/></defs><g><g transform="translate(-38 -126)"><use xlink:href="#iau5a"/></g></g>
-    </symbol>
-    <symbol id="icon-trailer" viewBox="0 0 15 15">
-      <defs><path id="e8gsa" d="M54 200v15H39v-15zm-12 13h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm0-6h-2v1h2zm8 7h-7v6h7zm0-7h-7v6h7zm3 12h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm0-2h-2v1h2zm-11 0h-2v1h2zm0-2h-2v1h2zm11 0h-2v1h2zm0-2h-2v1h2z"/></defs><g><g transform="translate(-39 -200)"><use xlink:href="#e8gsa"/></g></g>
-    </symbol>
-    <symbol id="icon-popular" viewBox="0 0 24 24">
-      <path d="M12 6.76l1.379 4.246h4.465l-3.612 2.625 1.379 4.246-3.611-2.625-3.612 2.625 1.379-4.246-3.612-2.625h4.465l1.38-4.246zm0-6.472l-2.833 8.718h-9.167l7.416 5.389-2.833 8.718 7.417-5.388 7.416 5.388-2.833-8.718 7.417-5.389h-9.167l-2.833-8.718z"/>
-    </symbol>
-    <symbol id="icon-top" viewBox="0 0 24 24">
-      <path d="M5 20v2h-2v-2h2zm2-2h-6v6h6v-6zm6-1v5h-2v-5h2zm2-2h-6v9h6v-9zm6-2v9h-2v-9h2zm2-2h-6v13h6v-13zm0-11l-6 1.221 1.716 1.708-6.85 6.733-3.001-3.002-7.841 7.797 1.41 1.418 6.427-6.39 2.991 2.993 8.28-8.137 1.667 1.66 1.201-6.001z"/>
-    </symbol>
-    <symbol id="icon-clock" viewBox="0 0 24 24">
-      <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.848 12.459c.202.038.202.333.001.372-1.907.361-6.045 1.111-6.547 1.111-.719 0-1.301-.582-1.301-1.301 0-.512.77-5.447 1.125-7.445.034-.192.312-.181.343.014l.985 6.238 5.394 1.011z"/>
-    </symbol>
-    <symbol id="icon-details" viewBox="0 0 17 13">
-      <defs><path id="ee7pa" d="M918 34h3v3h-3zm5 0h12v3h-12zm-5-5h3v3h-3zm5 0h12v3h-12zm-5-5h3v3h-3zm17 0v3h-12v-3z"/></defs><g><g transform="translate(-918 -24)"><use xlink:href="#ee7pa"/></g></g>
-    </symbol>
-    <symbol id="icon-grid" viewBox="0 0 13 13">
-      <defs><path id="rkewa" d="M960 24h3v3h-3zm5 10h3v3h-3zm-5-5h3v3h-3zm-5 0h3v3h-3zm5 5h3v3h-3zm-5 0h3v3h-3zm0-10h3v3h-3zm13 0v3h-3v-3zm-3 5h3v3h-3z"/></defs><g><g transform="translate(-955 -24)"><use xlink:href="#rkewa"/></g></g>
-    </symbol>
-    <symbol id="icon-heart" viewBox="0 0 24 24">
-      <path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/>
-    </symbol>
-    <symbol id="icon-like" viewBox="0 0 24 24">
-      <path d="M21.406 9.558c-1.21-.051-2.87-.278-3.977-.744.809-3.283 1.253-8.814-2.196-8.814-1.861 0-2.351 1.668-2.833 3.329-1.548 5.336-3.946 6.816-6.4 7.401v-.73h-6v12h6v-.904c2.378.228 4.119.864 6.169 1.746 1.257.541 3.053 1.158 5.336 1.158 2.538 0 4.295-.997 5.009-3.686.5-1.877 1.486-7.25 1.486-8.25 0-1.648-1.168-2.446-2.594-2.506zm-17.406 10.442h-2v-8h2v8zm15.896-5.583s.201.01 1.069-.027c1.082-.046 1.051 1.469.004 1.563l-1.761.099c-.734.094-.656 1.203.141 1.172 0 0 .686-.017 1.143-.041 1.068-.056 1.016 1.429.04 1.551-.424.053-1.745.115-1.745.115-.811.072-.706 1.235.109 1.141l.771-.031c.822-.074 1.003.825-.292 1.661-1.567.881-4.685.131-6.416-.614-2.239-.965-4.438-1.934-6.959-2.006v-6c3.264-.749 6.328-2.254 8.321-9.113.898-3.092 1.679-1.931 1.679.574 0 2.071-.49 3.786-.921 5.533 1.061.543 3.371 1.402 6.12 1.556 1.055.059 1.024 1.455-.051 1.584l-1.394.167s-.608 1.111.142 1.116z"/>
-    </symbol>
-    <symbol id="icon-user" viewBox="0 0 24 24">
-      <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z"/>
-    </symbol>
-  </svg>
-  <header class="page-header" role="banner">
-    <div class="page-header__inner">
-      <div class="page-header__block page-header__block--brown">
-        <h1 class="page-header__logo">
-          <a href="index.html" class="page-header__home" title="Home page">
-            <span class="page-header__decor">Movie</span>searcher
-          </a>
-        </h1>
-        <button class="page-header__toggler page-header__toggler--closed" title="Open menu">
-          Open navigation
-          <span></span><span></span><span></span>
+    <div class="page-header__block page-header__block--search">
+      <div class="page-header__wrapper">
+        <input type="text" class="page-header__input" title="Search a movie" placeholder="Search a movie...">
+        <svg class="page-header__icon page-header__icon--absolute" width="17" height="17">
+          <use xlink:href="#icon-magnifier"></use>
+        </svg>
+      </div>
+      <div class="page-header__buttons">
+        <button class="page-header__button" id="rowView">
+          <svg class="page-header__icon" width="17" height="13">
+            <use xlink:href="#icon-details"></use>
+          </svg>
+          Row view
+        </button>
+        <button class="page-header__button page-header__button--active" id="gridView">
+          <svg class="page-header__icon" width="17" height="13">
+            <use xlink:href="#icon-grid"></use>
+          </svg>
+          Grid view
         </button>
       </div>
-      <div class="page-header__block page-header__block--lightgrey">
-        <div class="page-header__wrapper">
-          <input type="text" class="page-header__input" title="Search a movie" placeholder="Search a movie...">
-          <svg class="page-header__icon page-header__icon--absolute" width="17" height="17">
-            <use xlink:href="#icon-magnifier"></use>
-          </svg>
+    </div>
+    <div class="page-header__block page-header__block--user">
+      <div class="page-header__account">
+        <a href="#" class="page-header__btn btn">Sign in</a>
+        <div class="page-header__userblock">
+          <img src="img/ava.jpg" width="32" height="32" alt="Avatar" class="page-header__avatar">
+          <p class="page-header__text">Hello, <span class="page-header__name">Olia</span>!</p>
         </div>
-        <div class="page-header__buttons">
-          <button class="page-header__button" id="rowView" title="Row View">
-            <svg class="page-header__icon" width="17" height="13">
-              <use xlink:href="#icon-details"></use>
+        <div class="page-header__dropdown">
+          <button class="page-header__button page-header__button--closed page-header__button--arrow">
+            Открыть меню
+            <svg class="page-header__icon page-header__icon--arrow" width="12" height="12">
+              <use xlink:href="#icon-arrow"></use>
             </svg>
-            Row view
           </button>
-          <button class="page-header__button page-header__button--active" id="gridView" title="Grid View">
-            <svg class="page-header__icon" width="17" height="13">
-              <use xlink:href="#icon-grid"></use>
-            </svg>
-            Grid view
-          </button>
-        </div>
-      </div>
-      <div class="page-header__block page-header__block--grey">
-        <div class="page-header__account">
-          <a href="#" class="page-header__btn btn">
-            <svg class="page-header__icon page-header__icon--white" width="17" height="13">
-              <use xlink:href="#icon-user"></use>
-            </svg>
-            Sign in
-          </a>
-          <div class="page-header__userblock">
-            <img src="img/ava.jpg" width="32" height="32" alt="Avatar" class="page-header__avatar">
-            <p class="page-header__text">Hello, <span class="page-header__name">Olia</span>!</p>
-          </div>
-          <div class="page-header__dropdown">
-            <button class="page-header__button page-header__button--closed page-header__button--arrow" title="Open menu">
-              Открыть меню
-              <svg class="page-header__icon page-header__icon--arrow" width="12" height="12">
-                <use xlink:href="#icon-arrow"></use>
-              </svg>
-            </button>
-            <ul class="page-header__list page-header__list--closed">
-              <li class="page-header__item">
-                <a href="#" class="page-header__link">
-                  <svg class="page-header__icon page-header__icon--left" width="17" height="17">
-                    <use xlink:href="#icon-heart"></use>
-                  </svg>
-                  Favorite list
-                </a>
-              </li>
-            </ul>
-          </div>
+          <ul class="page-header__list page-header__list--closed">
+            <li class="page-header__item">
+              <a href="#" class="page-header__link">
+                <svg class="page-header__icon page-header__icon--left" width="17" height="17">
+                  <use xlink:href="#icon-heart"></use>
+                </svg>
+                Favorite list
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-  </header>
-  <main class="page-content" role="main">
-    <aside class="intro">
-      <nav class="main-nav main-nav--closed" role="navigation">
-        <ul class="main-nav__list">
-          <li class="main__nav__item">
-            <a href="#" class="main-nav__link main-nav__link--active">
-              <svg class="main-nav__icon" width="17" height="17">
-                <use xlink:href="#icon-movie"></use>
-              </svg>
-              Latest
-            </a>
-          </li>
-          <li class="main__nav__item">
-            <a href="#" class="main-nav__link">
-              <svg class="main-nav__icon" width="17" height="17">
-                <use xlink:href="#icon-calendar"></use>
-              </svg>
-              Now Playing
-            </a>
-          </li>
-          <li class="main__nav__item">
-            <a href="#" class="main-nav__link">
-              <svg class="main-nav__icon" width="17" height="17">
-                <use xlink:href="#icon-popular"></use>
-              </svg>
-              Popular
-            </a>
-          </li>
-          <li class="main__nav__item">
-            <a href="#" class="main-nav__link">
-              <svg class="main-nav__icon" width="17" height="17">
-                <use xlink:href="#icon-top"></use>
-              </svg>
-              Top Rated
-            </a>
-          </li>
-          <li class="main__nav__item">
-            <a href="#" class="main-nav__link">
-              <svg class="main-nav__icon" width="17" height="17">
-                <use xlink:href="#icon-trailer"></use>
-              </svg>
-              Upcoming
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <section class="best">
-        <div class="best__block">
-          <h2 class="best__title title">Today best choice</h2>
-        </div>
-        <ul class="best__list">
-          <li class="best__item">
-            <a href="" class="best__link">
-              <picture class="best__pic best__pic--gold">
-                <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
-              </picture>
-              <div class="best__block best__block--padding">
-                <span class="best__name">Gravity</span>
-                <div class="best__rating"></div>
-              </div>
-            </a>
-          </li>
-          <li class="best__item">
-            <a href="#" class="best__link">
-              <picture class="best__pic best__pic--gold">
-                <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
-              </picture>
-              <div class="best__block best__block--padding">
-                <span class="best__name">Gravity</span>
-                <div class="best__rating"></div>
-              </div>
-            </a>
-          </li>
-          <li class="best__item">
-            <a href="#" class="best__link">
-              <picture class="best__pic best__pic--gold">
-                <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
-              </picture>
-              <div class="best__block best__block--padding">
-                <span class="best__name">Gravity</span>
-                <div class="best__rating"></div>
-              </div>
-            </a>
-          </li>
-          <li class="best__item">
-            <a href="#" class="best__link">
-              <picture class="best__pic best__pic--silver">
-                <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
-              </picture>
-              <div class="best__block best__block--padding">
-                <span class="best__name">Gravity</span>
-                <div class="best__rating"></div>
-              </div>
-            </a>
-          </li>
-          <li class="best__item">
-            <a href="#" class="best__link">
-              <picture class="best__pic best__pic--silver">
-                <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
-              </picture>
-              <div class="best__block best__block--padding">
-                <span class="best__name">Gravity</span>
-                <div class="best__rating"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </section>
-    </aside>
-    <section class="movies">
-      <h2 class="movies__title">Latest</h2>
-      <!--<section class="movie">-->
-        <!--<div class="movie__background">-->
-          <!--<h2 class="movie__tagline">All the power on earth can't change destiny.</h2>-->
-        <!--</div>-->
-        <!--<div class="movie__inner">-->
-          <!--<figure class="movie__pic">-->
-            <!--<img src="img/poster185.jpg" width="185" height="278" alt="" class="movie__img">-->
-            <!--<figcaption class="movie__rate">7.5</figcaption>-->
-          <!--</figure>-->
-          <!--<h2 class="movie__title">THE HOBBIT: AN UNEXPECTED JOURNEY</h2>-->
-          <!--<button class="movie__btn btn">-->
-            <!--<svg class="movie__icon" width="17" height="17">-->
-              <!--<use xlink:href="#icon-heart"></use>-->
-            <!--</svg>-->
-            <!--Add to favorite-->
-          <!--</button>-->
-          <!--<div class="movie__block">-->
-            <!--<span class="movie__option">Country:</span>-->
-            <!--<span class="movie__value">New Zeland, USA</span>-->
-          <!--</div>-->
-          <!--<div class="movie__block">-->
-            <!--<span class="movie__option">Production companies:</span>-->
-            <!--<ul class="movie__values">-->
-              <!--<li class="movie__value">Paramount</li>-->
-              <!--<li class="movie__value">Warner Bros.</li>-->
-            <!--</ul>-->
-          <!--</div>-->
-          <!--<div class="movie__block">-->
-            <!--<span class="movie__option">Release date:</span>-->
-            <!--<span class="movie__value">2012</span>-->
-          <!--</div>-->
-          <!--<div class="movie__block">-->
-            <!--<span class="movie__option">Category:</span>-->
-            <!--<ul class="movie__values">-->
-              <!--<li class="movie__value">Adventure</li>-->
-              <!--<li class="movie__value">Fantasy</li>-->
-            <!--</ul>-->
-          <!--</div>-->
-          <!--<div class="movie__block">-->
-            <!--<span class="movie__option">Runtime:</span>-->
-            <!--<span class="movie__value">168 minutes</span>-->
-          <!--</div>-->
-          <!--<div class="movie__block">-->
-            <!--<span class="movie__option">Budget:</span>-->
-            <!--<span class="movie__value">54000000$</span>-->
-          <!--</div>-->
-          <!--<div class="movie__block">-->
-            <!--<span class="movie__option">Revenue:</span>-->
-            <!--<span class="movie__value">136766062$</span>-->
-          <!--</div>-->
-          <!--<div class="movie__block">-->
-            <!--<span class="movie__option">Director:</span>-->
-            <!--<span class="movie__value">Peter Jackson</span>-->
-          <!--</div>-->
-          <!--<div class="movie__block">-->
-            <!--<span class="movie__option">Actors:</span>-->
-            <!--<ul class="movie__values">-->
-              <!--<li class="movie__value">Martin Freeman</li>-->
-              <!--<li class="movie__value">Ian McKellen</li>-->
-              <!--<li class="movie__value">Martin Freeman</li>-->
-              <!--<li class="movie__value">Ian McKellen</li>-->
-              <!--<li class="movie__value">Martin Freeman</li>-->
-              <!--<li class="movie__value">Ian McKellen</li>-->
-            <!--</ul>-->
-          <!--</div>-->
-          <!--<h2 class="movie__title movie__title&#45;&#45;decor">The Plot</h2>-->
-          <!--<p class="movie__desc">In the midst of trying to legitimize his business dealings in 1979 New York and Italy, aging mafia don, Michael Corleone seeks forgiveness for his sins while taking a young protege under his wing.</p>-->
-          <!--<h2 class="movie__title movie__title&#45;&#45;decor">Photos</h2>-->
-          <!--<ul class="movie__list">-->
-            <!--<li class="movie__item"><img src="img/poster185.jpg" width="185" height="278" alt="" class="movie__img"></li>-->
-            <!--<li class="movie__item"><img src="img/poster185.jpg" width="185" height="278" alt="" class="movie__img"></li>-->
-            <!--<li class="movie__item"><img src="img/poster185.jpg" width="185" height="278" alt="" class="movie__img"></li>-->
-            <!--<li class="movie__item"><img src="img/poster185.jpg" width="185" height="278" alt="" class="movie__img"></li>-->
-          <!--</ul>-->
-          <!--<h2 class="movie__title movie__title&#45;&#45;decor">Similar movies</h2>-->
-          <!--<ul class="movie__list">-->
-            <!--<li class="movie__item"><img src="img/poster185.jpg" width="185" height="278" alt="" class="movie__img"></li>-->
-            <!--<li class="movie__item"><img src="img/poster185.jpg" width="185" height="278" alt="" class="movie__img"></li>-->
-            <!--<li class="movie__item"><img src="img/poster185.jpg" width="185" height="278" alt="" class="movie__img"></li>-->
-            <!--<li class="movie__item"><img src="img/poster185.jpg" width="185" height="278" alt="" class="movie__img"></li>-->
-          <!--</ul>-->
-          <!--<h2 class="movie__title movie__title&#45;&#45;decor">Recomendations</h2>-->
-          <!--<ul class="movie__list">-->
-            <!--<li class="movie__item"><img src="img/poster185.jpg" width="185" height="278" alt="" class="movie__img"></li>-->
-            <!--<li class="movie__item"><img src="img/poster185.jpg" width="185" height="278" alt="" class="movie__img"></li>-->
-            <!--<li class="movie__item"><img src="img/poster185.jpg" width="185" height="278" alt="" class="movie__img"></li>-->
-            <!--<li class="movie__item"><img src="img/poster185.jpg" width="185" height="278" alt="" class="movie__img"></li>-->
-          <!--</ul>-->
-        <!--</div>-->
-      <!--</section>-->
-      <ul class="movies__list movies__list--grid">
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">ThorThorThorThorThor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.</p>
-            <span class="movies__rate">
-              <svg class="movies__icon" width="12" height="12">
-                <use xlink:href="#icon-like"></use>
-              </svg>
-              7.5 average
-            </span>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-                <use xlink:href="#icon-clock"></use>
-              </svg>
-              165 min
-            </span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <time class="movies__date">Release date: 1966-06-15</time>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
+  </div>
+</header>
+<main class="page-content">
+  <aside class="intro">
+    <nav class="main-nav main-nav--closed">
+      <ul class="main-nav__list">
+        <li class="main__nav__item">
+          <a href="latest.html" class="main-nav__link">
+            <svg class="main-nav__icon" width="17" height="17">
+              <use xlink:href="#icon-movie"></use>
+            </svg>
+            Latest
+          </a>
         </li>
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">Thor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
-              165 min</span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
+        <li class="main__nav__item">
+          <a href="latest.html" class="main-nav__link">
+            <svg class="main-nav__icon" width="17" height="17">
+              <use xlink:href="#icon-calendar"></use>
+            </svg>
+            Now Playing
+          </a>
         </li>
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">Thor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
-              165 min</span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
+        <li class="main__nav__item">
+          <a href="latest.html" class="main-nav__link">
+            <svg class="main-nav__icon" width="17" height="17">
+              <use xlink:href="#icon-popular"></use>
+            </svg>
+            Popular
+          </a>
         </li>
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">Thor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
-              165 min</span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
+        <li class="main__nav__item">
+          <a href="latest.html" class="main-nav__link">
+            <svg class="main-nav__icon" width="17" height="17">
+              <use xlink:href="#icon-top"></use>
+            </svg>
+            Top Rated
+          </a>
         </li>
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">Thor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
-              165 min</span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
+        <li class="main__nav__item">
+          <a href="latest.html" class="main-nav__link">
+            <svg class="main-nav__icon" width="17" height="17">
+              <use xlink:href="#icon-trailer"></use>
+            </svg>
+            Upcoming
+          </a>
         </li>
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">Thor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
-              165 min</span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
+      </ul>
+    </nav>
+    <section class="best">
+      <div class="best__block">
+        <h2 class="best__title title">Today best choice</h2>
+      </div>
+      <ul class="best__list">
+        <li class="best__item">
+          <a href="" class="best__link">
+            <picture class="best__pic best__pic--gold">
+              <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
+            </picture>
+            <div class="best__block best__block--padding">
+              <span class="best__name">Gravity</span>
+              <div class="best__rating"></div>
+            </div>
+          </a>
         </li>
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">Thor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
-              165 min</span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
+        <li class="best__item">
+          <a href="#" class="best__link">
+            <picture class="best__pic best__pic--gold">
+              <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
+            </picture>
+            <div class="best__block best__block--padding">
+              <span class="best__name">Gravity</span>
+              <div class="best__rating"></div>
+            </div>
+          </a>
         </li>
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">Thor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
-              165 min</span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
+        <li class="best__item">
+          <a href="#" class="best__link">
+            <picture class="best__pic best__pic--gold">
+              <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
+            </picture>
+            <div class="best__block best__block--padding">
+              <span class="best__name">Gravity</span>
+              <div class="best__rating"></div>
+            </div>
+          </a>
         </li>
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">Thor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
-              165 min</span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
+        <li class="best__item">
+          <a href="#" class="best__link">
+            <picture class="best__pic best__pic--silver">
+              <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
+            </picture>
+            <div class="best__block best__block--padding">
+              <span class="best__name">Gravity</span>
+              <div class="best__rating"></div>
+            </div>
+          </a>
         </li>
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">Thor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
-              165 min</span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
-        </li>
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">Thor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
-              165 min</span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
-        </li>
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">Thor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
-              165 min</span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
-        </li>
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">Thor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
-              165 min</span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
-        </li>
-        <li class="movies__item">
-          <img src="img/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
-          <div class="movies__block">
-            <span class="movies__name">Thor</span>
-            <p class="movies__desc">Lorem ipsum dolor sit amet.</p>
-            <span class="movies__duration">
-              <svg class="movies__icon" width="12" height="12">
-            <use xlink:href="#icon-clock"></use>
-          </svg>
-              165 min</span>
-            <ul class="movies__genres">
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-              <li class="movies__genre">Drama</li>
-            </ul>
-            <a href="movie.html" class="movies__btn btn">Read more</a>
-          </div>
+        <li class="best__item">
+          <a href="#" class="best__link">
+            <picture class="best__pic best__pic--silver">
+              <img src="img/best@1x.jpg" alt="#" width="41" height="41" class="best__img">
+            </picture>
+            <div class="best__block best__block--padding">
+              <span class="best__name">Gravity</span>
+              <div class="best__rating"></div>
+            </div>
+          </a>
         </li>
       </ul>
     </section>
-    <aside class="socials">
-      <div class="socials__block">
-        <h2 class="socials__title title">Last comments</h2>
-        <ul class="socials__list">
-          <li class="socials__item">
-            <div class="socials__block socials__block--flex">
-              <picture class="socials__pic">
-                <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-              </picture>
-              <span class="socials__name">Visual idiot</span>
-            </div>
-            <p class="socials__message">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-            </p>
-          </li>
-          <li class="socials__item">
-            <div class="socials__block socials__block--flex">
-              <picture class="socials__pic">
-                <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-              </picture>
-              <span class="socials__name">Visual idiot</span>
-            </div>
-            <p class="socials__message">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-            </p>
-          </li>
-          <li class="socials__item">
-            <div class="socials__block socials__block--flex">
-              <picture class="socials__pic">
-                <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-              </picture>
-              <span class="socials__name">Visual idiot</span>
-            </div>
-            <p class="socials__message">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-            </p>
-          </li>
-          <li class="socials__item">
-            <div class="socials__block socials__block--flex">
-              <picture class="socials__pic">
-                <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-              </picture>
-              <span class="socials__name">Visual idiot</span>
-            </div>
-            <p class="socials__message">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-            </p>
-          </li>
-          <li class="socials__item">
-            <div class="socials__block socials__block--flex">
-              <picture class="socials__pic">
-                <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-              </picture>
-              <span class="socials__name">Visual idiot</span>
-            </div>
-            <p class="socials__message">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-            </p>
-          </li>
-          <li class="socials__item">
-            <div class="socials__block socials__block--flex">
-              <picture class="socials__pic">
-                <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-              </picture>
-              <span class="socials__name">Visual idiot</span>
-            </div>
-            <p class="socials__message">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-            </p>
-          </li>
-          <li class="socials__item">
-            <div class="socials__block socials__block--flex">
-              <picture class="socials__pic">
-                <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-              </picture>
-              <span class="socials__name">Visual idiot</span>
-            </div>
-            <p class="socials__message">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-            </p>
-          </li>
-          <li class="socials__item">
-            <div class="socials__block socials__block--flex">
-              <picture class="socials__pic">
-                <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-              </picture>
-              <span class="socials__name">Visual idiot</span>
-            </div>
-            <p class="socials__message">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-            </p>
-          </li>
-          <li class="socials__item">
-            <div class="socials__block socials__block--flex">
-              <picture class="socials__pic">
-                <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-              </picture>
-              <span class="socials__name">Visual idiot</span>
-            </div>
-            <p class="socials__message">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-            </p>
-          </li>
-          <li class="socials__item">
-            <div class="socials__block socials__block--flex">
-              <picture class="socials__pic">
-                <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-              </picture>
-              <span class="socials__name">Visual idiot</span>
-            </div>
-            <p class="socials__message">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-            </p>
-          </li>
-          <li class="socials__item">
-            <div class="socials__block socials__block--flex">
-              <picture class="socials__pic">
-                <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-              </picture>
-              <span class="socials__name">Visual idiot</span>
-            </div>
-            <p class="socials__message">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-            </p>
-          </li>
-        </ul>
-      </div>
-    </aside>
-  </main>
-  <script src="js/script.min.js"></script>
+  </aside>
+  <section class="movies movies--noscroll">
+    <section class="home">
+      <h1 class="home__title">Powered by The Movie Database</h1>
+      <h2 class="home__subtitle">Made with Vue.js</h2>
+      <a href="#" class="home__link">View code</a>
+    </section>
+  </section>
+  <aside class="socials">
+    <div class="socials__block">
+      <h2 class="socials__title title">Last comments</h2>
+      <ul class="socials__list">
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+      </ul>
+    </div>
+  </aside>
+</main>
+<script src="js/script.min.js"></script>
 </body>
 </html>

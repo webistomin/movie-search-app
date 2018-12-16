@@ -26,11 +26,12 @@
             min-width: 176px
             text-align: center
             margin-bottom: 10px
-            transition: transform 0.6s ease-in-out
+            transition: all 0.6s ease-in-out
             transform-style: preserve-3d
 
             &:hover
               transform: rotateY(180deg)
+              box-shadow: 1px 0px 0 0 $color-gold, -1px 0 0 0 $color-gold, 0 1px 0 0 $color-gold, 0 -1px 0 0 $color-gold
 
        & .movies__img
             backface-visibility: hidden
@@ -45,7 +46,7 @@
             top: 0
             left: 0
             padding: 20px
-            background-color: $color-brown--secondary
+            background-color: $color-brown
             transform: rotateY(180deg)
             backface-visibility: hidden
 
@@ -55,7 +56,7 @@
   &__genre,
   &__date,
   &__rate
-    color: $color-text
+    color: $color-text--secondary
     font-size: 13px
 
   &__date,
@@ -103,15 +104,14 @@
     margin-top: auto
 
   &__icon
-    fill: $color-text
+    fill: $color-text--secondary
 
   @media (min-width: $screen-md)
     width: 60vw
     flex-shrink: 0
-    border-right: 1px solid $color-border
     overflow-y: scroll
     height: calc(100vh - 60px)
-    background-color: $color-lightgrey
+    background-color: $color-brown--secondary
 
     &--noscroll
       overflow: hidden
@@ -129,12 +129,15 @@
     &::-webkit-scrollbar-thumb
       border-radius: 10px
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3)
-      background-color: $color-brown--secondary
+      background-color: $color-gold
+
+    &__title
+      color: $color-text--secondary
 
     &__list
       justify-content: space-between
       perspective: 1200px
-      padding: 30px
+      padding: 10px
 
       &--row
         flex-direction: column
@@ -145,6 +148,7 @@
           flex-shrink: 0
           transform: none
           margin-bottom: 10px
+          box-shadow: 1px 0px 0 0 $color-gold, -1px 0 0 0 $color-gold, 0 1px 0 0 $color-gold, 0 -1px 0 0 $color-gold
 
           &:hover
             transform: none
@@ -156,7 +160,7 @@
           justify-content: flex-start
           text-align: left
           transition: none
-          background-color: $color-brown--secondary
+          background-color: $color-brown
           display: flex
           flex-direction: column
           box-sizing: border-box

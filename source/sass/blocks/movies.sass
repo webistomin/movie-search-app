@@ -7,7 +7,7 @@
     justify-content: space-around
     perspective: 2200px
     transform-style: preserve-3d
-    padding: 20px
+    padding: 10px
 
     &--grid
        & .movies__item
@@ -101,6 +101,10 @@
     border-right: 1px solid $color-border
     overflow-y: scroll
     height: calc(100vh - 60px)
+    background-color: $color-lightgrey
+
+    &--noscroll
+      overflow: hidden
 
 
     &::-webkit-scrollbar-track
@@ -171,7 +175,7 @@
     &__item
       padding-top: 0
 
-  @media (min-width: $screen-lg)
+  @media (min-width: $screen-xl)
 
     &__list
       &--row

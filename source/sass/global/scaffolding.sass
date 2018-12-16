@@ -36,6 +36,7 @@ button
   padding: 0
   border: none
   background-color: transparent
+  cursor: pointer
 
 *:focus
   outline: thin dotted
@@ -110,4 +111,46 @@ button
     opacity: 0
   100%
     opacity: 0
+
+.circular-chart
+  width: inherit
+  height: inherit
+  display: block
+  margin: 10px auto
+  max-width: 80%
+  max-height: 250px
+
+.circle-bg
+  fill: none
+  stroke: #eee
+  stroke-width: 3.8
+
+.circle
+  fill: none
+  stroke-width: 2.8
+  stroke-linecap: round
+  animation: progress 1s ease-out forwards
+
+@keyframes progress
+  0%
+    stroke-dasharray: 0 100
+
+.circular-chart.orange .circle
+  stroke: #ff9f00
+
+
+.circular-chart.green .circle
+  stroke: #4CC790
+
+
+.circular-chart.red .circle
+  stroke: #ff0000
+
+
+.percentage
+  fill: $color-text--secondary
+  font-family: sans-serif
+  font-size: 12px
+  text-anchor: middle
+
 

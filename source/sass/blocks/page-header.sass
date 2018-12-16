@@ -120,6 +120,10 @@
       left: calc(50% - 70px)
       transition: all 0.3s ease-in-out
 
+    &--white
+      fill: $color-text--secondary
+      margin-right: 10px
+
   &__input
     width: 100%
     padding: 16.5px 10px
@@ -140,11 +144,11 @@
         fill: $color-brown
 
     &:focus
-      border-color: $color-gold
-      outline-color: $color-gold
+      border-color: $color-brown
+      outline: none
 
-      & + .page-header__icon
-        fill: $color-gold
+      & + .page-header__icon--absolute
+        fill: $color-brown
 
     &::placeholder
       color: $color-brown--secondary
@@ -186,8 +190,13 @@
     align-items: center
 
   &__btn
+    display: flex
+    display: none
+    align-items: center
+    justify-content: center
     width: 100px
     text-align: center
+    margin: 0 auto
 
   &__text
     font-size: 13px
@@ -210,7 +219,7 @@
   &__list
     display: block
     position: absolute
-    top: 254px
+    top: 250px
     left: 0
     width: 100%
     background-color: $color-brown--secondary
@@ -274,9 +283,12 @@
         width: 50%
 
     &__list
-      top: 168px
+      top: 165px
 
   @media (min-width: $screen-md)
+    &__decor
+      display: none
+
     &__inner
       flex-wrap: nowrap
       align-items: flex-start
@@ -298,7 +310,7 @@
 
       &--brown
         position: relative
-        padding: 19px 12px
+        padding: 20px 12px
         padding-left: 45px
 
         &::after
@@ -342,3 +354,7 @@
       top: 60px
       left: 80%
       z-index: 10
+
+  @media (min-width: $screen-lg)
+    &__decor
+      display: inline

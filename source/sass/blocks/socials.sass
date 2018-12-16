@@ -67,6 +67,7 @@
     padding-top: 0
     overflow-y: scroll
     height: calc(100vh - 60px)
+    background-color: $color-grey
 
     &::-webkit-scrollbar-track
       border-radius: 10px
@@ -86,10 +87,21 @@
     &__title
       background-color: transparent
       text-align: left
+      color: $color-brown--secondary
+
+    &__message
+      background-color: $color-text--secondary
+      color: $color-brown--secondary
+
+      &::after
+        border-bottom-color: $color-text--secondary
 
     &__list
       padding: 0
 
     &__item
       align-items: flex-start
+
+    &__avatar
+      border-color: $color-brown--secondary
 

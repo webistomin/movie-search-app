@@ -67,6 +67,7 @@
 5. [Postman](https://www.getpostman.com/) – программа для наглядного отображения данных, которые приходят по запросу
 6. https://ru.vuejs.org/v2/cookbook/using-axios-to-consume-apis.html – как отправлять запросы во Vue, используя axios
 7. https://ru.vuejs.org/v2/guide/computed.html – как реализовать debounce во Vue
+8. https://github.com/vuejs-templates/pwa – cтартовый шаблон PWA
 
 ## Тест lighthouse
 

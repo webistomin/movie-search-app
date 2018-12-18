@@ -1,6 +1,8 @@
-# Вёрстка для проекта «Мувисёрчер»
+# Личный проект «Мувисёрчер»
 
 <img src="mockup/mockup.png">
+
+В данном репозиторий хранится вёрстка для проекта. Можно использовать её либо набросать свою на [материал дизайне](https://vuetifyjs.com/ru/). Также можно использовать какие-либо готовые компоненты, чтобы ускорить разработку. Сайт должен корректно работать в последних двух версиях Chrome, Opera, Firefox, Edge, IE11 по желанию. Готовое приложение необходимо выложить на [firebase](https://firebase.google.com/docs/hosting/deploying)
 
 ## Страницы
 1. index.html – начальная страница приложения
@@ -78,7 +80,7 @@
 * https://ru.vuejs.org/v2/guide/computed.html – как реализовать debounce во Vue
 * https://github.com/vuejs-templates/pwa – cтартовый шаблон PWA
 
-## Тест lighthouse
+## Тест Lighthouse
 
 <img src="mockup/test.png">
 

@@ -21,11 +21,11 @@
     * При переходе на страницу, которая не указана в роутах, должна происходить переадресация на страницу ошибки 404
     * При переходе по страницам должна происходить анимация, а также, пока данные не загрузились, должен отображаться прелоадер.
 2. ### Навигационное меню
-    * При клике на ссылки меню, должна открываться новая страница с заголовком, соотвествующим названия ссылки. Также должен происходить запрос к базе и вывод фильмов. Пока данные загружаются, отображается прелоадер. При клике на карточку с фильмом должна открываться страница с подробным описанием.      
+    * При клике на ссылки меню, должна открываться новая страница с заголовком, соотвествующим названия ссылки. Также должен происходить запрос к базе и вывод фильмов. Пока данные загружаются, отображается прелоадер. При клике на карточку с фильмом должна открываться страница с подробным описанием. На странице фильмы выводятся не сразу все, а частями, т.е. реализовать пагинацию или подгрузку по скроллу.      
 3. ### Страница фильма
     * Сверху страницы должна подгружаться фоновая картинка(```backdrop_path```) со следующими размерами:
       * 300px для мобильных устройств (min-width >= 320px)
-      * 780px для планшетов (min-width >= 660px)
+      * 780px для планшетов и ноутбуков (min-width >= 660px)
       * 1280px для больших мониторов (min-width >= 1900px)
       
       URL для картинок ```https://image.tmdb.org/t/p/w{ширина картинки}/{путь к картинке}```   
@@ -60,14 +60,23 @@
     
     
 ## Полезные ссылки
-1. https://vuejs.org/v2/guide/ – дока Vue.js
-2. https://vuex.vuejs.org/ – дока по Vuex
-3. https://router.vuejs.org/ – дока по Vue Router
-4. https://developers.themoviedb.org/3/getting-started/introduction – API TMDb для выполнения проекта
-5. [Postman](https://www.getpostman.com/) – программа для наглядного отображения данных, которые приходят по запросу
-6. https://ru.vuejs.org/v2/cookbook/using-axios-to-consume-apis.html – как отправлять запросы во Vue, используя axios
-7. https://ru.vuejs.org/v2/guide/computed.html – как реализовать debounce во Vue
-8. https://github.com/vuejs-templates/pwa – cтартовый шаблон PWA
+  * Ссылки для работы с TMDb API
+    * https://developers.themoviedb.org/3/getting-started/introduction – API TMDb для выполнения проекта
+    * https://developers.themoviedb.org/3/movies/get-movie-details – подробная информация о фильме
+    * https://developers.themoviedb.org/3/movies/get-movie-images – картинки для фильма
+    * https://developers.themoviedb.org/3/movies/get-movie-recommendations – рекомендации для фильма
+    * https://developers.themoviedb.org/3/movies/get-similar-movies – похожие фильмы
+    * https://developers.themoviedb.org/3/movies/get-movie-credits – актеры фильма
+    * https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id – авторизация пользователей
+    * https://developers.themoviedb.org/3/genres/get-movie-list – жанры фильмов
+    
+* https://vuejs.org/v2/guide/ – дока Vue.js
+* https://vuex.vuejs.org/ – дока по Vuex
+* https://router.vuejs.org/ – дока по Vue Router 
+* [Postman](https://www.getpostman.com/) – программа для наглядного отображения данных, которые приходят по запросу
+* https://ru.vuejs.org/v2/cookbook/using-axios-to-consume-apis.html – как отправлять запросы во Vue, используя axios
+* https://ru.vuejs.org/v2/guide/computed.html – как реализовать debounce во Vue
+* https://github.com/vuejs-templates/pwa – cтартовый шаблон PWA
 
 ## Тест lighthouse
 

@@ -1,0 +1,64 @@
+body {
+  height: 100vh;
+  margin: 0;
+  background-color: black;
+  background-image: url('https://chucknorris.com/assets/themes/chuck-norris/img/chuck-vector-footer.svg'), url('http://78.media.tumblr.com/9951ca2e7e884a48ca5b5269f5514cd6/tumblr_nwjrkxWOcd1tslewgo1_500.gif');
+  background-repeat: no-repeat, repeat-y;
+  background-size: 30vw, cover;
+  background-position: left 50%, center center;
+  font-family: Popins, Arial, sans-serif;
+}
+
+.page-content {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.jokes {
+  max-width: 70vw;
+  margin-left: auto;
+}
+
+.jokes__joke {
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 3vw;
+  padding: 4vw;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.jokes__btn {
+  padding: 1vw 2vw;
+  margin: 4vw;
+  color: #ffffff;
+  outline: none;
+  font-family: Popins, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  font-size: 1vw;
+  background-color: darkred;
+  transition: all 0.3s ease-in-out;
+  user-select: none;
+}
+
+.jokes__buttons {
+  display: flex;
+  align-items: center;
+}
+
+.jokes__share {
+  padding: 1vw 2vw;
+  transition: all 0.3s ease-in-out;
+}
+
+.jokes__share:hover,
+.jokes__btn:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}

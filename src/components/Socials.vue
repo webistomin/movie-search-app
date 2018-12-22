@@ -6,7 +6,7 @@
         <li class="socials__item">
           <div class="socials__block socials__block--flex">
             <picture class="socials__pic">
-              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
             </picture>
             <span class="socials__name">Visual idiot</span>
           </div>
@@ -17,7 +17,7 @@
         <li class="socials__item">
           <div class="socials__block socials__block--flex">
             <picture class="socials__pic">
-              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
             </picture>
             <span class="socials__name">Visual idiot</span>
           </div>
@@ -28,7 +28,7 @@
         <li class="socials__item">
           <div class="socials__block socials__block--flex">
             <picture class="socials__pic">
-              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
             </picture>
             <span class="socials__name">Visual idiot</span>
           </div>
@@ -39,7 +39,7 @@
         <li class="socials__item">
           <div class="socials__block socials__block--flex">
             <picture class="socials__pic">
-              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
             </picture>
             <span class="socials__name">Visual idiot</span>
           </div>
@@ -50,7 +50,7 @@
         <li class="socials__item">
           <div class="socials__block socials__block--flex">
             <picture class="socials__pic">
-              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
             </picture>
             <span class="socials__name">Visual idiot</span>
           </div>
@@ -61,7 +61,7 @@
         <li class="socials__item">
           <div class="socials__block socials__block--flex">
             <picture class="socials__pic">
-              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
             </picture>
             <span class="socials__name">Visual idiot</span>
           </div>
@@ -72,7 +72,7 @@
         <li class="socials__item">
           <div class="socials__block socials__block--flex">
             <picture class="socials__pic">
-              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
             </picture>
             <span class="socials__name">Visual idiot</span>
           </div>
@@ -83,7 +83,7 @@
         <li class="socials__item">
           <div class="socials__block socials__block--flex">
             <picture class="socials__pic">
-              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
             </picture>
             <span class="socials__name">Visual idiot</span>
           </div>
@@ -94,7 +94,7 @@
         <li class="socials__item">
           <div class="socials__block socials__block--flex">
             <picture class="socials__pic">
-              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
             </picture>
             <span class="socials__name">Visual idiot</span>
           </div>
@@ -105,7 +105,7 @@
         <li class="socials__item">
           <div class="socials__block socials__block--flex">
             <picture class="socials__pic">
-              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
             </picture>
             <span class="socials__name">Visual idiot</span>
           </div>
@@ -116,7 +116,7 @@
         <li class="socials__item">
           <div class="socials__block socials__block--flex">
             <picture class="socials__pic">
-              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
             </picture>
             <span class="socials__name">Visual idiot</span>
           </div>

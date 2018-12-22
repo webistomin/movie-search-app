@@ -86,6 +86,7 @@
       text-transform: uppercase
       color: $color-text--secondary
       transition: all 0.3s ease-in-out
+      outline: none
 
       &:hover,
       &:focus

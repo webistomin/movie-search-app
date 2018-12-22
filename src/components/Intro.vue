@@ -32,5 +32,4 @@
         width: 5px
         height: 100%
         background-color: rgba(255, 255, 255, 0.1)
-
 </style>

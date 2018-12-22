@@ -136,7 +136,7 @@
 
 <script>
   export default {
-    name: 'MoviesList',
+    name: 'MoviesPage',
   };
 </script>
 

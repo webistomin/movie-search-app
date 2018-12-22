@@ -1,0 +1,253 @@
+<template>
+  <aside class="socials">
+    <div class="socials__block">
+      <h2 class="socials__title title">Last comments</h2>
+      <ul class="socials__list">
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+        <li class="socials__item">
+          <div class="socials__block socials__block--flex">
+            <picture class="socials__pic">
+              <img src="img/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+            </picture>
+            <span class="socials__name">Visual idiot</span>
+          </div>
+          <p class="socials__message">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
+          </p>
+        </li>
+      </ul>
+    </div>
+  </aside>
+</template>
+
+<script>
+  export default {
+    name: 'Socials',
+  };
+</script>
+
+<style lang="sass">
+  .socials
+    background-color: $color-brown--secondary
+
+    &__title
+      padding-top: 24px
+      padding-bottom: 24px
+      text-align: center
+      background-color: $color-brown
+
+    &__block
+      &--flex
+        display: flex
+        align-items: center
+        margin-bottom: 20px
+
+    &__pic
+      margin-right: 16px
+
+    &__avatar
+      border-radius: 50%
+      border: 2px solid $color-gold
+
+    &__name
+      color: $color-text--secondary
+
+    &__list
+      padding: 30px 0
+
+    &__item
+      position: relative
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      margin: 0 auto
+      margin-bottom: 30px
+
+      &:last-child
+        margin-bottom: 0
+
+    &__message
+      position: relative
+      box-sizing: border-box
+      padding: 15px
+      background-color: $color-text--secondary
+      max-width: 300px
+      border-radius: 10px
+      font-size: 12px
+      line-height: 17px
+      font-weight: 400
+      color: $color-brown
+
+      &::after
+        content: ''
+        position: absolute
+        top: 0
+        left: 50%
+        width: 0
+        height: 0
+        border: 16px solid transparent
+        border-bottom-color: $color-text--secondary
+        border-top: 0
+        border-left: 0
+        margin-left: -11px
+        margin-top: -14px
+
+      &::selection
+        color: $color-text--secondary
+        background-color: $color-brown
+
+    @media (min-width: $screen-md)
+      width: 20vw
+      flex-shrink: 0
+      box-sizing: border-box
+      padding: 12px
+      padding-top: 0
+      overflow-y: scroll
+      height: calc(100vh - 60px)
+      position: relative
+
+      &::after
+        content: ""
+        position: absolute
+        top: 0
+        left: 0
+        width: 5px
+        height: 100%
+        background-color: rgba(255, 255, 255, 0.1)
+        z-index: 11
+
+      &::-webkit-scrollbar-track
+        border-radius: 10px
+        background-color: transparent
+        background-clip: content-box
+
+      &::-webkit-scrollbar
+        width: 7px
+        background-color: transparent
+
+      &::-webkit-scrollbar-thumb
+        border-radius: 10px
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3)
+        background-color: $color-gold
+
+      &__title
+        background-color: transparent
+        color: $color-text
+
+      &__list
+        padding: 0 10px
+
+      &__item
+        align-items: center
+
+</style>

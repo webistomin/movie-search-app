@@ -1,6 +1,5 @@
 <template>
-  <section class="movies">
-    <ul class="movies__list movies__list--grid">
+  <ul class="movies__list movies__list--grid">
       <li class="movies__item">
         <img src="static/img/content/poster185.jpg" width="185" height="278" alt="#" class="movies__img">
         <div class="movies__block">
@@ -276,7 +275,6 @@
         </div>
       </li>
     </ul>
-  </section>
 </template>
 
 <script>
@@ -287,8 +285,6 @@
 
 <style lang="sass">
   .movies
-    box-sizing: border-box
-    background-color: $color-brown--secondary
 
     &__title
       font-family: $font-family--secondary
@@ -396,28 +392,6 @@
       fill: $color-text--secondary
 
     @media (min-width: $screen-md)
-      width: 60vw
-      flex-shrink: 0
-      overflow-y: scroll
-      height: calc(100vh - 60px)
-
-      &--noscroll
-        overflow: hidden
-
-      &::-webkit-scrollbar-track
-        border-radius: 10px
-        background-color: transparent
-        background-clip: content-box
-
-
-      &::-webkit-scrollbar
-        width: 7px
-        background-color: transparent
-
-      &::-webkit-scrollbar-thumb
-        border-radius: 10px
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3)
-        background-color: $color-gold
 
       &__list
         justify-content: space-between

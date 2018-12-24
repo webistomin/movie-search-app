@@ -5,8 +5,11 @@
     </template>
     <template v-else>
       <Intro/>
-      <section class="movies">
-        <router-view/>
+      <section class="movies"
+               :class="{'movies--noscroll' : isNoScroll}">
+        <transition name="fade" mode="out-in">
+          <router-view :key="$route.fullPath"/>
+        </transition>
       </section>
       <Socials/>
     </template>
@@ -22,12 +25,27 @@
   export default {
     name: 'PageContent',
     components: { MoviesPage, Socials, MoviesList, Intro },
+    computed: {
+      isNoScroll() {
+        return this.$route.meta.noScroll;
+      },
+    },
   };
 </script>
 
 <style lang="sass">
   @import "../assets/sass/blocks/btn"
   @import "../assets/sass/blocks/title"
+
+  .fade-enter
+    opacity: 0
+
+  .fade-enter-active
+    transition: opacity 0.3s ease
+
+  .fade-leave-active
+    transition: opacity 0.3s ease
+    opacity: 0
 
   .page-content
     @media (min-width: $screen-md)

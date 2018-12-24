@@ -6,7 +6,7 @@
     <template v-else>
       <Intro/>
       <section class="movies">
-        <MoviesList/>
+        <router-view/>
       </section>
       <Socials/>
     </template>

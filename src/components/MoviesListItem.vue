@@ -4,9 +4,9 @@
     <div class="movies__block">
       <span class="movies__name">{{movieTitle}}</span>
       <p class="movies__desc">{{movieOverview}}</p>
-      <ul class="movies__genres">
+      <ul class="movies__genres" v-if="getGenresList">
         <li class="movies__genre"
-            v-for="genre of movieGenres"
+            v-for="genre of getMovieGenres"
             :key="genre">
           {{genre}}
         </li>
@@ -39,6 +39,28 @@
       movieGenres: {
         type: Array,
         required: true,
+      },
+    },
+    computed: {
+      getGenresList() {
+        return this.$store.getters.getGenresList;
+      },
+      getMovieGenres() {
+        const genresIds = this.movieGenres;
+        const genresList = this.getGenresList;
+        const movieGenres = [];
+
+        if (genresList.length !== 0 && genresIds.length !== 0) {
+          for (let i = 0; i < genresIds.length; i += 1) {
+            for (let j = 0; j < genresList.length; j += 1) {
+              if (genresIds[i] === genresList[j].id) {
+                movieGenres.push(genresList[j].name);
+              }
+            }
+          }
+        }
+
+        return movieGenres;
       },
     },
   };

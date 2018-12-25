@@ -1,7 +1,7 @@
 <template>
   <ul class="movies__list movies__list--grid" v-if="moviesList">
     <movie-item
-      v-for="(item, index) of moviesList"
+      v-for="item of moviesList"
       :key="item.id"
       :movie-id="item.id"
       :movie-title="item.title"

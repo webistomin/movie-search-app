@@ -49,6 +49,9 @@ import Index from './components/Index';
 export default {
   name: 'app',
   components: { Index },
+  mounted() {
+    this.$store.dispatch('fetchGenresList');
+  },
 };
 </script>
 

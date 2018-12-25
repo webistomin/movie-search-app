@@ -1,12 +1,10 @@
 <template>
   <main class="page-content">
-    <template v-if="1 === 0">
-      <div class="loader"></div>
-    </template>
-    <template v-else>
+    <template>
       <Intro/>
       <section class="movies"
                :class="{'movies--noscroll' : isNoScroll}">
+        <div v-show="getLoadingState" class="loader">loading</div>
         <transition name="fade" mode="out-in">
           <router-view :key="$route.fullPath"/>
         </transition>
@@ -28,6 +26,9 @@
     computed: {
       isNoScroll() {
         return this.$route.meta.noScroll;
+      },
+      getLoadingState() {
+        return this.$store.getters.getLoadingState;
       },
     },
   };
@@ -53,6 +54,7 @@
 
 
   .movies
+    position: relative
     box-sizing: border-box
     background-color: $color-brown--secondary
 

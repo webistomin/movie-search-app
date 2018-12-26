@@ -4,7 +4,7 @@
       <Intro/>
       <section class="movies"
                :class="{'movies--noscroll' : isNoScroll}">
-        <div v-show="getLoadingState" class="loader">loading</div>
+        <preloader v-show="getLoadingState"></preloader>
         <transition name="fade" mode="out-in">
           <router-view :key="$route.fullPath"/>
         </transition>
@@ -19,10 +19,11 @@
   import MoviesList from './MoviesList';
   import Socials from './Socials';
   import MoviesPage from './MoviePage';
+  import Preloader from './Preloader';
 
   export default {
     name: 'PageContent',
-    components: { MoviesPage, Socials, MoviesList, Intro },
+    components: { Preloader, MoviesPage, Socials, MoviesList, Intro },
     computed: {
       isNoScroll() {
         return this.$route.meta.noScroll;

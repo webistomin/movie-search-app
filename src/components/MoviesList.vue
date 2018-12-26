@@ -13,7 +13,7 @@
       :movie-id="item.id"
       :movie-title="item.title"
       :movie-overview="getMovieOverview(item.overview)"
-      :movie-img="item.poster_path"
+      :movie-img="getPosterSrc(item.poster_path)"
       :movie-genres="item.genre_ids"
       :movie-rate="item.vote_average"
       :movie-date="item.release_date"
@@ -38,7 +38,6 @@
     },
     data() {
       return {
-        currentPage: 1,
         isBusy: false,
       };
     },
@@ -46,16 +45,53 @@
       getMovieOverview(overview) {
         return this.getGridViewState ? `${overview.slice(0, 80)}...` : overview;
       },
+      getPosterSrc(poster) {
+        return poster ? `https://image.tmdb.org/t/p/w185/${poster}` : 'static/img/content/image-not-found.svg';
+      },
+      // eslint-disable-next-line consistent-return
       fetchMoreMovies() {
         this.isBusy = true;
-        this.currentPage += 1;
-        this.$store.dispatch('fetchNowPlayingMovies', this.currentPage)
-          .then(() => {
-            this.isBusy = false;
-          });
+        switch (this.$route.meta.title) {
+          case 'Now Playing':
+            this.$store.commit('setNowPlayingCurrentPage');
+            this.$store.dispatch('fetchNowPlayingMovies')
+              .then(() => {
+                this.isBusy = false;
+              });
+            break;
+          case 'Popular':
+            this.$store.commit('setPopularCurrentPage');
+            this.$store.dispatch('fetchPopularMovies')
+              .then(() => {
+                this.isBusy = false;
+              });
+            break;
+          case 'Top Rated':
+            this.$store.commit('setTopRatedCurrentPage');
+            this.$store.dispatch('fetchTopRatedMovies')
+              .then(() => {
+                this.isBusy = false;
+              });
+            break;
+          case 'Upcoming':
+            this.$store.commit('setUpcomingCurrentPage');
+            this.$store.dispatch('fetchUpcomingMovies')
+              .then(() => {
+                this.isBusy = false;
+              });
+            break;
+          default:
+            this.$store.commit('setPopularCurrentPage');
+            this.$store.dispatch('fetchPopularMovies')
+              .then(() => {
+                this.isBusy = false;
+              });
+            break;
+        }
       },
     },
     computed: {
+
       getRowViewState() {
         return this.$store.getters.getRowViewState;
       },
@@ -104,6 +140,7 @@
         & .movies__img
           backface-visibility: hidden
           height: 100%
+          object-fit: cover
 
         & .movies__block
           display: flex
@@ -219,6 +256,9 @@
             display: block
             margin-top: auto
             margin-bottom: 10px
+
+          & .movies__img
+            object-fit: cover
 
       &__item
         padding-top: 0

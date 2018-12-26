@@ -6,6 +6,8 @@ export default {
     error: null,
     isLoading: false,
     genres: [],
+    isRowView: false,
+    isGridView: true,
   },
   mutations: {
     setErrorMessage(state, payload) {
@@ -16,6 +18,12 @@ export default {
     },
     setGenresList(state, payload) {
       state.genres = payload;
+    },
+    setRowView(state, payload) {
+      state.isRowView = payload;
+    },
+    setGridView(state, payload) {
+      state.isGridView = payload;
     },
   },
   actions: {
@@ -36,6 +44,12 @@ export default {
     },
     getGenresList(state) {
       return state.genres.genres;
+    },
+    getRowViewState(state) {
+      return state.isRowView;
+    },
+    getGridViewState(state) {
+      return state.isGridView;
     },
   },
 };

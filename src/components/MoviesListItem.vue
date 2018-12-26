@@ -1,9 +1,21 @@
 <template>
   <li class="movies__item">
-    <img :src="`https://image.tmdb.org/t/p/w185/${movieImg}`" width="185" height="278" alt="#" class="movies__img">
+    <img :src="`https://image.tmdb.org/t/p/w185/${movieImg}`" width="185" height="278" :alt="movieTitle" class="movies__img">
     <div class="movies__block">
       <span class="movies__name">{{movieTitle}}</span>
       <p class="movies__desc">{{movieOverview}}</p>
+      <span class="movies__rate">
+        <svg class="movies__icon" width="12" height="12">
+          <use xlink:href="#icon-like"></use>
+        </svg>
+        {{movieRate}} average
+      </span>
+      <time class="movies__date">
+        <svg class="movies__icon" width="12" height="12">
+          <use xlink:href="#icon-calendar"></use>
+        </svg>
+        {{movieDate}}
+      </time>
       <ul class="movies__genres" v-if="getGenresList">
         <li class="movies__genre"
             v-for="genre of getMovieGenres"
@@ -38,6 +50,14 @@
       },
       movieGenres: {
         type: Array,
+        required: true,
+      },
+      movieRate: {
+        type: Number,
+        required: true,
+      },
+      movieDate: {
+        type: String,
         required: true,
       },
     },

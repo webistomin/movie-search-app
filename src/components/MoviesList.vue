@@ -1,28 +1,66 @@
 <template>
-  <ul class="movies__list movies__list--grid" v-if="moviesList">
+  <ul class="movies__list"
+      :class="{'movies__list--grid' : getGridViewState,
+              'movies__list--row' : getRowViewState}"
+      v-if="moviesList"
+      v-infinite-scroll="fetchMoreMovies"
+      infinite-scroll-disabled="isBusy"
+      infinite-scroll-distance="50"
+      infinite-scroll-immediate-check="false">
     <movie-item
       v-for="item of moviesList"
       :key="item.id"
       :movie-id="item.id"
       :movie-title="item.title"
-      :movie-overview="item.overview"
+      :movie-overview="getMovieOverview(item.overview)"
       :movie-img="item.poster_path"
       :movie-genres="item.genre_ids"
+      :movie-rate="item.vote_average"
+      :movie-date="item.release_date"
     >
     </movie-item>
   </ul>
 </template>
 
 <script>
+  import infiniteScroll from 'vue-infinite-scroll';
   import MovieItem from './MoviesListItem';
 
   export default {
     name: 'MoviesList',
+    directives: { infiniteScroll },
     components: { MovieItem },
     props: {
       moviesList: {
         type: Array,
         required: true,
+      },
+    },
+    data() {
+      return {
+        currentPage: 1,
+        isBusy: false,
+      };
+    },
+    methods: {
+      getMovieOverview(overview) {
+        return this.getGridViewState ? `${overview.slice(0, 80)}...` : overview;
+      },
+      fetchMoreMovies() {
+        this.isBusy = true;
+        this.currentPage += 1;
+        this.$store.dispatch('fetchNowPlayingMovies', this.currentPage)
+          .then(() => {
+            this.isBusy = false;
+          });
+      },
+    },
+    computed: {
+      getRowViewState() {
+        return this.$store.getters.getRowViewState;
+      },
+      getGridViewState() {
+        return this.$store.getters.getGridViewState;
       },
     },
   };
@@ -65,6 +103,7 @@
 
         & .movies__img
           backface-visibility: hidden
+          height: 100%
 
         & .movies__block
           display: flex
@@ -82,7 +121,6 @@
 
     &__name,
     &__desc,
-    &__duration,
     &__genre,
     &__date,
     &__rate
@@ -94,6 +132,7 @@
       display: none
 
     &__genres
+      margin-top: auto
       margin-bottom: 10px
 
     &__genre
@@ -127,11 +166,6 @@
     &__desc
       line-height: 14px
       margin-bottom: 10px
-
-    &__duration
-      display: block
-      margin-bottom: 10px
-      margin-top: auto
 
     &__icon
       fill: $color-text--secondary
@@ -185,9 +219,6 @@
             display: block
             margin-top: auto
             margin-bottom: 10px
-
-          & .movies__duration
-            margin-top: 0
 
       &__item
         padding-top: 0

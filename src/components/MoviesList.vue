@@ -6,7 +6,8 @@
       v-infinite-scroll="fetchMoreMovies"
       infinite-scroll-disabled="isBusy"
       infinite-scroll-distance="50"
-      infinite-scroll-immediate-check="false">
+      infinite-scroll-immediate-check="false"
+      :style="'perspective:' + getPerspectiveValue + 'px'">
     <movie-item
       v-for="item of moviesList"
       :key="item.id"
@@ -91,7 +92,9 @@
       },
     },
     computed: {
-
+      getPerspectiveValue() {
+        return this.moviesList.length * 278;
+      },
       getRowViewState() {
         return this.$store.getters.getRowViewState;
       },

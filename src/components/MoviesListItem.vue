@@ -3,17 +3,18 @@
     <img :src="movieImg"
          width="185" height="278"
          :alt="movieTitle"
-         class="movies__img">
+         class="movies__img"
+         v-if="movieImg">
     <div class="movies__block">
-      <span class="movies__name">{{movieTitle}}</span>
-      <p class="movies__desc">{{movieOverview}}</p>
-      <span class="movies__rate">
+      <span class="movies__name" v-if="movieTitle">{{movieTitle}}</span>
+      <p class="movies__desc" v-if="movieOverview">{{movieOverview}}</p>
+      <span class="movies__rate" v-if="movieRate">
         <svg class="movies__icon" width="12" height="12">
           <use xlink:href="#icon-like"></use>
         </svg>
         {{movieRate}} average
       </span>
-      <time class="movies__date">
+      <time class="movies__date" v-if="movieDate">
         <svg class="movies__icon" width="12" height="12">
           <use xlink:href="#icon-calendar"></use>
         </svg>

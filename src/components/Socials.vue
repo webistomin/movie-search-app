@@ -1,128 +1,18 @@
 <template>
   <aside class="socials">
     <div class="socials__block">
-      <h2 class="socials__title title">Last comments</h2>
-      <ul class="socials__list">
-        <li class="socials__item">
+      <h2 class="socials__title title">Last reviews</h2>
+      <ul class="socials__list" v-if="getMovieReviews.length !== 0">
+        <li class="socials__item"
+            v-for="review of getMovieReviews">
           <div class="socials__block socials__block--flex">
             <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
+              <!--<img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">-->
+              <img class="socials__avatar" src="https://image.tmdb.org/t/p/w150_and_h150_face/pjVuFgU4nprXldc3cGA8DMczt4d.jpg" srcset="https://image.tmdb.org/t/p/w150_and_h150_face/pjVuFgU4nprXldc3cGA8DMczt4d.jpg 1x, https://image.tmdb.org/t/p/w300_and_h300_face/pjVuFgU4nprXldc3cGA8DMczt4d.jpg 2x" alt="The Midi-chlorian Count" width="32" height="32">
             </picture>
-            <span class="socials__name">Visual idiot</span>
+            <span class="socials__name">{{review.author}}</span>
           </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
+          <p class="socials__message" v-html="review.content"></p>
         </li>
       </ul>
     </div>
@@ -132,6 +22,11 @@
 <script>
   export default {
     name: 'Socials',
+    computed: {
+      getMovieReviews() {
+        return this.$store.getters.getMovieReviews;
+      },
+    },
   };
 </script>
 
@@ -187,6 +82,11 @@
       line-height: 17px
       font-weight: 400
       color: $color-brown
+
+      & a
+        color: $color-brown
+        font-weight: 700
+        text-decoration: underline
 
       &::after
         content: ''

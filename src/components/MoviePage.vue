@@ -81,48 +81,60 @@
         <span class="movie__option">Revenue:</span>
         <span class="movie__value">{{getMovieDetails.revenue}}$</span>
       </div>
-      <div class="movie__block">
-        <span class="movie__option">Director:</span>
-        <span class="movie__value">Peter Jackson</span>
+      <div class="movie__block" v-if="getMovieCredits.length !== 0">
+        <span class="movie__option">Crew:</span>
+        <ul class="movie__values">
+          <li class="movie__value"
+              v-for="person of getMovieCredits.crew.slice(0,10)">
+            {{person.name}}
+          </li>
+        </ul>
       </div>
-      <div class="movie__block">
+      <div class="movie__block" v-if="getMovieCredits.length !== 0">
         <span class="movie__option">Actors:</span>
         <ul class="movie__values">
-          <li class="movie__value">Martin Freeman</li>
-          <li class="movie__value">Ian McKellen</li>
-          <li class="movie__value">Martin Freeman</li>
-          <li class="movie__value">Ian McKellen</li>
-          <li class="movie__value">Martin Freeman</li>
-          <li class="movie__value">Ian McKellen</li>
+          <li class="movie__value"
+              v-for="person of getMovieCredits.cast.slice(0,10)">
+            {{person.name}}
+          </li>
         </ul>
       </div>
       <h2 class="movie__title movie__title--decor">The Plot</h2>
       <p class="movie__desc">{{getMovieDetails.overview}}</p>
       <h2 class="movie__title movie__title--decor">Photos</h2>
-      <ul class="movie__list">
-        <li class="movie__item" v-for="poster of getMovieImages.posters">
-          <img :src="`https://image.tmdb.org/t/p/w342/${poster.file_path}`" alt="" class="movie__img">
-        </li>
-      </ul>
+      <carousel :perPageCustom="[[320, 1], [1199, 3]]"
+                :mouse-drag="true"
+                :autoplay="true"
+                :loop="true"
+                paginationActiveColor="#ffd564">
+        <slide v-for="poster of getMovieImages.posters">
+          <img :src="`https://image.tmdb.org/t/p/w185/${poster.file_path}`" alt="" class="movie__img">
+        </slide>
+      </carousel>
       <h2 class="movie__title movie__title--decor">Similar movies</h2>
-      <ul class="movie__list">
-      </ul>
+      <MoviesList :movies-list="getSimilarMovies"></MoviesList>
       <h2 class="movie__title movie__title--decor">Recomendations</h2>
-      <ul class="movie__list">
-      </ul>
+      <MoviesList :movies-list="getRecommendedMovies"></MoviesList>
     </div>
   </section>
 </template>
 
 <script>
+  import { Carousel, Slide } from 'vue-carousel';
+  import MoviesList from './MoviesList';
+
   export default {
     name: 'MoviesPage',
     mounted() {
-      this.$store.commit('setLoadingState', true);
       // eslint-disable-next-line no-unused-expressions
       Promise.all([
+        this.$store.commit('setLoadingState', true),
         this.$store.dispatch('fetchMovieDetails', this.$route.params.id),
+        this.$store.dispatch('fetchMovieCredits', this.$route.params.id),
+        this.$store.dispatch('fetchMovieReviews', this.$route.params.id),
         this.$store.dispatch('fetchMovieImages', this.$route.params.id),
+        this.$store.dispatch('fetchSimilarMovies', this.$route.params.id),
+        this.$store.dispatch('fetchRecommendedMovies', this.$route.params.id),
       ])
         .then(() => {
           this.$store.commit('setLoadingState', false);
@@ -132,8 +144,17 @@
       getMovieDetails() {
         return this.$store.getters.getMovieDetails;
       },
+      getMovieCredits() {
+        return this.$store.getters.getMovieCredits;
+      },
       getMovieImages() {
         return this.$store.getters.getMovieImages;
+      },
+      getSimilarMovies() {
+        return this.$store.getters.getSimilarMovies;
+      },
+      getRecommendedMovies() {
+        return this.$store.getters.getRecommendedMovies;
       },
       getBackroundPath() {
         return `https://image.tmdb.org/t/p/w780/${this.getMovieDetails.backdrop_path}`;
@@ -153,6 +174,11 @@
             return 'green';
         }
       },
+    },
+    components: {
+      MoviesList,
+      Carousel,
+      Slide,
     },
   };
 </script>

@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from '../components/Home';
 import NavigationPage from '../components/NavigationPage';
 import NotFound from '../components/NotFound';
+import MoviePage from '../components/MoviePage';
 
 Vue.use(Router);
 
@@ -55,6 +56,11 @@ export default new Router({
       meta: {
         title: 'Upcoming',
       },
+    },
+    {
+      path: '/movie/:id',
+      name: 'movie',
+      component: MoviePage,
     },
     {
       path: '*',

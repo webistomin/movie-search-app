@@ -1,16 +1,19 @@
 <template>
   <section class="movie">
-    <div class="movie__background">
-      <h2 class="movie__tagline">All the power on earth can't change destiny.</h2>
+    <div class="movie__background"
+         v-if="getMovieDetails.backdrop_path"
+         :style="{ 'background-image': 'url(' + getBackroundPath + ')' }" >
+      <h2 class="movie__tagline">{{getMovieDetails.tagline}}</h2>
     </div>
     <div class="movie__inner">
-      <figure class="movie__pic">
+      <figure class="movie__pic" v-if="getMovieDetails.poster_path">
         <picture>
           <source media="(min-width: 1900px)" srcset="static/img/content/poster342.jpg 1x">
-          <img src="static/img/content/poster185.jpg" alt="1" class="movie__img">
+          <img :src="getImageSrc" alt="1" class="movie__img">
         </picture>
         <figcaption class="movie__rate">
-          <svg viewBox="0 0 36 36" class="circular-chart green">
+          <svg viewBox="0 0 36 36" class="circular-chart"
+               :class="getChartColor">
             <path class="circle-bg"
                   d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
@@ -22,11 +25,13 @@
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
             />
-            <text x="18" y="20.35" class="percentage">7.5</text>
+            <text x="18" y="20.35" class="percentage">
+              {{getMovieDetails.vote_average}}
+            </text>
           </svg>
         </figcaption>
       </figure>
-      <h2 class="movie__title">THE HOBBIT: AN UNEXPECTED JOURNEY</h2>
+      <h2 class="movie__title">{{getMovieDetails.title}}</h2>
       <button class="movie__btn btn">
         <svg class="movie__icon" width="17" height="17">
           <use xlink:href="#icon-heart"></use>
@@ -35,37 +40,46 @@
       </button>
       <div class="movie__block">
         <span class="movie__option">Country:</span>
-        <span class="movie__value">New Zeland, USA</span>
+        <ul class="movie__values">
+          <li class="movie__value"
+              v-for="country of getMovieDetails.production_countries">
+            {{country.name}}
+          </li>
+        </ul>
       </div>
       <div class="movie__block">
         <span class="movie__option">Production companies:</span>
         <ul class="movie__values">
-          <li class="movie__value">Paramount</li>
-          <li class="movie__value">Warner Bros.</li>
+          <li class="movie__value"
+              v-for="company of getMovieDetails.production_companies">
+            {{company.name}}
+          </li>
         </ul>
       </div>
       <div class="movie__block">
         <span class="movie__option">Release date:</span>
-        <span class="movie__value">2012</span>
+        <span class="movie__value">{{getMovieDetails.release_date}}</span>
       </div>
       <div class="movie__block">
         <span class="movie__option">Category:</span>
         <ul class="movie__values">
-          <li class="movie__value">Adventure</li>
-          <li class="movie__value">Fantasy</li>
+          <li class="movie__value"
+              v-for="genre of getMovieDetails.genres">
+            {{genre.name}}
+          </li>
         </ul>
       </div>
       <div class="movie__block">
         <span class="movie__option">Runtime:</span>
-        <span class="movie__value">168 minutes</span>
+        <span class="movie__value">{{getMovieDetails.runtime}} minutes</span>
       </div>
       <div class="movie__block">
         <span class="movie__option">Budget:</span>
-        <span class="movie__value">54000000$</span>
+        <span class="movie__value">{{getMovieDetails.budget}}$</span>
       </div>
       <div class="movie__block">
         <span class="movie__option">Revenue:</span>
-        <span class="movie__value">136766062$</span>
+        <span class="movie__value">{{getMovieDetails.revenue}}$</span>
       </div>
       <div class="movie__block">
         <span class="movie__option">Director:</span>
@@ -83,52 +97,18 @@
         </ul>
       </div>
       <h2 class="movie__title movie__title--decor">The Plot</h2>
-      <p class="movie__desc">In the midst of trying to legitimize his business dealings in 1979 New York and Italy, aging mafia don, Michael Corleone
-        seeks forgiveness for his sins while taking a young protege under his wing.</p>
+      <p class="movie__desc">{{getMovieDetails.overview}}</p>
       <h2 class="movie__title movie__title--decor">Photos</h2>
       <ul class="movie__list">
-        <li class="movie__item">
-          <img src="static/img/content/poster185.jpg" width="185" height="278" alt="" class="movie__img">
-        </li>
-        <li class="movie__item">
-          <img src="static/img/content/poster185.jpg" width="185" height="278" alt="" class="movie__img">
-        </li>
-        <li class="movie__item">
-          <img src="static/img/content/poster185.jpg" width="185" height="278" alt="" class="movie__img">
-        </li>
-        <li class="movie__item">
-          <img src="static/img/content/poster185.jpg" width="185" height="278" alt="" class="movie__img">
+        <li class="movie__item" v-for="poster of getMovieImages.posters">
+          <img :src="`https://image.tmdb.org/t/p/w342/${poster.file_path}`" alt="" class="movie__img">
         </li>
       </ul>
       <h2 class="movie__title movie__title--decor">Similar movies</h2>
       <ul class="movie__list">
-        <li class="movie__item">
-          <img src="static/img/content/poster185.jpg" width="185" height="278" alt="" class="movie__img">
-        </li>
-        <li class="movie__item">
-          <img src="static/img/content/poster185.jpg" width="185" height="278" alt="" class="movie__img">
-        </li>
-        <li class="movie__item">
-          <img src="static/img/content/poster185.jpg" width="185" height="278" alt="" class="movie__img">
-        </li>
-        <li class="movie__item">
-          <img src="static/img/content/poster185.jpg" width="185" height="278" alt="" class="movie__img">
-        </li>
       </ul>
       <h2 class="movie__title movie__title--decor">Recomendations</h2>
       <ul class="movie__list">
-        <li class="movie__item">
-          <img src="static/img/content/poster185.jpg" width="185" height="278" alt="" class="movie__img">
-        </li>
-        <li class="movie__item">
-          <img src="static/img/content/poster185.jpg" width="185" height="278" alt="" class="movie__img">
-        </li>
-        <li class="movie__item">
-          <img src="static/img/content/poster185.jpg" width="185" height="278" alt="" class="movie__img">
-        </li>
-        <li class="movie__item">
-          <img src="static/img/content/poster185.jpg" width="185" height="278" alt="" class="movie__img">
-        </li>
       </ul>
     </div>
   </section>
@@ -137,6 +117,43 @@
 <script>
   export default {
     name: 'MoviesPage',
+    mounted() {
+      this.$store.commit('setLoadingState', true);
+      // eslint-disable-next-line no-unused-expressions
+      Promise.all([
+        this.$store.dispatch('fetchMovieDetails', this.$route.params.id),
+        this.$store.dispatch('fetchMovieImages', this.$route.params.id),
+      ])
+        .then(() => {
+          this.$store.commit('setLoadingState', false);
+        });
+    },
+    computed: {
+      getMovieDetails() {
+        return this.$store.getters.getMovieDetails;
+      },
+      getMovieImages() {
+        return this.$store.getters.getMovieImages;
+      },
+      getBackroundPath() {
+        return `https://image.tmdb.org/t/p/w780/${this.getMovieDetails.backdrop_path}`;
+      },
+      getImageSrc() {
+        return `https://image.tmdb.org/t/p/w185/${this.getMovieDetails.poster_path}`;
+      },
+      getChartColor() {
+        switch (true) {
+          case this.getMovieDetails.vote_average >= 8:
+            return 'green';
+          case this.getMovieDetails.vote_average >= 4:
+            return 'orange';
+          case this.getMovieDetails.vote_average >= 0:
+            return 'red';
+          default:
+            return 'green';
+        }
+      },
+    },
   };
 </script>
 

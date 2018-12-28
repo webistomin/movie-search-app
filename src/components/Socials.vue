@@ -1,6 +1,6 @@
 <template>
   <aside class="socials">
-    <div class="socials__block">
+    <div class="socials__block" v-if="$route.name === 'movie' && !getLoadingState">
       <h2 class="socials__title title">Last reviews</h2>
       <ul class="socials__list" v-if="getMovieReviews.length !== 0">
         <li class="socials__item"
@@ -25,6 +25,9 @@
     computed: {
       getMovieReviews() {
         return this.$store.getters.getMovieReviews;
+      },
+      getLoadingState() {
+        return this.$store.getters.getLoadingState;
       },
     },
   };
@@ -82,6 +85,7 @@
       line-height: 17px
       font-weight: 400
       color: $color-brown
+      word-break: break-word
 
       & a
         color: $color-brown

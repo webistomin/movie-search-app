@@ -49,7 +49,7 @@
         </ul>
       </div>
       <div class="movie__block" v-if="getMovieDetails.production_companies">
-        <span class="movie__option">Production companies:</span>
+        <span class="movie__option">Production&nbsp;companies:</span>
         <ul class="movie__values">
           <li class="movie__value"
               v-for="company of getMovieDetails.production_companies">
@@ -297,6 +297,8 @@
 
     &__img
       border: 2px solid $color-gold
+      height: 100%
+      box-sizing: border-box
 
     &__rate
       display: flex

@@ -1,5 +1,5 @@
 <template>
-  <section class="movie">
+  <section class="movie" ref="movieBlock">
     <div class="movie__background"
          v-if="getMovieDetails.backdrop_path"
          :style="{ 'background-image': 'url(' + getBackroundPath + ')' }" >
@@ -125,6 +125,11 @@
 
   export default {
     name: 'MoviesPage',
+    beforeRouteUpdate(to, from, next) {
+      console.log('update');
+      this.$refs.movieBlock.scrollIntoView();
+      next();
+    },
     mounted() {
       // eslint-disable-next-line no-unused-expressions
       Promise.all([

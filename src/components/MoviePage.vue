@@ -1,5 +1,5 @@
 <template>
-  <section class="movie" ref="movieBlock" v-if="!getLoadingState">
+  <section class="movie" ref="movieBlock" v-if="!$store.getters.getLoadingState">
     <div class="movie__background"
          :style="{ 'background-image': 'url(' + getBackroundPath + ')' }">
       <h2 class="movie__tagline">{{getMovieDetails.tagline}}</h2>
@@ -10,7 +10,7 @@
           <source media="(min-width: 1900px)" :srcset="getImageHiResSrc">
           <img :src="getImageSrc" :alt="getMovieDetails.title" class="movie__img">
         </picture>
-        <figcaption class="movie__rate" v-if="getMovieDetails.average_rate">
+        <figcaption class="movie__rate" v-if="getMovieDetails.vote_average">
           <svg viewBox="0 0 36 36" class="circular-chart"
                :class="getChartColor">
             <path class="circle-bg"
@@ -59,7 +59,9 @@
       </div>
       <div class="movie__block" v-if="getMovieDetails.release_date">
         <span class="movie__option">Release date:</span>
-        <span class="movie__value">{{getMovieDetails.release_date}}</span>
+        <span class="movie__value">
+          {{getMovieDetails.release_date | getFormattedDate}}
+        </span>
       </div>
       <div class="movie__block" v-if="getMovieDetails.genres">
         <span class="movie__option">Category:</span>
@@ -76,11 +78,11 @@
       </div>
       <div class="movie__block" v-if="getMovieDetails.budget">
         <span class="movie__option">Budget:</span>
-        <span class="movie__value">{{getMovieDetails.budget}}$</span>
+        <span class="movie__value">{{getMovieDetails.budget | getFormattedPrice}}</span>
       </div>
       <div class="movie__block" v-if="getMovieDetails.revenue">
         <span class="movie__option">Revenue:</span>
-        <span class="movie__value">{{getMovieDetails.revenue}}$</span>
+        <span class="movie__value">{{getMovieDetails.revenue | getFormattedPrice}}</span>
       </div>
       <div class="movie__block" v-if="getMovieCredits.length !== 0">
         <span class="movie__option">Crew:</span>
@@ -141,23 +143,25 @@
   export default {
     name: 'MoviePage',
     beforeRouteEnter(to, from, next) {
-      Promise.all([
-        store.commit('setLoadingState', true),
-        store.dispatch('fetchMovieDetails', to.params.id),
-        store.dispatch('fetchMovieCredits', to.params.id),
-        store.dispatch('fetchMovieImages', to.params.id),
-        store.dispatch('fetchSimilarMovies', to.params.id),
-        store.dispatch('fetchRecommendedMovies', to.params.id),
-        store.dispatch('fetchMovieReviews', to.params.id),
-      ])
-        .then(() => {
-          next();
-          store.commit('setLoadingState', false);
-        });
+      store.commit('setLoadingState', true);
+      next(() => {
+        Promise.all([
+          store.dispatch('fetchMovieDetails', to.params.id),
+          store.dispatch('fetchMovieCredits', to.params.id),
+          store.dispatch('fetchMovieImages', to.params.id),
+          store.dispatch('fetchSimilarMovies', to.params.id),
+          store.dispatch('fetchRecommendedMovies', to.params.id),
+          store.dispatch('fetchMovieReviews', to.params.id),
+        ])
+          .then(() => {
+            store.commit('setLoadingState', false);
+            // vm.$refs.movieBlock.scrollIntoView();
+          });
+      });
     },
     beforeRouteUpdate(to, from, next) {
+      this.$store.commit('setLoadingState', true);
       Promise.all([
-        this.$store.commit('setLoadingState', true),
         this.$store.dispatch('fetchMovieDetails', to.params.id),
         this.$store.dispatch('fetchMovieCredits', to.params.id),
         this.$store.dispatch('fetchMovieReviews', to.params.id),
@@ -170,13 +174,7 @@
           this.$store.commit('setLoadingState', false);
         });
     },
-    mounted() {
-      this.$refs.movieBlock.scrollIntoView();
-    },
     computed: {
-      getLoadingState() {
-        return this.$store.getters.getLoadingState;
-      },
       getMovieDetails() {
         return this.$store.getters.getMovieDetails;
       },
@@ -215,6 +213,23 @@
       },
       getChartLength() {
         return `${this.getMovieDetails.vote_average * 10}, 100`;
+      },
+    },
+    filters: {
+      getFormattedPrice(value) {
+        switch (true) {
+          case Math.abs(Number(value)) >= 1.0e+9:
+            return `${Math.round(Math.abs(Number(value)) / 1.0e+9)} billion dollars`;
+          case Math.abs(Number(value)) >= 1.0e+6:
+            return `${Math.round(Math.abs(Number(value)) / 1.0e+6)} million dollars`;
+          case Math.abs(Number(value)) >= 1.0e+3:
+            return `${Math.round(Math.abs(Number(value)) / 1.0e+3)} thousand dollars`;
+          default:
+            return `${Math.abs(Number(value))} dollars`;
+        }
+      },
+      getFormattedDate(date) {
+        return new Date(Date.parse(date)).toDateString();
       },
     },
     components: {

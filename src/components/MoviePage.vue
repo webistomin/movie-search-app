@@ -1,17 +1,16 @@
 <template>
-  <section class="movie" ref="movieBlock">
+  <section class="movie" ref="movieBlock" v-if="!getLoadingState">
     <div class="movie__background"
-         v-if="getMovieDetails.backdrop_path"
-         :style="{ 'background-image': 'url(' + getBackroundPath + ')' }" >
+         :style="{ 'background-image': 'url(' + getBackroundPath + ')' }">
       <h2 class="movie__tagline">{{getMovieDetails.tagline}}</h2>
     </div>
     <div class="movie__inner">
-      <figure class="movie__pic" v-if="getMovieDetails.poster_path">
+      <figure class="movie__pic">
         <picture>
-          <source media="(min-width: 1900px)" srcset="static/img/content/poster342.jpg 1x">
-          <img :src="getImageSrc" alt="1" class="movie__img">
+          <source media="(min-width: 1900px)" :srcset="getImageHiResSrc">
+          <img :src="getImageSrc" :alt="getMovieDetails.title" class="movie__img">
         </picture>
-        <figcaption class="movie__rate">
+        <figcaption class="movie__rate" v-if="getMovieDetails.average_rate">
           <svg viewBox="0 0 36 36" class="circular-chart"
                :class="getChartColor">
             <path class="circle-bg"
@@ -20,7 +19,7 @@
           a 15.9155 15.9155 0 0 1 0 -31.831"
             />
             <path class="circle"
-                  stroke-dasharray="60, 100"
+                  :stroke-dasharray="getChartLength"
                   d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
@@ -31,14 +30,16 @@
           </svg>
         </figcaption>
       </figure>
-      <h2 class="movie__title">{{getMovieDetails.title}}</h2>
+      <h2 class="movie__title" v-if="getMovieDetails.title">
+        {{getMovieDetails.title}}
+      </h2>
       <button class="movie__btn btn">
         <svg class="movie__icon" width="17" height="17">
           <use xlink:href="#icon-heart"></use>
         </svg>
         Add to favorite
       </button>
-      <div class="movie__block">
+      <div class="movie__block" v-if="getMovieDetails.production_countries.length !== 0">
         <span class="movie__option">Country:</span>
         <ul class="movie__values">
           <li class="movie__value"
@@ -47,7 +48,7 @@
           </li>
         </ul>
       </div>
-      <div class="movie__block">
+      <div class="movie__block" v-if="getMovieDetails.production_companies">
         <span class="movie__option">Production companies:</span>
         <ul class="movie__values">
           <li class="movie__value"
@@ -56,11 +57,11 @@
           </li>
         </ul>
       </div>
-      <div class="movie__block">
+      <div class="movie__block" v-if="getMovieDetails.release_date">
         <span class="movie__option">Release date:</span>
         <span class="movie__value">{{getMovieDetails.release_date}}</span>
       </div>
-      <div class="movie__block">
+      <div class="movie__block" v-if="getMovieDetails.genres">
         <span class="movie__option">Category:</span>
         <ul class="movie__values">
           <li class="movie__value"
@@ -69,15 +70,15 @@
           </li>
         </ul>
       </div>
-      <div class="movie__block">
+      <div class="movie__block" v-if="getMovieDetails.runtime">
         <span class="movie__option">Runtime:</span>
         <span class="movie__value">{{getMovieDetails.runtime}} minutes</span>
       </div>
-      <div class="movie__block">
+      <div class="movie__block" v-if="getMovieDetails.budget">
         <span class="movie__option">Budget:</span>
         <span class="movie__value">{{getMovieDetails.budget}}$</span>
       </div>
-      <div class="movie__block">
+      <div class="movie__block" v-if="getMovieDetails.revenue">
         <span class="movie__option">Revenue:</span>
         <span class="movie__value">{{getMovieDetails.revenue}}$</span>
       </div>
@@ -99,22 +100,35 @@
           </li>
         </ul>
       </div>
-      <h2 class="movie__title movie__title--decor">The Plot</h2>
-      <p class="movie__desc">{{getMovieDetails.overview}}</p>
-      <h2 class="movie__title movie__title--decor">Photos</h2>
-      <carousel :perPageCustom="[[320, 1], [1199, 3]]"
+      <h2 class="movie__title movie__title--decor" v-if="getMovieDetails.overview">
+        The Plot
+      </h2>
+      <p class="movie__desc" v-if="getMovieDetails.overview">
+        {{getMovieDetails.overview}}
+      </p>
+      <h2 class="movie__title movie__title--decor" v-if="getMovieImages.length !== 0">
+        Photos
+      </h2>
+      <carousel v-if="getMovieImages.length !== 0"
+                :perPageCustom="[[320, 1], [1199, 3]]"
                 :mouse-drag="true"
                 :autoplay="true"
                 :loop="true"
                 paginationActiveColor="#ffd564">
-        <slide v-for="poster of getMovieImages.posters">
+        <slide v-for="poster of getMovieImages">
           <img :src="`https://image.tmdb.org/t/p/w185/${poster.file_path}`" alt="" class="movie__img">
         </slide>
       </carousel>
-      <h2 class="movie__title movie__title--decor">Similar movies</h2>
-      <MoviesList :movies-list="getSimilarMovies"></MoviesList>
-      <h2 class="movie__title movie__title--decor">Recomendations</h2>
-      <MoviesList :movies-list="getRecommendedMovies"></MoviesList>
+      <h2 class="movie__title movie__title--decor" v-if="getSimilarMovies.length !== 0">
+        Similar movies
+      </h2>
+      <MoviesList :movies-list="getSimilarMovies"
+                  v-if="getSimilarMovies.length !== 0"/>
+      <h2 class="movie__title movie__title--decor" v-if="getRecommendedMovies.length !== 0">
+        Recomendations
+      </h2>
+      <MoviesList :movies-list="getRecommendedMovies"
+      v-if="getRecommendedMovies.length !== 0"/>
     </div>
   </section>
 </template>
@@ -122,30 +136,47 @@
 <script>
   import { Carousel, Slide } from 'vue-carousel';
   import MoviesList from './MoviesList';
+  import store from '../store/index';
 
   export default {
-    name: 'MoviesPage',
-    beforeRouteUpdate(to, from, next) {
-      console.log('update');
-      this.$refs.movieBlock.scrollIntoView();
-      next();
-    },
-    mounted() {
-      // eslint-disable-next-line no-unused-expressions
+    name: 'MoviePage',
+    beforeRouteEnter(to, from, next) {
       Promise.all([
-        this.$store.commit('setLoadingState', true),
-        this.$store.dispatch('fetchMovieDetails', this.$route.params.id),
-        this.$store.dispatch('fetchMovieCredits', this.$route.params.id),
-        this.$store.dispatch('fetchMovieReviews', this.$route.params.id),
-        this.$store.dispatch('fetchMovieImages', this.$route.params.id),
-        this.$store.dispatch('fetchSimilarMovies', this.$route.params.id),
-        this.$store.dispatch('fetchRecommendedMovies', this.$route.params.id),
+        store.commit('setLoadingState', true),
+        store.dispatch('fetchMovieDetails', to.params.id),
+        store.dispatch('fetchMovieCredits', to.params.id),
+        store.dispatch('fetchMovieImages', to.params.id),
+        store.dispatch('fetchSimilarMovies', to.params.id),
+        store.dispatch('fetchRecommendedMovies', to.params.id),
+        store.dispatch('fetchMovieReviews', to.params.id),
       ])
         .then(() => {
+          next();
+          store.commit('setLoadingState', false);
+        });
+    },
+    beforeRouteUpdate(to, from, next) {
+      Promise.all([
+        this.$store.commit('setLoadingState', true),
+        this.$store.dispatch('fetchMovieDetails', to.params.id),
+        this.$store.dispatch('fetchMovieCredits', to.params.id),
+        this.$store.dispatch('fetchMovieReviews', to.params.id),
+        this.$store.dispatch('fetchMovieImages', to.params.id),
+        this.$store.dispatch('fetchSimilarMovies', to.params.id),
+        this.$store.dispatch('fetchRecommendedMovies', to.params.id),
+      ])
+        .then(() => {
+          next();
           this.$store.commit('setLoadingState', false);
         });
     },
+    mounted() {
+      this.$refs.movieBlock.scrollIntoView();
+    },
     computed: {
+      getLoadingState() {
+        return this.$store.getters.getLoadingState;
+      },
       getMovieDetails() {
         return this.$store.getters.getMovieDetails;
       },
@@ -162,10 +193,13 @@
         return this.$store.getters.getRecommendedMovies;
       },
       getBackroundPath() {
-        return `https://image.tmdb.org/t/p/w780/${this.getMovieDetails.backdrop_path}`;
+        return this.getMovieDetails.backdrop_path ? `https://image.tmdb.org/t/p/w780/${this.getMovieDetails.backdrop_path}` : '/static/img/content/backdrop-default.jpg';
       },
       getImageSrc() {
-        return `https://image.tmdb.org/t/p/w185/${this.getMovieDetails.poster_path}`;
+        return this.getMovieDetails.poster_path ? `https://image.tmdb.org/t/p/w185/${this.getMovieDetails.poster_path}` : '/static/img/content/image-not-found.svg';
+      },
+      getImageHiResSrc() {
+        return `https://image.tmdb.org/t/p/w342/${this.getMovieDetails.poster_path}`;
       },
       getChartColor() {
         switch (true) {
@@ -179,6 +213,9 @@
             return 'green';
         }
       },
+      getChartLength() {
+        return `${this.getMovieDetails.vote_average * 10}, 100`;
+      },
     },
     components: {
       MoviesList,
@@ -189,6 +226,15 @@
 </script>
 
 <style lang="sass">
+  .VueCarousel-slide
+    cursor: grab
+
+    &:active
+      cursor: grabbing
+
+    &:focus
+      outline: none
+
   .movie
     width: 100%
     height: 100%
@@ -205,8 +251,10 @@
       background-image: url("~/static/img/content/backdrop300.jpg")
       background-size: cover
       background-repeat: no-repeat
+      background-position: center
       position: relative
       box-sizing: border-box
+      transition: background-image 0.3s ease-in-out
 
       &::before
         width: 100%

@@ -45,7 +45,7 @@ export default {
       await axios
         .get(`https://api.themoviedb.org/3/movie/${payload}/images?api_key=${rootState.shared.personalAPIKey}&language=en-US&include_image_language=en`)
         .then((response) => {
-          commit('setMovieImages', response.data);
+          commit('setMovieImages', response.data.posters);
           // commit('setLoadingState', false);
         })
         .catch((error) => {

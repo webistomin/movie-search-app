@@ -13,9 +13,7 @@
       :movie-img="getPosterSrc(item.poster_path)"
       :movie-genres="item.genre_ids"
       :movie-rate="item.vote_average"
-      :movie-date="item.release_date"
-    >
-    </movie-item>
+      :movie-date="item.release_date"/>
   </ul>
 </template>
 

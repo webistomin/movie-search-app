@@ -58,7 +58,11 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch('fetchGenresList');
+    if (localStorage.genresList) {
+      this.$store.commit('setGenresList', JSON.parse(localStorage.genresList));
+    } else {
+      this.$store.dispatch('fetchGenresList');
+    }
   },
   created() {
     window.addEventListener('resize', this.handleResize);

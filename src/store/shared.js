@@ -43,6 +43,9 @@ export default {
     getLoadingState(state) {
       return state.isLoading;
     },
+    getError(state) {
+      return state.error;
+    },
     getGenresList(state) {
       return state.genres.genres;
     },

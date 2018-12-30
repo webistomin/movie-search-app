@@ -35,7 +35,6 @@ export default {
         .get(`https://api.themoviedb.org/3/movie/${payload}?api_key=${rootState.shared.personalAPIKey}&language=en-US`)
         .then((response) => {
           commit('setMovieDetails', response.data);
-          // commit('setLoadingState', false);
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);
@@ -46,7 +45,6 @@ export default {
         .get(`https://api.themoviedb.org/3/movie/${payload}/images?api_key=${rootState.shared.personalAPIKey}&language=en-US&include_image_language=en`)
         .then((response) => {
           commit('setMovieImages', response.data.posters);
-          // commit('setLoadingState', false);
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);
@@ -58,7 +56,6 @@ export default {
 `)
         .then((response) => {
           commit('setSimilarMovies', response.data.results);
-          // commit('setLoadingState', false);
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);
@@ -70,7 +67,6 @@ export default {
 `)
         .then((response) => {
           commit('setRecommendedMovies', response.data.results);
-          // commit('setLoadingState', false);
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);
@@ -81,7 +77,6 @@ export default {
         .get(`https://api.themoviedb.org/3/movie/${payload}/credits?api_key=${rootState.shared.personalAPIKey}`)
         .then((response) => {
           commit('setMovieCredits', response.data);
-          // commit('setLoadingState', false);
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);
@@ -92,7 +87,6 @@ export default {
         .get(`https://api.themoviedb.org/3/movie/${payload}/reviews?api_key=${rootState.shared.personalAPIKey}`)
         .then((response) => {
           commit('setMovieReviews', response.data.results);
-          // commit('setLoadingState', false);
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);

@@ -1,28 +1,25 @@
 <template>
   <aside class="socials">
-    <div class="socials__block" v-if="$route.name === 'movie' && !getLoadingState">
-      <h2 class="socials__title title">Last reviews</h2>
-      <ul class="socials__list" v-if="getMovieReviews.length !== 0">
-        <li class="socials__item"
-            v-for="review of getMovieReviews">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <!--<img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">-->
-              <img class="socials__avatar" src="https://image.tmdb.org/t/p/w150_and_h150_face/pjVuFgU4nprXldc3cGA8DMczt4d.jpg" srcset="https://image.tmdb.org/t/p/w150_and_h150_face/pjVuFgU4nprXldc3cGA8DMczt4d.jpg 1x, https://image.tmdb.org/t/p/w300_and_h300_face/pjVuFgU4nprXldc3cGA8DMczt4d.jpg 2x" alt="The Midi-chlorian Count" width="32" height="32">
-            </picture>
-            <span class="socials__name">{{review.author}}</span>
-          </div>
-          <p class="socials__message" v-html="review.content"></p>
-        </li>
-      </ul>
+    <div class="socials__block">
+      <h2 class="socials__title title">{{getPageTitle}}</h2>
+      <SocialsList
+        v-if="$route.name === 'movie' && !getLoadingState"
+        :reviews-list="getMovieReviews"/>
+      <SocialsList v-else />
     </div>
   </aside>
 </template>
 
 <script>
+  import SocialsList from './SocialsList';
+
   export default {
     name: 'Socials',
+    components: { SocialsList },
     computed: {
+      getPageTitle() {
+        return this.$route.name === 'movie' ? 'Last reviews' : 'Last news';
+      },
       getMovieReviews() {
         return this.$store.getters.getMovieReviews;
       },

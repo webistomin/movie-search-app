@@ -9,6 +9,7 @@ export default {
     isRowView: false,
     isGridView: true,
     isNavigationOpened: false,
+    isAuthorized: true,
   },
   mutations: {
     setErrorMessage(state, payload) {
@@ -28,6 +29,9 @@ export default {
     },
     setNavigationState(state, payload) {
       state.isNavigationOpened = payload;
+    },
+    setAuthorizeState(state, payload) {
+      state.isAuthorized = payload;
     },
   },
   actions: {
@@ -61,6 +65,9 @@ export default {
     },
     getNavigationState(state) {
       return state.isNavigationOpened;
+    },
+    getAuthorizeState(state) {
+      return state.isAuthorized;
     },
   },
 };

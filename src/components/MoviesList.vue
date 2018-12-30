@@ -36,7 +36,6 @@
       getPosterSrc(poster) {
         return poster ? `https://image.tmdb.org/t/p/w185/${poster}` : 'static/img/content/image-not-found.svg';
       },
-      // eslint-disable-next-line consistent-return
     },
     computed: {
       getPerspectiveValue() {

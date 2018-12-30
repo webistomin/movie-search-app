@@ -5,7 +5,6 @@
       <SocialsList
         v-if="$route.name === 'movie' && !getLoadingState"
         :reviews-list="getMovieReviews"/>
-      <SocialsList v-else />
     </div>
   </aside>
 </template>

@@ -43,7 +43,7 @@
         <div class="page-header__account">
           <a href="#" class="page-header__btn btn" style="display: none">Sign in</a>
           <div class="page-header__userblock">
-            <img src="static/img/content/ava.jpg" width="32" height="32" alt="Avatar" class="page-header__avatar">
+            <img src="/static/img/content/ava.jpg" width="32" height="32" alt="Avatar" class="page-header__avatar">
             <p class="page-header__text">Hello, <span class="page-header__name">Olia</span>!</p>
           </div>
           <div class="page-header__dropdown">

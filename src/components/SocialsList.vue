@@ -1,5 +1,6 @@
 <template>
-  <ul class="socials__list" v-if="reviewsList && reviewsList.length !== 0">
+  <ul class="socials__list"
+      v-if="reviewsList && reviewsList.length !== 0">
     <socials-list-item
       v-for="review of reviewsList"
       :key="review.id"

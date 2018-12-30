@@ -44,7 +44,9 @@
       </div>
       <div class="page-header__block page-header__block--user">
         <div class="page-header__account">
-          <a href="#" class="page-header__btn btn" v-if="!getAuthorizeState">Sign in</a>
+          <a :href="`https://www.themoviedb.org/authenticate/${getRequestToken}?redirect_to=http://localhost:8080/`"
+             class="page-header__btn btn"
+             v-if="!getAuthorizeState">Sign in</a>
           <template v-else>
             <div class="page-header__userblock">
               <img src="/static/img/content/ava.jpg" width="32" height="32" alt="Avatar" class="page-header__avatar">
@@ -103,6 +105,9 @@
       },
     },
     computed: {
+      getRequestToken() {
+        return this.$store.getters.getRequestToken;
+      },
       getUserMenuClass() {
         return this.isUserMenuOpened ? 'page-header__list--opened' : 'page-header__list--closed';
       },

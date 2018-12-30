@@ -65,6 +65,19 @@ export default {
     }
   },
   created() {
+    if (this.$store.getters.getRequestToken === null || this.$route.query.approved !== 'true') {
+      this.$store.dispatch('fetchRequestToken');
+    }
+
+    if (this.$route.query.approved === 'true') {
+      if (localStorage.sessionId) {
+        this.$store.commit('setSessionId', JSON.parse(localStorage.sessionId));
+      } else {
+        this.$store.commit('setRequestToken', JSON.parse(localStorage.requestToken));
+        this.$store.dispatch('fetchNewSession');
+      }
+    }
+
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
   },

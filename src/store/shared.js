@@ -9,9 +9,14 @@ export default {
     isRowView: false,
     isGridView: true,
     isNavigationOpened: false,
-    isAuthorized: true,
+    isAuthorized: false,
+    requestToken: null,
+    sessionId: null,
   },
   mutations: {
+    setRequestToken(state, payload) {
+      state.requestToken = payload;
+    },
     setErrorMessage(state, payload) {
       state.error = payload;
     },
@@ -33,6 +38,9 @@ export default {
     setAuthorizeState(state, payload) {
       state.isAuthorized = payload;
     },
+    setSessionId(state, payload) {
+      state.sessionId = payload;
+    },
   },
   actions: {
     fetchGenresList({ state, commit }) {
@@ -46,8 +54,38 @@ export default {
           commit('setErrorMessage', error.message);
         });
     },
+    fetchRequestToken({ state, commit }) {
+      axios
+        .get(`https://api.themoviedb.org/3/authentication/token/new?api_key=${state.personalAPIKey}`)
+        .then((response) => {
+          commit('setRequestToken', response.data.request_token);
+          localStorage.requestToken = JSON.stringify(response.data.request_token);
+        })
+        .catch((error) => {
+          commit('setErrorMessage', error.message);
+        });
+    },
+    fetchNewSession({ state, commit }) {
+      axios
+        .post(`https://api.themoviedb.org/3/authentication/session/new?api_key=${state.personalAPIKey}`, {
+          request_token: state.requestToken,
+        })
+        .then((response) => {
+          commit('setSessionId', response.data);
+          localStorage.sessionId = JSON.stringify(response.data.session_id);
+        })
+        .catch((error) => {
+          commit('setErrorMessage', error.message);
+        });
+    },
   },
   getters: {
+    getSessionId(state) {
+      return state.sessionId;
+    },
+    getRequestToken(state) {
+      return state.requestToken;
+    },
     getLoadingState(state) {
       return state.isLoading;
     },

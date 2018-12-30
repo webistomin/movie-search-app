@@ -312,6 +312,7 @@
       border: 2px solid $color-gold
       height: 100%
       box-sizing: border-box
+      object-fit: cover
 
     &__rate
       display: flex

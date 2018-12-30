@@ -7,7 +7,10 @@
             <span class="page-header__decor">Movie</span>searcher
           </router-link>
         </h1>
-        <button class="page-header__toggler page-header__toggler--closed" aria-label="Open navigation menu">
+        <button class="page-header__toggler"
+                :class="getToggleClass"
+                @click="toggleAppNavigation"
+                aria-label="Open navigation menu">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -81,13 +84,23 @@
         this.$store.commit('setGridView', true);
         this.$store.commit('setRowView', false);
       },
+      toggleAppNavigation() {
+        // eslint-disable-next-line no-unused-expressions
+        this.getNavigationState ? this.$store.commit('setNavigationState', false) : this.$store.commit('setNavigationState', true);
+      },
     },
     computed: {
+      getNavigationState() {
+        return this.$store.getters.getNavigationState;
+      },
       getRowViewState() {
         return this.$store.getters.getRowViewState;
       },
       getGridViewState() {
         return this.$store.getters.getGridViewState;
+      },
+      getToggleClass() {
+        return this.getNavigationState ? 'page-header__toggler--opened' : 'page-header__toggler--closed';
       },
     },
   };

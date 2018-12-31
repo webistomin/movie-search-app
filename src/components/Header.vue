@@ -69,19 +69,19 @@
               </button>
               <ul class="page-header__list" :class="getUserMenuClass">
                 <li class="page-header__item">
-                  <a href="#" class="page-header__link">
+                  <router-link to="/favorite" class="page-header__link">
                     <svg class="page-header__icon page-header__icon--left" width="17" height="17">
                       <use xlink:href="#icon-heart"></use>
                     </svg>
                     Favorite list
-                  </a>
+                  </router-link>
                 </li>
                 <li class="page-header__item">
-                  <a href="#" @click="signOut" class="page-header__link">
+                  <a href="#" @click="logOut" class="page-header__link">
                     <svg class="page-header__icon page-header__icon--left" width="17" height="17">
-                      <use xlink:href="#icon-heart"></use>
+                      <use xlink:href="#icon-logout"></use>
                     </svg>
-                    Sign out
+                    Log out
                   </a>
                 </li>
               </ul>
@@ -113,7 +113,7 @@
       },
     },
     methods: {
-      signOut() {
+      logOut() {
         this.$store.dispatch('removeNewSession');
       },
       setRowView() {

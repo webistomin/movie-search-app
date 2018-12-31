@@ -3,10 +3,18 @@ import axios from 'axios';
 export default {
   state: {
     userDetails: [],
+    favoriteMovies: [],
+    currentPage: 1,
   },
   mutations: {
     setUserDetails(state, payload) {
       state.userDetails = payload;
+    },
+    setFavoriteMovies(state, payload) {
+      state.favoriteMovies = state.favoriteMovies.concat(payload);
+    },
+    setFavoriteCurrentPage(state) {
+      state.currentPage += 1;
     },
   },
   actions: {
@@ -38,10 +46,24 @@ export default {
           commit('setErrorMessage', error.message);
         });
     },
+    fetchFavoriteMovies({ commit, rootState, state }) {
+      axios
+        .get(`https://api.themoviedb.org/3/account/ACC-ID/favorite/movies?api_key=${rootState.shared.personalAPIKey}&session_id=${rootState.shared.sessionId}&language=en-US&sort_by=created_at.asc&page=${state.currentPage}`)
+        .then((response) => {
+          commit('setFavoriteMovies', response.data.results);
+          commit('setLoadingState', false);
+        })
+        .catch((error) => {
+          commit('setErrorMessage', error.message);
+        });
+    },
   },
   getters: {
     getUserDetails(state) {
       return state.userDetails;
+    },
+    getFavoriteMovies(state) {
+      return state.favoriteMovies;
     },
   },
 };

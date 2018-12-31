@@ -32,7 +32,7 @@ export default {
             favorite: true,
           })
         .then((response) => {
-          console.log(response);
+          commit('setMessage', response);
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);

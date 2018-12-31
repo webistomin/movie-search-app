@@ -76,6 +76,14 @@
                     Favorite list
                   </a>
                 </li>
+                <li class="page-header__item">
+                  <a href="#" @click="signOut" class="page-header__link">
+                    <svg class="page-header__icon page-header__icon--left" width="17" height="17">
+                      <use xlink:href="#icon-heart"></use>
+                    </svg>
+                    Sign out
+                  </a>
+                </li>
               </ul>
             </div>
           </template>
@@ -97,12 +105,17 @@
       getAuthorizeState: {
         immediate: true,
         deep: true,
-        handler() {
-          this.$store.dispatch('fetchUserDetails');
+        handler(newValue) {
+          if (newValue) {
+            this.$store.dispatch('fetchUserDetails');
+          }
         },
       },
     },
     methods: {
+      signOut() {
+        this.$store.dispatch('removeNewSession');
+      },
       setRowView() {
         this.$store.commit('setRowView', true);
         this.$store.commit('setGridView', false);

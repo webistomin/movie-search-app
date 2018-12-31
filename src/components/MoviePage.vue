@@ -33,7 +33,7 @@
       <h2 class="movie__title" v-if="getMovieDetails.title">
         {{getMovieDetails.title}}
       </h2>
-      <button class="movie__btn btn">
+      <button class="movie__btn btn" @click="markMovieAsFavorite">
         <svg class="movie__icon" width="17" height="17">
           <use xlink:href="#icon-heart"></use>
         </svg>
@@ -186,6 +186,12 @@
         .then(() => {
           this.$store.commit('setLoadingState', false);
         });
+    },
+    methods: {
+      markMovieAsFavorite() {
+        const movieID = this.getMovieDetails.id;
+        this.$store.dispatch('markMovieAsFavorite', movieID);
+      },
     },
     computed: {
       getMovieDetails() {

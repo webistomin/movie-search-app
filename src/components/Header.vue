@@ -49,8 +49,14 @@
              v-if="!getAuthorizeState">Sign in</a>
           <template v-else>
             <div class="page-header__userblock" v-if="getUserDetails.length !== 0">
-              <img :src="`https://www.gravatar.com/avatar/${getUserDetails.avatar.gravatar.hash}`" width="32" height="32" alt="Avatar" class="page-header__avatar">
-              <p class="page-header__text">Hello, <span class="page-header__name">{{getUserDetails.username}}</span>!</p>
+              <img
+                :src="`https://www.gravatar.com/avatar/${getUserDetails.avatar.gravatar.hash}`"
+                width="32"
+                height="32"
+                :alt="getUserDetails.username"
+                class="page-header__avatar">
+              <p class="page-header__text">Hello,
+                <span class="page-header__name">{{getUserDetails.username}}</span>!</p>
             </div>
             <div class="page-header__dropdown">
               <button class="page-header__button page-header__button--arrow"

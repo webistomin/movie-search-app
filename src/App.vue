@@ -65,17 +65,19 @@ export default {
     }
   },
   created() {
-    if (this.$store.getters.getRequestToken === null || this.$route.query.approved !== 'true') {
+    if (!localStorage.requestToken) {
       this.$store.dispatch('fetchRequestToken');
+    } else {
+      this.$store.commit('setRequestToken', JSON.parse(localStorage.requestToken));
+    }
+
+    if (localStorage.sessionId) {
+      this.$store.commit('setSessionId', JSON.parse(localStorage.sessionId));
+      this.$store.commit('setAuthorizeState', true);
     }
 
     if (this.$route.query.approved === 'true') {
-      if (localStorage.sessionId) {
-        this.$store.commit('setSessionId', JSON.parse(localStorage.sessionId));
-      } else {
-        this.$store.commit('setRequestToken', JSON.parse(localStorage.requestToken));
-        this.$store.dispatch('fetchNewSession');
-      }
+      this.$store.dispatch('fetchNewSession');
     }
 
     window.addEventListener('resize', this.handleResize);

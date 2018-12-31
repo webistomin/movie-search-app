@@ -71,8 +71,9 @@ export default {
           request_token: state.requestToken,
         })
         .then((response) => {
-          commit('setSessionId', response.data);
+          commit('setSessionId', response.data.session_id);
           localStorage.sessionId = JSON.stringify(response.data.session_id);
+          commit('setAuthorizeState', true);
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);

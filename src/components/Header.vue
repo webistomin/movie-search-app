@@ -48,9 +48,9 @@
              class="page-header__btn btn"
              v-if="!getAuthorizeState">Sign in</a>
           <template v-else>
-            <div class="page-header__userblock">
-              <img src="/static/img/content/ava.jpg" width="32" height="32" alt="Avatar" class="page-header__avatar">
-              <p class="page-header__text">Hello, <span class="page-header__name">Olia</span>!</p>
+            <div class="page-header__userblock" v-if="getUserDetails.length !== 0">
+              <img :src="`https://www.gravatar.com/avatar/${getUserDetails.avatar.gravatar.hash}`" width="32" height="32" alt="Avatar" class="page-header__avatar">
+              <p class="page-header__text">Hello, <span class="page-header__name">{{getUserDetails.username}}</span>!</p>
             </div>
             <div class="page-header__dropdown">
               <button class="page-header__button page-header__button--arrow"
@@ -87,6 +87,15 @@
         isUserMenuOpened: false,
       };
     },
+    watch: {
+      getAuthorizeState: {
+        immediate: true,
+        deep: true,
+        handler() {
+          this.$store.dispatch('fetchUserDetails');
+        },
+      },
+    },
     methods: {
       setRowView() {
         this.$store.commit('setRowView', true);
@@ -105,6 +114,9 @@
       },
     },
     computed: {
+      getUserDetails() {
+        return this.$store.getters.getUserDetails;
+      },
       getRequestToken() {
         return this.$store.getters.getRequestToken;
       },

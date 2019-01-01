@@ -11,6 +11,9 @@
   export default {
     name: 'NavigationPage',
     components: { MoviesList },
+    mounted() {
+      console.log(this.$route);
+    },
   };
 </script>
 

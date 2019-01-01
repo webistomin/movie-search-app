@@ -58,15 +58,12 @@
       -moz-animation-iteration-count: infinite, infinite
       -o-animation: disappear 1s linear
       -o-animation-iteration-count: infinite, infinite
+      overflow: hidden
 
-
-    &__box
       & .error__title--first
         position: absolute
         width: 100%
 
-
-    &__box
       & .error__title--second
         color: $color-gold
         font-weight: bolder
@@ -82,8 +79,6 @@
         -o-animation: animate_glitch_1 .2s linear
         -o-animation-iteration-count: infinite
 
-
-    &__box
       & .error__title--third
         color: $color-action
         font-weight: bolder
@@ -98,7 +93,6 @@
         -moz-animation-iteration-count: infinite
         -o-animation: animate_glitch_2 .3s linear
         -o-animation-iteration-count: infinite
-
 
     @-webkit-keyframes disappear
       0%

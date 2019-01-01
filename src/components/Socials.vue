@@ -2,136 +2,17 @@
   <aside class="socials">
     <div class="socials__block">
       <h2 class="socials__title title">Last comments</h2>
-      <ul class="socials__list">
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-        <li class="socials__item">
-          <div class="socials__block socials__block--flex">
-            <picture class="socials__pic">
-              <img src="static/img/content/ava.jpg" width="32" height="32" alt="#" class="socials__avatar">
-            </picture>
-            <span class="socials__name">Visual idiot</span>
-          </div>
-          <p class="socials__message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia!
-          </p>
-        </li>
-      </ul>
+      <socials-list/>
     </div>
   </aside>
 </template>
 
 <script>
+  import SocialsList from './SocialsList';
+
   export default {
     name: 'Socials',
+    components: { SocialsList },
   };
 </script>
 
@@ -145,11 +26,10 @@
       text-align: center
       background-color: $color-brown
 
-    &__block
-      &--flex
-        display: flex
-        align-items: center
-        margin-bottom: 20px
+    &__name
+      display: block
+      margin-bottom: 20px
+
 
     &__pic
       margin-right: 16px
@@ -249,5 +129,4 @@
 
       &__item
         align-items: center
-
 </style>

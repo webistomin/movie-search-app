@@ -2,16 +2,8 @@
   <nav class="main-nav main-nav--closed">
     <ul class="main-nav__list">
       <li class="main__nav__item">
-        <router-link to="/latest" class="main-nav__link"
-                     :active-class="'main-nav__link--active'">
-          <svg class="main-nav__icon" width="17" height="17">
-            <use xlink:href="#icon-movie"></use>
-          </svg>
-          Latest
-        </router-link>
-      </li>
-      <li class="main__nav__item">
-        <router-link to="/now-playing" class="main-nav__link"
+        <router-link to="/now-playing"
+                     class="main-nav__link"
                      :active-class="'main-nav__link--active'">
           <svg class="main-nav__icon" width="17" height="17">
             <use xlink:href="#icon-calendar"></use>
@@ -20,7 +12,8 @@
         </router-link>
       </li>
       <li class="main__nav__item">
-        <router-link to="/popular" class="main-nav__link"
+        <router-link to="/popular"
+                     class="main-nav__link"
                      :active-class="'main-nav__link--active'">
           <svg class="main-nav__icon" width="17" height="17">
             <use xlink:href="#icon-popular"></use>
@@ -29,7 +22,8 @@
         </router-link>
       </li>
       <li class="main__nav__item">
-        <router-link to="/top-rated" class="main-nav__link"
+        <router-link to="/top-rated"
+                     class="main-nav__link"
                      :active-class="'main-nav__link--active'">
           <svg class="main-nav__icon" width="17" height="17">
             <use xlink:href="#icon-top"></use>
@@ -38,7 +32,8 @@
         </router-link>
       </li>
       <li class="main__nav__item">
-        <router-link to="/upcoming" class="main-nav__link"
+        <router-link to="/upcoming"
+                     class="main-nav__link"
                      :active-class="'main-nav__link--active'">
           <svg class="main-nav__icon" width="17" height="17">
             <use xlink:href="#icon-trailer"></use>
@@ -74,6 +69,9 @@
       transform: scaleY(1)
       transform-origin: top
       transition: transform 0.3s ease-in-out
+
+    &__list
+      padding: 5px 0
 
     &__link
       box-sizing: border-box
@@ -119,12 +117,15 @@
 
     @media (min-width: $screen-sm)
       &__list
-        padding: 15px 0
+        padding: 0
 
     @media (min-width: $screen-md)
       position: static
       transform: none
       min-height: auto
+
+      &__list
+        padding: 15px 0
 
       &__link
         justify-content: flex-start
@@ -132,5 +133,4 @@
 
       &__icon
         left: 38px
-
 </style>

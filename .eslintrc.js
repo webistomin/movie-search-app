@@ -26,6 +26,7 @@ module.exports = {
   'rules': {
     "linebreak-style": 0,
     "no-param-reassign": 0,
+    // windows linebreaks fix
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       'js': 'never',

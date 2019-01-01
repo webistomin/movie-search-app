@@ -51,7 +51,7 @@ export default {
     getLoadingState(state) {
       return state.isLoading;
     },
-    getError(state) {
+    getErrorMessage(state) {
       return state.error;
     },
     getGenresList(state) {

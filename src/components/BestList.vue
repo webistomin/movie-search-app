@@ -11,11 +11,11 @@
 </template>
 
 <script>
-  import BestItem from './BestListItem';
+  import BestListItem from './BestListItem';
 
   export default {
     name: 'BestList',
-    components: { BestItem },
+    components: { BestListItem },
     props: {
       moviesList: {
         type: Array,

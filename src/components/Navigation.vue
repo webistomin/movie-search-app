@@ -4,14 +4,6 @@
       <li class="main__nav__item">
         <a href="latest.html" class="main-nav__link">
           <svg class="main-nav__icon" width="17" height="17">
-            <use xlink:href="#icon-movie"></use>
-          </svg>
-          Latest
-        </a>
-      </li>
-      <li class="main__nav__item">
-        <a href="latest.html" class="main-nav__link">
-          <svg class="main-nav__icon" width="17" height="17">
             <use xlink:href="#icon-calendar"></use>
           </svg>
           Now Playing
@@ -70,6 +62,9 @@
       transform-origin: top
       transition: transform 0.3s ease-in-out
 
+    &__list
+      padding: 5px 0
+
     &__link
       box-sizing: border-box
       position: relative
@@ -114,12 +109,15 @@
 
     @media (min-width: $screen-sm)
       &__list
-        padding: 15px 0
+        padding: 0
 
     @media (min-width: $screen-md)
       position: static
       transform: none
       min-height: auto
+
+      &__list
+        padding: 15px 0
 
       &__link
         justify-content: flex-start
@@ -127,5 +125,4 @@
 
       &__icon
         left: 38px
-
 </style>

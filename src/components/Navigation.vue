@@ -2,36 +2,40 @@
   <nav class="main-nav main-nav--closed">
     <ul class="main-nav__list">
       <li class="main__nav__item">
-        <a href="latest.html" class="main-nav__link">
+        <router-link to="/now-playing" class="main-nav__link"
+                     :active-class="'main-nav__link--active'">
           <svg class="main-nav__icon" width="17" height="17">
             <use xlink:href="#icon-calendar"></use>
           </svg>
           Now Playing
-        </a>
+        </router-link>
       </li>
       <li class="main__nav__item">
-        <a href="latest.html" class="main-nav__link">
+        <router-link to="/popular" class="main-nav__link"
+                     :active-class="'main-nav__link--active'">
           <svg class="main-nav__icon" width="17" height="17">
             <use xlink:href="#icon-popular"></use>
           </svg>
           Popular
-        </a>
+        </router-link>
       </li>
       <li class="main__nav__item">
-        <a href="latest.html" class="main-nav__link">
+        <router-link to="/top-rated" class="main-nav__link"
+                     :active-class="'main-nav__link--active'">
           <svg class="main-nav__icon" width="17" height="17">
             <use xlink:href="#icon-top"></use>
           </svg>
           Top Rated
-        </a>
+        </router-link>
       </li>
       <li class="main__nav__item">
-        <a href="latest.html" class="main-nav__link">
+        <router-link to="/upcoming" class="main-nav__link"
+                     :active-class="'main-nav__link--active'">
           <svg class="main-nav__icon" width="17" height="17">
             <use xlink:href="#icon-trailer"></use>
           </svg>
           Upcoming
-        </a>
+        </router-link>
       </li>
     </ul>
   </nav>

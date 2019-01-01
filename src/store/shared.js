@@ -32,6 +32,7 @@ export default {
         .get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${state.personalAPIKey}&language=en-US`)
         .then((response) => {
           commit('setGenresList', response.data);
+          localStorage.genresList = JSON.stringify(response.data);
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);
@@ -41,6 +42,9 @@ export default {
   getters: {
     getLoadingState(state) {
       return state.isLoading;
+    },
+    getErrorMessage(state) {
+      return state.error;
     },
     getGenresList(state) {
       return state.genres.genres;

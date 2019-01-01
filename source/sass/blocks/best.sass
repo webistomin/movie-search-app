@@ -21,6 +21,7 @@
 
   &__link
     display: flex
+    outline: none
 
     &:hover,
     &:focus
@@ -84,20 +85,15 @@
       flex-direction: row
       flex-wrap: wrap
       justify-content: space-around
-
   @media (min-width: $screen-sm)
     display: block
-
     &__list
       padding-top: 25px
-
     &__item
       margin-bottom: 25px
-
   @media (min-width: $screen-md)
     &__title
       text-align: left
       padding-top: 23px
       padding-bottom: 22px
       padding-left: 44px
-

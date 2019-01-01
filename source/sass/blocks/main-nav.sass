@@ -16,6 +16,9 @@
     transform-origin: top
     transition: transform 0.3s ease-in-out
 
+  &__list
+    padding: 5px 0
+
   &__link
     box-sizing: border-box
     position: relative
@@ -60,12 +63,15 @@
 
   @media (min-width: $screen-sm)
     &__list
-      padding: 15px 0
+      padding: 0
 
   @media (min-width: $screen-md)
     position: static
     transform: none
     min-height: auto
+
+    &__list
+      padding: 15px 0
 
     &__link
       justify-content: flex-start

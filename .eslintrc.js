@@ -24,9 +24,9 @@ module.exports = {
   },
   // add your custom rules here
   'rules': {
-    // windows linebreaks fix
     "linebreak-style": 0,
     "no-param-reassign": 0,
+    // windows linebreaks fix
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       'js': 'never',

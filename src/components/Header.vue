@@ -43,7 +43,7 @@
         <div class="page-header__account">
           <a href="#" class="page-header__btn btn" style="display: none">Sign in</a>
           <div class="page-header__userblock">
-            <img src="static/img/content/ava.jpg" width="32" height="32" alt="Avatar" class="page-header__avatar">
+            <img src="/static/img/content/ava.jpg" width="32" height="32" alt="Avatar" class="page-header__avatar">
             <p class="page-header__text">Hello, <span class="page-header__name">Olia</span>!</p>
           </div>
           <div class="page-header__dropdown">
@@ -59,6 +59,14 @@
                     <use xlink:href="#icon-heart"></use>
                   </svg>
                   Favorite list
+                </a>
+              </li>
+              <li class="page-header__item">
+                <a href="#" class="page-header__link">
+                  <svg class="page-header__icon page-header__icon--left" width="17" height="17">
+                    <use xlink:href="#icon-logout"></use>
+                  </svg>
+                  Log out
                 </a>
               </li>
             </ul>
@@ -327,7 +335,7 @@
     &__link
       box-sizing: border-box
       position: relative
-      padding: 24px 0
+      padding: 15px 0
       display: flex
       align-items: center
       justify-content: center

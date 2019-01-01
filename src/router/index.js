@@ -17,14 +17,6 @@ export default new Router({
       },
     },
     {
-      path: '/latest',
-      name: 'latest',
-      component: NavigationPage,
-      meta: {
-        title: 'Latest',
-      },
-    },
-    {
       path: '/now-playing',
       name: 'now-playing',
       component: NavigationPage,

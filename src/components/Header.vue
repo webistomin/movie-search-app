@@ -19,13 +19,19 @@
           </svg>
         </div>
         <div class="page-header__buttons">
-          <button class="page-header__button" id="rowView">
+          <button class="page-header__button"
+                  :class="{'page-header__button--active' : getRowViewState}"
+                  @click="setRowView"
+                  title="Row view">
             <svg class="page-header__icon" width="17" height="13">
               <use xlink:href="#icon-details"></use>
             </svg>
             Row view
           </button>
-          <button class="page-header__button page-header__button--active" id="gridView">
+          <button class="page-header__button"
+                  :class="{'page-header__button--active' : getGridViewState}"
+                  @click="setGridView"
+                  title="Grid view">
             <svg class="page-header__icon" width="17" height="13">
               <use xlink:href="#icon-grid"></use>
             </svg>
@@ -74,6 +80,24 @@
 <script>
   export default {
     name: 'Header',
+    methods: {
+      setRowView() {
+        this.$store.commit('setRowView', true);
+        this.$store.commit('setGridView', false);
+      },
+      setGridView() {
+        this.$store.commit('setGridView', true);
+        this.$store.commit('setRowView', false);
+      },
+    },
+    computed: {
+      getRowViewState() {
+        return this.$store.getters.getRowViewState;
+      },
+      getGridViewState() {
+        return this.$store.getters.getGridViewState;
+      },
+    },
   };
 </script>
 

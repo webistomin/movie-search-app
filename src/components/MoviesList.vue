@@ -1,15 +1,107 @@
 <template>
-  <ul class="movies__list movies__list--grid">
-   <movie-list-item v-for="movie of 10"/>
+  <ul class="movies__list"
+      :class="{'movies__list--grid' : getGridViewState,
+              'movies__list--row' : getRowViewState}"
+      v-if="moviesList"
+      v-infinite-scroll="fetchMoreMovies"
+      infinite-scroll-disabled="isBusy"
+      infinite-scroll-distance="50"
+      infinite-scroll-immediate-check="false"
+      :style="'perspective:' + getPerspectiveValue + 'px'">
+    <movie-item
+      v-for="item of moviesList"
+      :key="item.id"
+      :movie-id="item.id"
+      :movie-title="item.title"
+      :movie-overview="getMovieOverview(item.overview)"
+      :movie-img="getPosterSrc(item.poster_path)"
+      :movie-genres="item.genre_ids"
+      :movie-rate="item.vote_average"
+      :movie-date="item.release_date"
+    >
+    </movie-item>
   </ul>
 </template>
 
 <script>
-  import MovieListItem from './MoviesListItem';
+  import infiniteScroll from 'vue-infinite-scroll';
+  import MovieItem from './MoviesListItem';
 
   export default {
     name: 'MoviesList',
-    components: { MovieListItem },
+    directives: { infiniteScroll },
+    components: { MovieItem },
+    props: {
+      moviesList: {
+        type: Array,
+        required: true,
+      },
+    },
+    data() {
+      return {
+        isBusy: false,
+      };
+    },
+    methods: {
+      getMovieOverview(overview) {
+        return this.getGridViewState ? `${overview.slice(0, 80)}...` : overview;
+      },
+      getPosterSrc(poster) {
+        return poster ? `https://image.tmdb.org/t/p/w185/${poster}` : 'static/img/content/image-not-found.svg';
+      },
+      // eslint-disable-next-line consistent-return
+      fetchMoreMovies() {
+        this.isBusy = true;
+        switch (this.$route.meta.title) {
+          case 'Now Playing':
+            this.$store.commit('setNowPlayingCurrentPage');
+            this.$store.dispatch('fetchNowPlayingMovies')
+              .then(() => {
+                this.isBusy = false;
+              });
+            break;
+          case 'Popular':
+            this.$store.commit('setPopularCurrentPage');
+            this.$store.dispatch('fetchPopularMovies')
+              .then(() => {
+                this.isBusy = false;
+              });
+            break;
+          case 'Top Rated':
+            this.$store.commit('setTopRatedCurrentPage');
+            this.$store.dispatch('fetchTopRatedMovies')
+              .then(() => {
+                this.isBusy = false;
+              });
+            break;
+          case 'Upcoming':
+            this.$store.commit('setUpcomingCurrentPage');
+            this.$store.dispatch('fetchUpcomingMovies')
+              .then(() => {
+                this.isBusy = false;
+              });
+            break;
+          default:
+            this.$store.commit('setPopularCurrentPage');
+            this.$store.dispatch('fetchPopularMovies')
+              .then(() => {
+                this.isBusy = false;
+              });
+            break;
+        }
+      },
+    },
+    computed: {
+      getPerspectiveValue() {
+        return this.moviesList.length * 278;
+      },
+      getRowViewState() {
+        return this.$store.getters.getRowViewState;
+      },
+      getGridViewState() {
+        return this.$store.getters.getGridViewState;
+      },
+    },
   };
 </script>
 

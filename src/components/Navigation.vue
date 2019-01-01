@@ -2,7 +2,7 @@
   <nav class="main-nav main-nav--closed">
     <ul class="main-nav__list">
       <li class="main__nav__item">
-        <router-link to="/now-playing"
+        <router-link to="/now-playing" 
                      class="main-nav__link"
                      :active-class="'main-nav__link--active'">
           <svg class="main-nav__icon" width="17" height="17">

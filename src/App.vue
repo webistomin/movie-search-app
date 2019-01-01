@@ -56,7 +56,7 @@ export default {
   name: 'app',
   components: { Index },
   mounted() {
-    this.$store.dispatch('fetchNowPlayingMovies');
+    this.$store.dispatch('fetchGenresList');
   },
 };
 </script>

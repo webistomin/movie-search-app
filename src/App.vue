@@ -55,12 +55,33 @@ import Index from './components/Index';
 export default {
   name: 'app',
   components: { Index },
+  data() {
+    return {
+      window: {
+        width: 0,
+        height: 0,
+      },
+    };
+  },
   mounted() {
     if (localStorage.genresList) {
       this.$store.commit('setGenresList', JSON.parse(localStorage.genresList));
     } else {
       this.$store.dispatch('fetchGenresList');
     }
+  },
+  created() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize);
+  },
+  methods: {
+    handleResize() {
+      this.window.width = window.innerWidth;
+      this.window.height = window.innerHeight;
+    },
   },
 };
 </script>

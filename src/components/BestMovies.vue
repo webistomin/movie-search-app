@@ -3,7 +3,7 @@
     <div class="best__block">
       <h2 class="best__title title">Today best choice</h2>
     </div>
-    <BestList/>
+    <BestList :movies-list="getPopularMovies"/>
   </section>
 </template>
 
@@ -13,6 +13,14 @@
   export default {
     name: 'BestMovies',
     components: { BestList },
+    created() {
+      this.$store.dispatch('fetchPopularMovies');
+    },
+    computed: {
+      getPopularMovies() {
+        return this.$store.getters.getPopularMovies;
+      },
+    },
   };
 </script>
 

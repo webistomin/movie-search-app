@@ -1,5 +1,6 @@
 <template>
-  <nav class="main-nav main-nav--closed">
+  <nav class="main-nav"
+       :class="getNavigationClass">
     <ul class="main-nav__list">
       <li class="main__nav__item">
         <router-link to="/now-playing" 
@@ -48,6 +49,14 @@
 <script>
   export default {
     name: 'Navigation',
+    computed: {
+      getNavigationState() {
+        return this.$store.getters.getNavigationState;
+      },
+      getNavigationClass() {
+        return this.getNavigationState ? 'main-nav--opened' : 'main-nav--closed';
+      },
+    },
   };
 </script>
 

@@ -1,8 +1,10 @@
 <template>
   <aside class="socials">
     <div class="socials__block">
-      <h2 class="socials__title title">Last comments</h2>
-      <socials-list/>
+      <h2 class="socials__title title">{{getPageTitle}}</h2>
+      <SocialsList
+        v-if="$route.name === 'movie' && !getLoadingState"
+        :reviews-list="getMovieReviews"/>
     </div>
   </aside>
 </template>
@@ -13,6 +15,17 @@
   export default {
     name: 'Socials',
     components: { SocialsList },
+    computed: {
+      getPageTitle() {
+        return this.$route.name === 'movie' ? 'Last reviews' : 'Last news';
+      },
+      getMovieReviews() {
+        return this.$store.getters.getMovieReviews;
+      },
+      getLoadingState() {
+        return this.$store.getters.getLoadingState;
+      },
+    },
   };
 </script>
 
@@ -67,6 +80,12 @@
       line-height: 17px
       font-weight: 400
       color: $color-brown
+      word-break: break-word
+
+      & a
+        color: $color-brown
+        font-weight: 700
+        text-decoration: underline
 
       &::after
         content: ''

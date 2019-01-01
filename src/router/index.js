@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from '../components/Home';
 import NavigationPage from '../components/NavigationPage';
 import NotFound from '../components/NotFound';
+import MoviePage from '../components/MoviePage';
 
 Vue.use(Router);
 
@@ -49,6 +50,11 @@ export default new Router({
       },
     },
     {
+      path: '/movie/:id',
+      name: 'movie',
+      component: MoviePage,
+    },
+    {
       path: '*',
       name: 'NotFound',
       component: NotFound,
@@ -58,4 +64,11 @@ export default new Router({
     },
   ],
   mode: 'history',
+  // scrollBehavior(to, from, savedPosition) {
+  //   if (savedPosition) {
+  //     return savedPosition;
+  //   }
+  //   return { x: 0, y: 0 };
+  // },
 });
+

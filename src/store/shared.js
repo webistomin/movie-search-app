@@ -8,6 +8,8 @@ export default {
     genres: [],
     isRowView: false,
     isGridView: true,
+    isNavigationOpened: false,
+    isAuthorized: true,
   },
   mutations: {
     setErrorMessage(state, payload) {
@@ -24,6 +26,12 @@ export default {
     },
     setGridView(state, payload) {
       state.isGridView = payload;
+    },
+    setNavigationState(state, payload) {
+      state.isNavigationOpened = payload;
+    },
+    setAuthorizeState(state, payload) {
+      state.isAuthorized = payload;
     },
   },
   actions: {
@@ -54,6 +62,12 @@ export default {
     },
     getGridViewState(state) {
       return state.isGridView;
+    },
+    getNavigationState(state) {
+      return state.isNavigationOpened;
+    },
+    getAuthorizeState(state) {
+      return state.isAuthorized;
     },
   },
 };

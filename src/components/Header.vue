@@ -3,9 +3,9 @@
     <div class="page-header__inner">
       <div class="page-header__block page-header__block--heading">
         <h1 class="page-header__logo">
-          <router-link to="/" class="page-header__home">
+          <a href="/" class="page-header__home">
             <span class="page-header__decor">Movie</span>searcher
-          </router-link>
+          </a>
         </h1>
         <button class="page-header__toggler page-header__toggler--closed" aria-label="Open navigation menu">
           <span></span><span></span><span></span>

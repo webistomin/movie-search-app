@@ -1,5 +1,5 @@
 <template>
-  <section class="movie" ref="movieBlock"  v-if="!$store.getters.getLoadingState">
+  <section class="movie" ref="movieBlock">
     <div class="movie__background"
          :style="{ 'background-image': 'url(' + getBackroundPath + ')' }">
       <h2 class="movie__tagline">{{getMovieDetails.tagline}}</h2>
@@ -30,7 +30,7 @@
           </svg>
         </figcaption>
       </figure>
-      <h2 class="movie__title" v-if="getMovieDetails.title">
+      <h2 class="movie__title" v-if="getMovieDetails && getMovieDetails.title">
         {{getMovieDetails.title}}
       </h2>
       <button class="movie__btn btn">
@@ -39,7 +39,7 @@
         </svg>
         Add to favorite
       </button>
-      <div class="movie__block" v-if="getMovieDetails.production_countries.length !== 0">
+      <div class="movie__block" v-if="getMovieDetails && getMovieDetails.production_countries.length !== 0">
         <span class="movie__option">Country:</span>
         <ul class="movie__values">
           <li class="movie__value"
@@ -48,7 +48,7 @@
           </li>
         </ul>
       </div>
-      <div class="movie__block" v-if="getMovieDetails.production_companies">
+      <div class="movie__block" v-if="getMovieDetails && getMovieDetails.production_companies.length !== 0">
         <span class="movie__option">Production&nbsp;companies:</span>
         <ul class="movie__values">
           <li class="movie__value"
@@ -57,13 +57,13 @@
           </li>
         </ul>
       </div>
-      <div class="movie__block" v-if="getMovieDetails.release_date">
+      <div class="movie__block" v-if="getMovieDetails && getMovieDetails.release_date">
         <span class="movie__option">Release date:</span>
         <span class="movie__value">
           {{getMovieDetails.release_date | getFormattedDate}}
         </span>
       </div>
-      <div class="movie__block" v-if="getMovieDetails.genres">
+      <div class="movie__block" v-if="getMovieDetails && getMovieDetails.genres.length !== 0">
         <span class="movie__option">Category:</span>
         <ul class="movie__values">
           <li class="movie__value"
@@ -124,13 +124,17 @@
       <h2 class="movie__title movie__title--decor" v-if="getSimilarMovies.length !== 0">
         Similar movies
       </h2>
-      <MoviesList :movies-list="getSimilarMovies"
-                  v-if="getSimilarMovies.length !== 0"/>
+      <MoviesList
+        v-if="getSimilarMovies.length !== 0"
+        :movies-list="getSimilarMovies"
+      />
       <h2 class="movie__title movie__title--decor" v-if="getRecommendedMovies.length !== 0">
         Recomendations
       </h2>
-      <MoviesList :movies-list="getRecommendedMovies"
-      v-if="getRecommendedMovies.length !== 0"/>
+      <MoviesList
+        v-if="getRecommendedMovies.length !== 0"
+        :movies-list="getRecommendedMovies"
+      />
     </div>
   </section>
 </template>
@@ -138,55 +142,55 @@
 <script>
   import { Carousel, Slide } from 'vue-carousel';
   import MoviesList from './MoviesList';
-  // import store from '../store/index';
+  import store from '../store/index';
 
   export default {
     name: 'MoviePage',
-    // beforeRouteEnter(to, from, next) {
-    //   store.commit('setLoadingState', true);
-    //   next(() => {
-    //     Promise.all([
-    //       store.dispatch('fetchMovieDetails', to.params.id),
-    //       store.dispatch('fetchMovieCredits', to.params.id),
-    //       store.dispatch('fetchMovieImages', to.params.id),
-    //       store.dispatch('fetchSimilarMovies', to.params.id),
-    //       store.dispatch('fetchRecommendedMovies', to.params.id),
-    //       store.dispatch('fetchMovieReviews', to.params.id),
-    //     ])
-    //       .then(() => {
-    //         store.commit('setLoadingState', false);
-    //       });
-    //   });
-    // },
-    // beforeRouteUpdate(to, from, next) {
-    //   this.$store.commit('setLoadingState', true);
-    //   Promise.all([
-    //     this.$store.dispatch('fetchMovieDetails', to.params.id),
-    //     this.$store.dispatch('fetchMovieCredits', to.params.id),
-    //     this.$store.dispatch('fetchMovieReviews', to.params.id),
-    //     this.$store.dispatch('fetchMovieImages', to.params.id),
-    //     this.$store.dispatch('fetchSimilarMovies', to.params.id),
-    //     this.$store.dispatch('fetchRecommendedMovies', to.params.id),
-    //   ])
-    //     .then(() => {
-    //       next();
-    //       this.$store.commit('setLoadingState', false);
-    //     });
-    // },
-    created() {
+    beforeRouteEnter(to, from, next) {
+      store.commit('setLoadingState', true);
+      next(() => {
+        Promise.all([
+          store.dispatch('fetchMovieDetails', to.params.id),
+          store.dispatch('fetchMovieCredits', to.params.id),
+          store.dispatch('fetchMovieImages', to.params.id),
+          store.dispatch('fetchSimilarMovies', to.params.id),
+          store.dispatch('fetchRecommendedMovies', to.params.id),
+          store.dispatch('fetchMovieReviews', to.params.id),
+        ])
+          .then(() => {
+            store.commit('setLoadingState', false);
+          });
+      });
+    },
+    beforeRouteUpdate(to, from, next) {
       this.$store.commit('setLoadingState', true);
       Promise.all([
-        this.$store.dispatch('fetchMovieDetails', this.$route.params.id),
-        this.$store.dispatch('fetchMovieCredits', this.$route.params.id),
-        this.$store.dispatch('fetchMovieImages', this.$route.params.id),
-        this.$store.dispatch('fetchSimilarMovies', this.$route.params.id),
-        this.$store.dispatch('fetchRecommendedMovies', this.$route.params.id),
-        this.$store.dispatch('fetchMovieReviews', this.$route.params.id),
+        this.$store.dispatch('fetchMovieDetails', to.params.id),
+        this.$store.dispatch('fetchMovieCredits', to.params.id),
+        this.$store.dispatch('fetchMovieImages', to.params.id),
+        this.$store.dispatch('fetchSimilarMovies', to.params.id),
+        this.$store.dispatch('fetchRecommendedMovies', to.params.id),
+        this.$store.dispatch('fetchMovieReviews', to.params.id),
       ])
         .then(() => {
+          next();
           this.$store.commit('setLoadingState', false);
         });
     },
+    // created() {
+    //   this.$store.commit('setLoadingState', true);
+    //   Promise.all([
+    //     this.$store.dispatch('fetchMovieDetails', this.$route.params.id),
+    //     this.$store.dispatch('fetchMovieCredits', this.$route.params.id),
+    //     this.$store.dispatch('fetchMovieImages', this.$route.params.id),
+    //     this.$store.dispatch('fetchSimilarMovies', this.$route.params.id),
+    //     this.$store.dispatch('fetchRecommendedMovies', this.$route.params.id),
+    //     this.$store.dispatch('fetchMovieReviews', this.$route.params.id),
+    //   ])
+    //     .then(() => {
+    //       this.$store.commit('setLoadingState', false);
+    //     });
+    // },
     computed: {
       getMovieDetails() {
         return this.$store.getters.getMovieDetails;

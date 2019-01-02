@@ -46,7 +46,7 @@
         <div class="page-header__account">
           <a :href="`https://www.themoviedb.org/authenticate/${getRequestToken}?redirect_to=http://localhost:8080/`"
              class="page-header__btn btn"
-             v-if="!getAuthorizeState">Sign in</a>
+             v-if="!getAuthorizeState">Log in</a>
           <template v-else>
             <div class="page-header__userblock" v-if="getUserDetails.length !== 0">
               <img

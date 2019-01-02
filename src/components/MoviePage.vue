@@ -1,5 +1,5 @@
 <template>
-  <section class="movie" v-if="!$store.getters.getLoadingState">
+  <section class="movie" ref="movieBlock"  v-if="!$store.getters.getLoadingState">
     <div class="movie__background"
          :style="{ 'background-image': 'url(' + getBackroundPath + ')' }">
       <h2 class="movie__tagline">{{getMovieDetails.tagline}}</h2>
@@ -193,20 +193,6 @@
         this.$store.dispatch('markMovieAsFavorite', movieID);
       },
     },
-    // created() {
-    //   this.$store.commit('setLoadingState', true);
-    //   Promise.all([
-    //     this.$store.dispatch('fetchMovieDetails', this.$route.params.id),
-    //     this.$store.dispatch('fetchMovieCredits', this.$route.params.id),
-    //     this.$store.dispatch('fetchMovieImages', this.$route.params.id),
-    //     this.$store.dispatch('fetchSimilarMovies', this.$route.params.id),
-    //     this.$store.dispatch('fetchRecommendedMovies', this.$route.params.id),
-    //     this.$store.dispatch('fetchMovieReviews', this.$route.params.id),
-    //   ])
-    //     .then(() => {
-    //       this.$store.commit('setLoadingState', false);
-    //     });
-    // },
     computed: {
       getMovieDetails() {
         return this.$store.getters.getMovieDetails;

@@ -84,14 +84,6 @@
                     Log out
                   </a>
                 </li>
-                <li class="page-header__item">
-                  <a href="#" class="page-header__link">
-                    <svg class="page-header__icon page-header__icon--left" width="17" height="17">
-                      <use xlink:href="#icon-logout"></use>
-                    </svg>
-                    Log out
-                  </a>
-                </li>
               </ul>
             </div>
           </template>

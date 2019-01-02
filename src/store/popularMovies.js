@@ -19,6 +19,7 @@ export default {
         .get(`https://api.themoviedb.org/3/movie/popular?api_key=${rootState.shared.personalAPIKey}&language=en-US&page=${state.currentPage}`)
         .then((response) => {
           commit('setPopularMovies', response.data.results);
+          commit('setLoadingState', false);
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);

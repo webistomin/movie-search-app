@@ -9,7 +9,7 @@
       </transition>
     </section>
     <Socials/>
-    <MessagePopup v-if="getMessage"></MessagePopup>
+    <MessagePopup></MessagePopup>
   </main>
 </template>
 

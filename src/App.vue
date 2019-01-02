@@ -83,8 +83,10 @@ export default {
       this.$store.dispatch('fetchNewSession');
     }
 
-    if (this.$store.getters.getSessionId) {
-      this.$store.dispatch('fetchFavoriteMovies');
+    if (this.$store.getters.getSessionId &&
+        this.$store.getters.getFavoriteMovies.length === 0 &&
+        this.$route.name !== 'Favorite') {
+      this.$store.dispatch('fetchFavoriteMovies', true);
     }
 
     window.addEventListener('resize', this.handleResize);

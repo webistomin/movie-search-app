@@ -57,7 +57,7 @@
         case 'Favorite':
           if (this.$store.getters.getFavoriteMovies.length === 0) {
             this.$store.commit('setLoadingState', true);
-            this.$store.dispatch('fetchFavoriteMovies');
+            this.$store.dispatch('fetchFavoriteMovies', true);
           }
           break;
         default:
@@ -87,6 +87,12 @@
       },
       getLoadingState() {
         return this.$store.getters.getLoadingState;
+      },
+      getFavoriteCurrentPage() {
+        return this.$store.getters.getFavoriteCurrentPage;
+      },
+      getFavoriteTotalPages() {
+        return this.$store.getters.getFavoriteTotalPages;
       },
     },
     methods: {
@@ -122,11 +128,13 @@
               });
             break;
           case 'Favorite':
-            this.$store.commit('setFavoriteCurrentPage');
-            this.$store.dispatch('fetchFavoriteMovies')
-              .then(() => {
-                this.isBusy = false;
-              });
+            if (this.getFavoriteCurrentPage < this.getFavoriteTotalPages) {
+              this.$store.commit('setFavoriteCurrentPage');
+              this.$store.dispatch('fetchFavoriteMovies', true)
+                .then(() => {
+                  this.isBusy = false;
+                });
+            }
             break;
           default:
             this.$store.commit('setPopularCurrentPage');

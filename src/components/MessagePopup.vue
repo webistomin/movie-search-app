@@ -1,8 +1,9 @@
 <template>
-  <section class="message message--hidden">
-    <button class="message__btn">Close</button>
+  <section class="message"
+            :class="{'message--hidden' : !isVisible, 'message--visible' : isVisible}">
+    <button class="message__btn" @click="removeMessage">Close</button>
     <p class="message__text">
-      Film has been removed from favorite list
+      {{getMessage}}
     </p>
   </section>
 </template>
@@ -10,6 +11,26 @@
 <script>
   export default {
     name: 'MessagePopup',
+    computed: {
+      isVisible() {
+        return Boolean(this.$store.getters.getMessage);
+      },
+      getMessage() {
+        return this.$store.getters.getMessage;
+      },
+    },
+    methods: {
+      removeMessage() {
+        this.$store.commit('setMessage', null);
+      },
+    },
+    updated() {
+      if (this.getMessage) {
+        setTimeout(() => {
+          this.$store.commit('setMessage', null);
+        }, 5000);
+      }
+    },
   };
 </script>
 

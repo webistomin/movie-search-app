@@ -5,16 +5,24 @@ export default {
     userDetails: [],
     favoriteMovies: [],
     currentPage: 1,
+    totalPages: null,
   },
   mutations: {
     setUserDetails(state, payload) {
       state.userDetails = payload;
     },
     setFavoriteMovies(state, payload) {
-      state.favoriteMovies = payload;
+      if (payload.shouldConcat) {
+        state.favoriteMovies = state.favoriteMovies.concat(payload.movies);
+      } else {
+        state.favoriteMovies = payload.movies;
+      }
     },
     setFavoriteCurrentPage(state) {
       state.currentPage += 1;
+    },
+    setTotalPages(state, payload) {
+      state.totalPages = payload;
     },
   },
   actions: {
@@ -22,6 +30,7 @@ export default {
       const userId = state.userDetails.id;
       const personalAPIKey = rootState.shared.personalAPIKey;
       const sessionID = rootState.shared.sessionId;
+      const message = payload.favoriteState ? 'Film has been added to favorite list' : 'Film has been removed from favorite list';
       await axios
         .post(`https://api.themoviedb.org/3/account/${userId}/favorite?api_key=${personalAPIKey}&session_id=${sessionID}`,
           {
@@ -29,8 +38,8 @@ export default {
             media_id: payload.movieID,
             favorite: payload.favoriteState,
           })
-        .then((response) => {
-          commit('setMessage', response);
+        .then(() => {
+          commit('setMessage', message);
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);
@@ -46,11 +55,16 @@ export default {
           commit('setErrorMessage', error.message);
         });
     },
-    fetchFavoriteMovies({ commit, rootState, state }) {
-      axios
-        .get(`https://api.themoviedb.org/3/account/ACC-ID/favorite/movies?api_key=${rootState.shared.personalAPIKey}&session_id=${rootState.shared.sessionId}&language=en-US&sort_by=created_at.asc&page=${state.currentPage}`)
+    async fetchFavoriteMovies({ commit, rootState, state }, payload) {
+      const accountID = state.userDetails.id;
+      await axios
+        .get(`https://api.themoviedb.org/3/account/${accountID}/favorite/movies?api_key=${rootState.shared.personalAPIKey}&session_id=${rootState.shared.sessionId}&language=en-US&sort_by=created_at.asc&page=${state.currentPage}`)
         .then((response) => {
-          commit('setFavoriteMovies', response.data.results);
+          commit('setFavoriteMovies', {
+            movies: response.data.results,
+            shouldConcat: payload,
+          });
+          commit('setTotalPages', response.data.total_pages);
           commit('setLoadingState', false);
         })
         .catch((error) => {
@@ -64,6 +78,12 @@ export default {
     },
     getFavoriteMovies(state) {
       return state.favoriteMovies;
+    },
+    getFavoriteTotalPages(state) {
+      return state.totalPages;
+    },
+    getFavoriteCurrentPage(state) {
+      return state.currentPage;
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <section class="movie" v-if="!$store.getters.getLoadingState">
+  <section class="movie" v-if="!$store.getters.getLoadingState && getMovieDetails.length !== 0">
     <div class="movie__background"
          :style="{ 'background-image': 'url(' + getBackroundPath + ')' }">
       <h2 class="movie__tagline">{{getMovieDetails.tagline}}</h2>
@@ -183,7 +183,7 @@
           favoriteState,
         })
           .then(() => {
-            this.$store.dispatch('fetchFavoriteMovies');
+            this.$store.dispatch('fetchFavoriteMovies', false);
           });
       },
     },

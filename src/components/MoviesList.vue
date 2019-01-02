@@ -34,7 +34,7 @@
         return this.getGridViewState ? `${overview.slice(0, 80)}...` : overview;
       },
       getPosterSrc(poster) {
-        return poster ? `https://image.tmdb.org/t/p/w185/${poster}` : 'static/img/content/image-not-found.svg';
+        return poster ? `https://image.tmdb.org/t/p/w185/${poster}` : '/static/img/content/image-not-found.svg';
       },
     },
     computed: {

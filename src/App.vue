@@ -63,14 +63,13 @@ export default {
       },
     };
   },
-  mounted() {
+  created() {
     if (localStorage.genresList) {
       this.$store.commit('setGenresList', JSON.parse(localStorage.genresList));
     } else {
       this.$store.dispatch('fetchGenresList');
     }
-  },
-  created() {
+
     if (!localStorage.requestToken) {
       this.$store.dispatch('fetchRequestToken');
     } else {
@@ -82,6 +81,10 @@ export default {
       this.$store.commit('setAuthorizeState', true);
     } else if (this.$route.query.approved === 'true') {
       this.$store.dispatch('fetchNewSession');
+    }
+
+    if (this.$store.getters.getSessionId) {
+      this.$store.dispatch('fetchFavoriteMovies');
     }
 
     window.addEventListener('resize', this.handleResize);

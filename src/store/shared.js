@@ -88,8 +88,7 @@ export default {
         .delete(`https://api.themoviedb.org/3/authentication/session?api_key=${state.personalAPIKey}`, { data:
             { session_id: state.sessionId },
         })
-        .then((response) => {
-          console.log(response);
+        .then(() => {
           commit('setSessionId', null);
           commit('setAuthorizeState', false);
           dispatch('fetchRequestToken');

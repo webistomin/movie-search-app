@@ -33,11 +33,12 @@
       <h2 class="movie__title" v-if="getMovieDetails.title">
         {{getMovieDetails.title}}
       </h2>
-      <button class="movie__btn btn">
+      <button class="movie__btn btn" @click="markMovieAsFavorite" v-if="getAuthorizeState">
         <svg class="movie__icon" width="17" height="17">
-          <use xlink:href="#icon-heart"></use>
+          <use xlink:href="#icon-heart" v-if="!isFavorite"></use>
+          <use xlink:href="#icon-heartbreak" v-else></use>
         </svg>
-        Add to favorite
+        {{getFavoriteText}}
       </button>
       <div class="movie__block" v-if="getMovieDetails.production_countries.length !== 0">
         <span class="movie__option">Country:</span>
@@ -173,6 +174,19 @@
           this.$store.commit('setLoadingState', false);
         });
     },
+    methods: {
+      markMovieAsFavorite() {
+        const movieID = this.getMovieDetails.id;
+        const favoriteState = !this.isFavorite;
+        this.$store.dispatch('markMovieAsFavorite', {
+          movieID,
+          favoriteState,
+        })
+          .then(() => {
+            this.$store.dispatch('fetchFavoriteMovies');
+          });
+      },
+    },
     // created() {
     //   this.$store.commit('setLoadingState', true);
     //   Promise.all([
@@ -226,6 +240,19 @@
       },
       getChartLength() {
         return `${this.getMovieDetails.vote_average * 10}, 100`;
+      },
+      getAuthorizeState() {
+        return this.$store.getters.getAuthorizeState;
+      },
+      getFavoriteMovies() {
+        return this.$store.getters.getFavoriteMovies;
+      },
+      isFavorite() {
+        const favoriteMoviesId = this.getFavoriteMovies.map(item => item.id);
+        return favoriteMoviesId.indexOf(this.getMovieDetails.id) !== -1;
+      },
+      getFavoriteText() {
+        return this.isFavorite ? 'Remove' : 'Add to favorite';
       },
     },
     filters: {

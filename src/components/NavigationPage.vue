@@ -34,7 +34,12 @@
         case 'Popular':
           if (this.$store.getters.getPopularMovies.length === 0) {
             this.$store.commit('setLoadingState', true);
-            this.$store.dispatch('fetchPopularMovies');
+            this.$store.dispatch('fetchPopularMovies')
+              .then(() => {
+                if (this.$route.name !== 'movie') {
+                  this.$store.commit('setLoadingState', false);
+                }
+              });
           }
           break;
         case 'Top Rated':

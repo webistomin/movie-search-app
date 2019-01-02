@@ -62,6 +62,14 @@ export default new Router({
         noScroll: true,
       },
     },
+    {
+      path: '/favorite',
+      name: 'Favorite',
+      component: NavigationPage,
+      meta: {
+        title: 'Favorite',
+      },
+    },
   ],
   mode: 'history',
   // scrollBehavior(to, from, savedPosition) {

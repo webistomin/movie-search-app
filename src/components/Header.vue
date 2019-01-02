@@ -44,11 +44,19 @@
       </div>
       <div class="page-header__block page-header__block--user">
         <div class="page-header__account">
-          <a href="#" class="page-header__btn btn" v-if="!getAuthorizeState">Sign in</a>
+          <a :href="`https://www.themoviedb.org/authenticate/${getRequestToken}?redirect_to=http://localhost:8080/`"
+             class="page-header__btn btn"
+             v-if="!getAuthorizeState">Sign in</a>
           <template v-else>
-            <div class="page-header__userblock">
-              <img src="/static/img/content/ava.jpg" width="32" height="32" alt="Avatar" class="page-header__avatar">
-              <p class="page-header__text">Hello, <span class="page-header__name">Olia</span>!</p>
+            <div class="page-header__userblock" v-if="getUserDetails.length !== 0">
+              <img
+                :src="`https://www.gravatar.com/avatar/${getUserDetails.avatar.gravatar.hash}`"
+                width="32"
+                height="32"
+                :alt="getUserDetails.username"
+                class="page-header__avatar">
+              <p class="page-header__text">Hello,
+                <span class="page-header__name">{{getUserDetails.username}}</span>!</p>
             </div>
             <div class="page-header__dropdown">
               <button class="page-header__button page-header__button--arrow"
@@ -61,11 +69,19 @@
               </button>
               <ul class="page-header__list" :class="getUserMenuClass">
                 <li class="page-header__item">
-                  <a href="#" class="page-header__link">
+                  <router-link to="/favorite" class="page-header__link">
                     <svg class="page-header__icon page-header__icon--left" width="17" height="17">
                       <use xlink:href="#icon-heart"></use>
                     </svg>
                     Favorite list
+                  </router-link>
+                </li>
+                <li class="page-header__item">
+                  <a href="#" @click="logOut" class="page-header__link">
+                    <svg class="page-header__icon page-header__icon--left" width="17" height="17">
+                      <use xlink:href="#icon-logout"></use>
+                    </svg>
+                    Log out
                   </a>
                 </li>
                 <li class="page-header__item">
@@ -93,7 +109,21 @@
         isUserMenuOpened: false,
       };
     },
+    watch: {
+      getAuthorizeState: {
+        immediate: true,
+        deep: true,
+        handler(newValue) {
+          if (newValue) {
+            this.$store.dispatch('fetchUserDetails');
+          }
+        },
+      },
+    },
     methods: {
+      logOut() {
+        this.$store.dispatch('removeNewSession');
+      },
       setRowView() {
         this.$store.commit('setRowView', true);
         this.$store.commit('setGridView', false);
@@ -111,6 +141,12 @@
       },
     },
     computed: {
+      getUserDetails() {
+        return this.$store.getters.getUserDetails;
+      },
+      getRequestToken() {
+        return this.$store.getters.getRequestToken;
+      },
       getUserMenuClass() {
         return this.isUserMenuOpened ? 'page-header__list--opened' : 'page-header__list--closed';
       },

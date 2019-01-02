@@ -71,6 +71,21 @@ export default {
     }
   },
   created() {
+    if (!localStorage.requestToken) {
+      this.$store.dispatch('fetchRequestToken');
+    } else {
+      this.$store.commit('setRequestToken', JSON.parse(localStorage.requestToken));
+    }
+
+    if (localStorage.sessionId) {
+      this.$store.commit('setSessionId', JSON.parse(localStorage.sessionId));
+      this.$store.commit('setAuthorizeState', true);
+    }
+
+    if (this.$route.query.approved === 'true') {
+      this.$store.dispatch('fetchNewSession');
+    }
+
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
   },

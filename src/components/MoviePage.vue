@@ -33,7 +33,7 @@
       <h2 class="movie__title" v-if="getMovieDetails.title">
         {{getMovieDetails.title}}
       </h2>
-      <button class="movie__btn btn">
+      <button class="movie__btn btn" @click="markMovieAsFavorite">
         <svg class="movie__icon" width="17" height="17">
           <use xlink:href="#icon-heart"></use>
         </svg>
@@ -172,6 +172,26 @@
           next();
           this.$store.commit('setLoadingState', false);
         });
+    },
+    // created() {
+    //   this.$store.commit('setLoadingState', true);
+    //   Promise.all([
+    //     this.$store.dispatch('fetchMovieDetails', this.$route.params.id),
+    //     this.$store.dispatch('fetchMovieCredits', this.$route.params.id),
+    //     this.$store.dispatch('fetchMovieImages', this.$route.params.id),
+    //     this.$store.dispatch('fetchSimilarMovies', this.$route.params.id),
+    //     this.$store.dispatch('fetchRecommendedMovies', this.$route.params.id),
+    //     this.$store.dispatch('fetchMovieReviews', this.$route.params.id),
+    //   ])
+    //     .then(() => {
+    //       this.$store.commit('setLoadingState', false);
+    //     });
+    // },
+    methods: {
+      markMovieAsFavorite() {
+        const movieID = this.getMovieDetails.id;
+        this.$store.dispatch('markMovieAsFavorite', movieID);
+      },
     },
     // created() {
     //   this.$store.commit('setLoadingState', true);

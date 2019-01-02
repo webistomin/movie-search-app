@@ -398,7 +398,7 @@
     &__link
       box-sizing: border-box
       position: relative
-      padding: 24px 0
+      padding: 15px 0
       display: flex
       align-items: center
       justify-content: center

@@ -27,14 +27,14 @@
           {{genre}}
         </li>
       </ul>
-      <router-link :to="`/movie/${movieId}`" class="movies__btn btn">More</router-link>
+      <router-link :to="`movie/${movieId}`" class="movies__btn btn">Read more</router-link>
     </div>
   </li>
 </template>
 
 <script>
   export default {
-    name: 'MovieItem',
+    name: 'MovieListItem',
     props: {
       movieId: {
         type: Number,

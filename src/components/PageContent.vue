@@ -39,9 +39,6 @@
 </script>
 
 <style lang="sass">
-  @import "../assets/sass/blocks/btn"
-  @import "../assets/sass/blocks/title"
-
   .fade-enter
     opacity: 0
 
@@ -55,7 +52,6 @@
   .page-content
     @media (min-width: $screen-md)
       display: flex
-
 
   .movies
     position: relative

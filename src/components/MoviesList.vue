@@ -53,6 +53,9 @@
 
 <style lang="sass">
   .movies
+    position: relative
+    box-sizing: border-box
+    background-color: $color-brown--secondary
 
     &__title
       font-family: $font-family--secondary
@@ -73,6 +76,7 @@
       padding: 10px
 
       &--grid
+
         & .movies__item
           position: relative
           box-sizing: border-box
@@ -157,6 +161,27 @@
       fill: $color-text--secondary
 
     @media (min-width: $screen-md)
+      width: 60vw
+      flex-shrink: 0
+      overflow-y: scroll
+      height: calc(100vh - 60px)
+
+      &--noscroll
+        overflow: hidden
+
+      &::-webkit-scrollbar-track
+        border-radius: 10px
+        background-color: transparent
+        background-clip: content-box
+
+      &::-webkit-scrollbar
+        width: 7px
+        background-color: transparent
+
+      &::-webkit-scrollbar-thumb
+        border-radius: 10px
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3)
+        background-color: $color-gold
 
       &__list
         justify-content: space-between
@@ -220,5 +245,4 @@
 
           & .movies__item
             width: 530px
-
 </style>

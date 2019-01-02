@@ -1,6 +1,6 @@
 <template>
   <ul class="best__list">
-    <best-item
+    <best-list-item
       v-for="(item, index) of moviesList.slice(0,5)"
       :movie-title="item.title.slice(0,10)"
       :movie-poster="item.poster_path"
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-  import BestItem from './BestListItem';
+  import BestListItem from './BestListItem';
 
   export default {
     name: 'BestList',
-    components: { BestItem },
+    components: { BestListItem },
     props: {
       moviesList: {
         type: Array,

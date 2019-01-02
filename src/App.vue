@@ -105,4 +105,6 @@ export default {
   @import "assets/sass/global/font"
   @import "assets/sass/global/normalize"
   @import "assets/sass/global/scaffolding"
+  @import "assets/sass/blocks/btn"
+  @import "assets/sass/blocks/title"
 </style>

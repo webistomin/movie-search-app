@@ -34,7 +34,12 @@
         case 'Popular':
           if (this.$store.getters.getPopularMovies.length === 0) {
             this.$store.commit('setLoadingState', true);
-            this.$store.dispatch('fetchPopularMovies');
+            this.$store.dispatch('fetchPopularMovies')
+              .then(() => {
+                if (this.$route.name !== 'movie') {
+                  this.$store.commit('setLoadingState', false);
+                }
+              });
           }
           break;
         case 'Top Rated':
@@ -47,6 +52,12 @@
           if (this.$store.getters.getUpcomingMovies.length === 0) {
             this.$store.commit('setLoadingState', true);
             this.$store.dispatch('fetchUpcomingMovies');
+          }
+          break;
+        case 'Favorite':
+          if (this.$store.getters.getFavoriteMovies.length === 0) {
+            this.$store.commit('setLoadingState', true);
+            this.$store.dispatch('fetchFavoriteMovies');
           }
           break;
         default:
@@ -68,6 +79,8 @@
             return this.$store.getters.getTopRatedMovies;
           case 'Upcoming':
             return this.$store.getters.getUpcomingMovies;
+          case 'Favorite':
+            return this.$store.getters.getFavoriteMovies;
           default:
             return this.$store.getters.getPopularMovies;
         }
@@ -104,6 +117,13 @@
           case 'Upcoming':
             this.$store.commit('setUpcomingCurrentPage');
             this.$store.dispatch('fetchUpcomingMovies')
+              .then(() => {
+                this.isBusy = false;
+              });
+            break;
+          case 'Favorite':
+            this.$store.commit('setFavoriteCurrentPage');
+            this.$store.dispatch('fetchFavoriteMovies')
               .then(() => {
                 this.isBusy = false;
               });

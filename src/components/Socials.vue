@@ -39,11 +39,10 @@
       text-align: center
       background-color: $color-brown
 
-    &__block
-      &--flex
-        display: flex
-        align-items: center
-        margin-bottom: 20px
+    &__name
+      display: block
+      margin-bottom: 20px
+
 
     &__pic
       margin-right: 16px
@@ -149,5 +148,4 @@
 
       &__item
         align-items: center
-
 </style>

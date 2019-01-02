@@ -15,7 +15,7 @@
 
 <script>
   export default {
-    name: 'BestItem',
+    name: 'BestListItem',
     props: {
       movieTitle: {
         type: String,

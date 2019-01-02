@@ -20,6 +20,17 @@ export default {
           commit('setErrorMessage', error.message);
         });
     },
+    fetchFavoriteMovies({ commit, rootState, state }) {
+      axios
+        .get(`https://api.themoviedb.org/3/account/ACC-ID/favorite/movies?api_key=${rootState.shared.personalAPIKey}&session_id=${rootState.shared.sessionId}&language=en-US&sort_by=created_at.asc&page=${state.currentPage}`)
+        .then((response) => {
+          commit('setFavoriteMovies', response.data.results);
+          commit('setLoadingState', false);
+        })
+        .catch((error) => {
+          commit('setErrorMessage', error.message);
+        });
+    },
   },
   getters: {
     getUserDetails(state) {

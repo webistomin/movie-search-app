@@ -14,7 +14,14 @@
     name: 'BestMovies',
     components: { BestList },
     created() {
-      this.$store.dispatch('fetchPopularMovies');
+      if (this.$route.name !== 'popular') {
+        this.$store.dispatch('fetchPopularMovies')
+          .then(() => {
+            if (this.$route.name !== 'movie') {
+              this.$store.commit('setLoadingState', false);
+            }
+          });
+      }
     },
     computed: {
       getPopularMovies() {

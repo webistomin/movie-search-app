@@ -1,5 +1,5 @@
 <template>
-  <section class="movie" ref="movieBlock"  v-if="!$store.getters.getLoadingState">
+  <section class="movie" v-if="!$store.getters.getLoadingState">
     <div class="movie__background"
          :style="{ 'background-image': 'url(' + getBackroundPath + ')' }">
       <h2 class="movie__tagline">{{getMovieDetails.tagline}}</h2>
@@ -138,55 +138,55 @@
 <script>
   import { Carousel, Slide } from 'vue-carousel';
   import MoviesList from './MoviesList';
-  // import store from '../store/index';
+  import store from '../store/index';
 
   export default {
     name: 'MoviePage',
-    // beforeRouteEnter(to, from, next) {
-    //   store.commit('setLoadingState', true);
-    //   next(() => {
-    //     Promise.all([
-    //       store.dispatch('fetchMovieDetails', to.params.id),
-    //       store.dispatch('fetchMovieCredits', to.params.id),
-    //       store.dispatch('fetchMovieImages', to.params.id),
-    //       store.dispatch('fetchSimilarMovies', to.params.id),
-    //       store.dispatch('fetchRecommendedMovies', to.params.id),
-    //       store.dispatch('fetchMovieReviews', to.params.id),
-    //     ])
-    //       .then(() => {
-    //         store.commit('setLoadingState', false);
-    //       });
-    //   });
-    // },
-    // beforeRouteUpdate(to, from, next) {
-    //   this.$store.commit('setLoadingState', true);
-    //   Promise.all([
-    //     this.$store.dispatch('fetchMovieDetails', to.params.id),
-    //     this.$store.dispatch('fetchMovieCredits', to.params.id),
-    //     this.$store.dispatch('fetchMovieReviews', to.params.id),
-    //     this.$store.dispatch('fetchMovieImages', to.params.id),
-    //     this.$store.dispatch('fetchSimilarMovies', to.params.id),
-    //     this.$store.dispatch('fetchRecommendedMovies', to.params.id),
-    //   ])
-    //     .then(() => {
-    //       next();
-    //       this.$store.commit('setLoadingState', false);
-    //     });
-    // },
-    created() {
+    beforeRouteEnter(to, from, next) {
+      store.commit('setLoadingState', true);
+      next(() => {
+        Promise.all([
+          store.dispatch('fetchMovieDetails', to.params.id),
+          store.dispatch('fetchMovieCredits', to.params.id),
+          store.dispatch('fetchMovieImages', to.params.id),
+          store.dispatch('fetchSimilarMovies', to.params.id),
+          store.dispatch('fetchRecommendedMovies', to.params.id),
+          store.dispatch('fetchMovieReviews', to.params.id),
+        ])
+          .then(() => {
+            store.commit('setLoadingState', false);
+          });
+      });
+    },
+    beforeRouteUpdate(to, from, next) {
       this.$store.commit('setLoadingState', true);
       Promise.all([
-        this.$store.dispatch('fetchMovieDetails', this.$route.params.id),
-        this.$store.dispatch('fetchMovieCredits', this.$route.params.id),
-        this.$store.dispatch('fetchMovieImages', this.$route.params.id),
-        this.$store.dispatch('fetchSimilarMovies', this.$route.params.id),
-        this.$store.dispatch('fetchRecommendedMovies', this.$route.params.id),
-        this.$store.dispatch('fetchMovieReviews', this.$route.params.id),
+        this.$store.dispatch('fetchMovieDetails', to.params.id),
+        this.$store.dispatch('fetchMovieCredits', to.params.id),
+        this.$store.dispatch('fetchMovieReviews', to.params.id),
+        this.$store.dispatch('fetchMovieImages', to.params.id),
+        this.$store.dispatch('fetchSimilarMovies', to.params.id),
+        this.$store.dispatch('fetchRecommendedMovies', to.params.id),
       ])
         .then(() => {
+          next();
           this.$store.commit('setLoadingState', false);
         });
     },
+    // created() {
+    //   this.$store.commit('setLoadingState', true);
+    //   Promise.all([
+    //     this.$store.dispatch('fetchMovieDetails', this.$route.params.id),
+    //     this.$store.dispatch('fetchMovieCredits', this.$route.params.id),
+    //     this.$store.dispatch('fetchMovieImages', this.$route.params.id),
+    //     this.$store.dispatch('fetchSimilarMovies', this.$route.params.id),
+    //     this.$store.dispatch('fetchRecommendedMovies', this.$route.params.id),
+    //     this.$store.dispatch('fetchMovieReviews', this.$route.params.id),
+    //   ])
+    //     .then(() => {
+    //       this.$store.commit('setLoadingState', false);
+    //     });
+    // },
     computed: {
       getMovieDetails() {
         return this.$store.getters.getMovieDetails;

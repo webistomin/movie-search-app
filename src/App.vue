@@ -80,9 +80,7 @@ export default {
     if (localStorage.sessionId) {
       this.$store.commit('setSessionId', JSON.parse(localStorage.sessionId));
       this.$store.commit('setAuthorizeState', true);
-    }
-
-    if (this.$route.query.approved === 'true') {
+    } else if (this.$route.query.approved === 'true') {
       this.$store.dispatch('fetchNewSession');
     }
 

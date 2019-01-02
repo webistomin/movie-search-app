@@ -94,38 +94,70 @@
       getFavoriteTotalPages() {
         return this.$store.getters.getFavoriteTotalPages;
       },
+      getNowPlayingCurrentPage() {
+        return this.$store.getters.getNowPlayingCurrentPage;
+      },
+      getNowPlayingTotalPages() {
+        return this.$store.getters.getNowPlayingTotalPages;
+      },
+      getPopularCurrentPage() {
+        return this.$store.getters.getPopularCurrentPage;
+      },
+      getPopularTotalPages() {
+        return this.$store.getters.getPopularTotalPages;
+      },
+      getTopRatedCurrentPage() {
+        return this.$store.getters.getTopRatedCurrentPage;
+      },
+      getTopRatedTotalPages() {
+        return this.$store.getters.getTopRatedTotalPages;
+      },
+      getUpcomingCurrentPage() {
+        return this.$store.getters.getUpcomingCurrentPage;
+      },
+      getUpcomingTotalPages() {
+        return this.$store.getters.getUpcomingTotalPages;
+      },
     },
     methods: {
       fetchMoreMovies() {
         this.isBusy = true;
         switch (this.$route.meta.title) {
           case 'Now Playing':
-            this.$store.commit('setNowPlayingCurrentPage');
-            this.$store.dispatch('fetchNowPlayingMovies')
-              .then(() => {
-                this.isBusy = false;
-              });
+            if (this.getNowPlayingCurrentPage < this.getNowPlayingTotalPages) {
+              this.$store.commit('setNowPlayingCurrentPage');
+              this.$store.dispatch('fetchNowPlayingMovies')
+                .then(() => {
+                  this.isBusy = false;
+                });
+            }
             break;
           case 'Popular':
-            this.$store.commit('setPopularCurrentPage');
-            this.$store.dispatch('fetchPopularMovies')
-              .then(() => {
-                this.isBusy = false;
-              });
+            if (this.getPopularCurrentPage < this.getPopularTotalPages) {
+              this.$store.commit('setPopularCurrentPage');
+              this.$store.dispatch('fetchPopularMovies')
+                .then(() => {
+                  this.isBusy = false;
+                });
+            }
             break;
           case 'Top Rated':
-            this.$store.commit('setTopRatedCurrentPage');
-            this.$store.dispatch('fetchTopRatedMovies')
-              .then(() => {
-                this.isBusy = false;
-              });
+            if (this.getTopRatedCurrentPage < this.getTopRatedTotalPages) {
+              this.$store.commit('setTopRatedCurrentPage');
+              this.$store.dispatch('fetchTopRatedMovies')
+                .then(() => {
+                  this.isBusy = false;
+                });
+            }
             break;
           case 'Upcoming':
-            this.$store.commit('setUpcomingCurrentPage');
-            this.$store.dispatch('fetchUpcomingMovies')
-              .then(() => {
-                this.isBusy = false;
-              });
+            if (this.getUpcomingCurrentPage < this.getUpcomingTotalPages) {
+              this.$store.commit('setUpcomingCurrentPage');
+              this.$store.dispatch('fetchUpcomingMovies')
+                .then(() => {
+                  this.isBusy = false;
+                });
+            }
             break;
           case 'Favorite':
             if (this.getFavoriteCurrentPage < this.getFavoriteTotalPages) {
@@ -137,11 +169,13 @@
             }
             break;
           default:
-            this.$store.commit('setPopularCurrentPage');
-            this.$store.dispatch('fetchPopularMovies')
-              .then(() => {
-                this.isBusy = false;
-              });
+            if (this.getPopularCurrentPage < this.getPopularTotalPages) {
+              this.$store.commit('setPopularCurrentPage');
+              this.$store.dispatch('fetchPopularMovies')
+                .then(() => {
+                  this.isBusy = false;
+                });
+            }
             break;
         }
       },

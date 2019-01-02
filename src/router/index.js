@@ -69,6 +69,12 @@ export default new Router({
       meta: {
         title: 'Favorite',
       },
+      beforeEnter(to, from, next) {
+        if (!localStorage.sessionId) {
+          next('/');
+        }
+        next();
+      },
     },
   ],
   mode: 'history',

@@ -27,7 +27,7 @@
           {{genre}}
         </li>
       </ul>
-      <router-link :to="`movie/${movieId}`" class="movies__btn btn">Ream more</router-link>
+      <router-link :to="`/movie/${movieId}`" class="movies__btn btn">Ream more</router-link>
     </div>
   </li>
 </template>

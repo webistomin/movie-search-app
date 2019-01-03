@@ -3,6 +3,7 @@ import axios from 'axios';
 export default {
   state: {
     personalAPIKey: '52217232f795bbefbb1b7c951aae98ad',
+    message: null,
     error: null,
     isLoading: false,
     genres: [],
@@ -19,6 +20,9 @@ export default {
     },
     setErrorMessage(state, payload) {
       state.error = payload;
+    },
+    setMessage(state, payload) {
+      state.message = payload;
     },
     setLoadingState(state, payload) {
       state.isLoading = payload;
@@ -79,6 +83,21 @@ export default {
           commit('setErrorMessage', error.message);
         });
     },
+    removeNewSession({ state, commit, dispatch }) {
+      axios
+        .delete(`https://api.themoviedb.org/3/authentication/session?api_key=${state.personalAPIKey}`, { data:
+            { session_id: state.sessionId },
+        })
+        .then(() => {
+          commit('setSessionId', null);
+          commit('setAuthorizeState', false);
+          dispatch('fetchRequestToken');
+          localStorage.removeItem('sessionId');
+        })
+        .catch((error) => {
+          commit('setMessage', error.message);
+        });
+    },
   },
   getters: {
     getSessionId(state) {
@@ -90,8 +109,11 @@ export default {
     getLoadingState(state) {
       return state.isLoading;
     },
-    getError(state) {
+    getErrorMessage(state) {
       return state.error;
+    },
+    getMessage(state) {
+      return state.message;
     },
     getGenresList(state) {
       return state.genres.genres;

@@ -1,16 +1,15 @@
 <template>
   <main class="page-content">
-    <template>
-      <Intro/>
-      <section class="movies"
-               :class="{'movies--noscroll' : isNoScroll}">
-        <preloader v-show="getLoadingState"></preloader>
-        <transition name="fade" mode="out-in">
-          <router-view :key="$route.fullPath"/>
-        </transition>
-      </section>
-      <Socials/>
-    </template>
+    <Intro/>
+    <section class="movies"
+             :class="{'movies--noscroll' : isNoScroll}">
+      <preloader v-show="getLoadingState"></preloader>
+      <transition name="fade" mode="out-in">
+        <router-view :key="$route.fullPath"/>
+      </transition>
+    </section>
+    <Socials/>
+    <MessagePopup></MessagePopup>
   </main>
 </template>
 
@@ -20,10 +19,11 @@
   import Socials from './Socials';
   import MoviesPage from './MoviePage';
   import Preloader from './Preloader';
+  import MessagePopup from './MessagePopup';
 
   export default {
     name: 'PageContent',
-    components: { Preloader, MoviesPage, Socials, MoviesList, Intro },
+    components: { MessagePopup, Preloader, MoviesPage, Socials, MoviesList, Intro },
     computed: {
       isNoScroll() {
         return this.$route.meta.noScroll;
@@ -31,14 +31,14 @@
       getLoadingState() {
         return this.$store.getters.getLoadingState;
       },
+      getMessage() {
+        return this.$store.getters.getMessage;
+      },
     },
   };
 </script>
 
 <style lang="sass">
-  @import "../assets/sass/blocks/btn"
-  @import "../assets/sass/blocks/title"
-
   .fade-enter
     opacity: 0
 
@@ -52,7 +52,6 @@
   .page-content
     @media (min-width: $screen-md)
       display: flex
-
 
   .movies
     position: relative
@@ -81,6 +80,6 @@
 
       &::-webkit-scrollbar-thumb
         border-radius: 10px
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3)
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3)
         background-color: $color-gold
 </style>

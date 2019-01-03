@@ -1,5 +1,5 @@
 <template>
-  <section class="movie" ref="movieBlock">
+  <section class="movie" v-if="!$store.getters.getLoadingState && getMovieDetails.length !== 0">
     <div class="movie__background"
          :style="{ 'background-image': 'url(' + getBackroundPath + ')' }">
       <h2 class="movie__tagline">{{getMovieDetails.tagline}}</h2>
@@ -33,11 +33,12 @@
       <h2 class="movie__title" v-if="getMovieDetails && getMovieDetails.title">
         {{getMovieDetails.title}}
       </h2>
-      <button class="movie__btn btn">
+      <button class="movie__btn btn" @click="markMovieAsFavorite" v-if="getAuthorizeState">
         <svg class="movie__icon" width="17" height="17">
-          <use xlink:href="#icon-heart"></use>
+          <use xlink:href="#icon-heart" v-if="!isFavorite"></use>
+          <use xlink:href="#icon-heartbreak" v-else></use>
         </svg>
-        Add to favorite
+        {{getFavoriteText}}
       </button>
       <div class="movie__block" v-if="getMovieDetails && getMovieDetails.production_countries.length !== 0">
         <span class="movie__option">Country:</span>
@@ -167,15 +168,28 @@
       Promise.all([
         this.$store.dispatch('fetchMovieDetails', to.params.id),
         this.$store.dispatch('fetchMovieCredits', to.params.id),
+        this.$store.dispatch('fetchMovieReviews', to.params.id),
         this.$store.dispatch('fetchMovieImages', to.params.id),
         this.$store.dispatch('fetchSimilarMovies', to.params.id),
         this.$store.dispatch('fetchRecommendedMovies', to.params.id),
-        this.$store.dispatch('fetchMovieReviews', to.params.id),
       ])
         .then(() => {
           next();
           this.$store.commit('setLoadingState', false);
         });
+    },
+    methods: {
+      markMovieAsFavorite() {
+        const movieID = this.getMovieDetails.id;
+        const favoriteState = !this.isFavorite;
+        this.$store.dispatch('markMovieAsFavorite', {
+          movieID,
+          favoriteState,
+        })
+          .then(() => {
+            this.$store.dispatch('fetchFavoriteMovies', false);
+          });
+      },
     },
     // created() {
     //   this.$store.commit('setLoadingState', true);
@@ -230,6 +244,19 @@
       },
       getChartLength() {
         return `${this.getMovieDetails.vote_average * 10}, 100`;
+      },
+      getAuthorizeState() {
+        return this.$store.getters.getAuthorizeState;
+      },
+      getFavoriteMovies() {
+        return this.$store.getters.getFavoriteMovies;
+      },
+      isFavorite() {
+        const favoriteMoviesId = this.getFavoriteMovies.map(item => item.id);
+        return favoriteMoviesId.indexOf(this.getMovieDetails.id) !== -1;
+      },
+      getFavoriteText() {
+        return this.isFavorite ? 'Remove' : 'Add to favorite';
       },
     },
     filters: {

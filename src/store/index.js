@@ -6,7 +6,7 @@ import popularMovies from './popularMovies';
 import topRatedMovies from './topRatedMovies';
 import upcomingMovies from './upcomingMovies';
 import moviePage from './moviePage';
-import userDetails from './userDetails';
+import userBlock from './userBlock';
 
 Vue.use(Vuex);
 
@@ -18,7 +18,7 @@ const store = new Vuex.Store({
     topRatedMovies,
     upcomingMovies,
     moviePage,
-    userDetails,
+    userBlock,
   },
   state: {},
   mutations: {},

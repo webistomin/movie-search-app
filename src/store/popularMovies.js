@@ -4,6 +4,7 @@ export default {
   state: {
     popularMovies: [],
     currentPage: 1,
+    totalPages: null,
   },
   mutations: {
     setPopularMovies(state, payload) {
@@ -12,6 +13,9 @@ export default {
     setPopularCurrentPage(state) {
       state.currentPage += 1;
     },
+    setPopularTotalPages(state, payload) {
+      state.totalPages = payload;
+    },
   },
   actions: {
     fetchPopularMovies({ commit, rootState, state }) {
@@ -19,7 +23,7 @@ export default {
         .get(`https://api.themoviedb.org/3/movie/popular?api_key=${rootState.shared.personalAPIKey}&language=en-US&page=${state.currentPage}`)
         .then((response) => {
           commit('setPopularMovies', response.data.results);
-          // commit('setLoadingState', false);
+          commit('setPopularTotalPages', response.data.total_pages);
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);
@@ -29,6 +33,12 @@ export default {
   getters: {
     getPopularMovies(state) {
       return state.popularMovies;
+    },
+    getPopularTotalPages(state) {
+      return state.totalPages;
+    },
+    getPopularCurrentPage(state) {
+      return state.currentPage;
     },
   },
 };

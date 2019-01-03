@@ -4,6 +4,7 @@ export default {
   state: {
     topRatedMovies: [],
     currentPage: 1,
+    totalPages: null,
   },
   mutations: {
     setTopRatedMovies(state, payload) {
@@ -12,6 +13,9 @@ export default {
     setTopRatedCurrentPage(state) {
       state.currentPage += 1;
     },
+    setTopRatedTotalPages(state, payload) {
+      state.totalPages = payload;
+    },
   },
   actions: {
     fetchTopRatedMovies({ commit, rootState, state }) {
@@ -19,6 +23,7 @@ export default {
         .get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${rootState.shared.personalAPIKey}&language=en-US&page=${state.currentPage}`)
         .then((response) => {
           commit('setTopRatedMovies', response.data.results);
+          commit('setTopRatedTotalPages', response.data.total_pages);
           commit('setLoadingState', false);
         })
         .catch((error) => {
@@ -29,6 +34,12 @@ export default {
   getters: {
     getTopRatedMovies(state) {
       return state.topRatedMovies;
+    },
+    getTopRatedTotalPages(state) {
+      return state.totalPages;
+    },
+    getTopRatedCurrentPage(state) {
+      return state.currentPage;
     },
   },
 };

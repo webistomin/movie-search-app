@@ -46,11 +46,17 @@
         <div class="page-header__account">
           <a :href="`https://www.themoviedb.org/authenticate/${getRequestToken}?redirect_to=http://localhost:8080/`"
              class="page-header__btn btn"
-             v-if="!getAuthorizeState">Sign in</a>
+             v-if="!getAuthorizeState">Log in</a>
           <template v-else>
             <div class="page-header__userblock" v-if="getUserDetails.length !== 0">
-              <img :src="`https://www.gravatar.com/avatar/${getUserDetails.avatar.gravatar.hash}`" width="32" height="32" alt="Avatar" class="page-header__avatar">
-              <p class="page-header__text">Hello, <span class="page-header__name">{{getUserDetails.username}}</span>!</p>
+              <img
+                :src="`https://www.gravatar.com/avatar/${getUserDetails.avatar.gravatar.hash}`"
+                width="32"
+                height="32"
+                :alt="getUserDetails.username"
+                class="page-header__avatar">
+              <p class="page-header__text">Hello,
+                <span class="page-header__name">{{getUserDetails.username}}</span>!</p>
             </div>
             <div class="page-header__dropdown">
               <button class="page-header__button page-header__button--arrow"
@@ -63,11 +69,19 @@
               </button>
               <ul class="page-header__list" :class="getUserMenuClass">
                 <li class="page-header__item">
-                  <a href="#" class="page-header__link">
+                  <router-link to="/favorite" class="page-header__link">
                     <svg class="page-header__icon page-header__icon--left" width="17" height="17">
                       <use xlink:href="#icon-heart"></use>
                     </svg>
                     Favorite list
+                  </router-link>
+                </li>
+                <li class="page-header__item">
+                  <a href="#" @click="logOut" class="page-header__link">
+                    <svg class="page-header__icon page-header__icon--left" width="17" height="17">
+                      <use xlink:href="#icon-logout"></use>
+                    </svg>
+                    Log out
                   </a>
                 </li>
               </ul>
@@ -91,12 +105,17 @@
       getAuthorizeState: {
         immediate: true,
         deep: true,
-        handler() {
-          this.$store.dispatch('fetchUserDetails');
+        handler(newValue) {
+          if (newValue) {
+            this.$store.dispatch('fetchUserDetails');
+          }
         },
       },
     },
     methods: {
+      logOut() {
+        this.$store.dispatch('removeNewSession');
+      },
       setRowView() {
         this.$store.commit('setRowView', true);
         this.$store.commit('setGridView', false);
@@ -338,7 +357,6 @@
 
     &__btn
       display: flex
-      display: none
       align-items: center
       justify-content: center
       width: 100px
@@ -379,7 +397,7 @@
     &__link
       box-sizing: border-box
       position: relative
-      padding: 24px 0
+      padding: 15px 0
       display: flex
       align-items: center
       justify-content: center

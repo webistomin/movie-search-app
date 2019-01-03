@@ -18,14 +18,6 @@ export default new Router({
       },
     },
     {
-      path: '/latest',
-      name: 'latest',
-      component: NavigationPage,
-      meta: {
-        title: 'Latest',
-      },
-    },
-    {
       path: '/now-playing',
       name: 'now-playing',
       component: NavigationPage,
@@ -68,6 +60,20 @@ export default new Router({
       component: NotFound,
       meta: {
         noScroll: true,
+      },
+    },
+    {
+      path: '/favorite',
+      name: 'Favorite',
+      component: NavigationPage,
+      meta: {
+        title: 'Favorite',
+      },
+      beforeEnter(to, from, next) {
+        if (!localStorage.sessionId) {
+          next('/');
+        }
+        next();
       },
     },
   ],

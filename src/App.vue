@@ -63,6 +63,9 @@ export default {
       },
     };
   },
+  mounted() {
+    this.$store.dispatch('fetchTweets');
+  },
   created() {
     if (localStorage.genresList) {
       this.$store.commit('setGenresList', JSON.parse(localStorage.genresList));

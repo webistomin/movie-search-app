@@ -1,20 +1,25 @@
 <template>
-  <aside class="socials">
+  <aside class="socials" id="socials">
     <div class="socials__block">
       <h2 class="socials__title title">{{getPageTitle}}</h2>
       <SocialsList
-        v-if="$route.name === 'movie' && !getLoadingState"
+        v-if="$route.name === 'movie' && !getLoadingState && getMovieReviews.length !== 0"
         :reviews-list="getMovieReviews"/>
+      <TwitterList v-else-if="getTweets.length !== 0 && $route.name !== 'movie'"
+                   :tweets-list="getTweets"
+      />
+      <p class="socials__error" v-else-if="!getLoadingState">Nothing to see here :(</p>
     </div>
   </aside>
 </template>
 
 <script>
   import SocialsList from './SocialsList';
+  import TwitterList from './TwitterList';
 
   export default {
     name: 'Socials',
-    components: { SocialsList },
+    components: { TwitterList, SocialsList },
     computed: {
       getPageTitle() {
         return this.$route.name === 'movie' ? 'Last reviews' : 'Last news';
@@ -25,6 +30,9 @@
       getLoadingState() {
         return this.$store.getters.getLoadingState;
       },
+      getTweets() {
+        return this.$store.getters.getTweets;
+      },
     },
   };
 </script>
@@ -32,6 +40,10 @@
 <style lang="sass">
   .socials
     background-color: $color-brown--secondary
+
+    &__error
+      color: $color-gold
+      text-align: center
 
     &__title
       padding-top: 24px
@@ -68,6 +80,79 @@
 
       &:last-child
         margin-bottom: 0
+
+      & .user,
+      .tweet,
+      .timePosted,
+      .interact
+        box-sizing: border-box
+        max-width: 300px
+        width: 100%
+
+      & .user a
+        display: block
+        margin-bottom: 10px
+        outline: none
+        transition: all 0.3s ease-in-out
+        color: $color-gold
+
+        &:hover,
+        &:active,
+        &:focus
+          color: $color-action
+          transition: all 0.3s ease-in-out
+
+      & .tweet
+        color: $color-text
+        margin: 0 auto
+        margin-bottom: 10px
+        word-break: break-word
+
+      & .timePosted
+        margin-bottom: 10px
+
+        & a
+          font-size: 12px
+          outline: none
+          transition: all 0.3s ease-in-out
+
+          &:hover,
+          &:focus
+            color: $color-gold
+            transition: all 0.3s ease-in-out
+
+          &:active
+            color: $color-action
+
+      & .interact
+        display: flex
+        justify-content: flex-start
+
+        & a
+          font-size: 0
+          width: 30px
+          height: 30px
+          display: block
+          background-position: center
+          background-repeat: no-repeat
+          margin-right: 20px
+          border-radius: 50%
+          transition: all 0.3s ease-in-out
+
+          &:hover,
+          &:focus
+            background-color: $color-action
+            transition: all 0.3s ease-in-out
+
+        & a.twitter_reply_icon
+          background-image: url("~/static/img/content/icon-bubble.svg")
+
+
+        & a.twitter_retweet_icon
+          background-image: url("~/static/img/content/icon-reply.svg")
+
+        & a.twitter_fav_icon
+          background-image: url("~/static/img/content/icon-favorite.svg")
 
     &__message
       position: relative

@@ -112,17 +112,6 @@
     created() {
       this.debouncedGetAnswer = debounce(this.fetchMoviesWithSearchQuery, 500);
     },
-    watch: {
-      getAuthorizeState: {
-        immediate: true,
-        deep: true,
-        handler(newValue) {
-          if (newValue) {
-            this.$store.dispatch('fetchUserDetails');
-          }
-        },
-      },
-    },
     methods: {
       fetchMoviesWithSearchQuery() {
         this.$store.dispatch('fetchMoviesWithSearchQuery')

@@ -63,10 +63,8 @@ export default {
       },
     };
   },
-  mounted() {
-    this.$store.dispatch('fetchTweets');
-  },
   created() {
+    this.$store.dispatch('fetchTweets');
     if (localStorage.genresList) {
       this.$store.commit('setGenresList', JSON.parse(localStorage.genresList));
     } else {
@@ -82,6 +80,7 @@ export default {
     if (localStorage.sessionId) {
       this.$store.commit('setSessionId', JSON.parse(localStorage.sessionId));
       this.$store.commit('setAuthorizeState', true);
+      this.$store.dispatch('fetchUserDetails');
     } else if (this.$route.query.approved === 'true') {
       this.$store.dispatch('fetchNewSession');
     }

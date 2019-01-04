@@ -69,7 +69,7 @@ export default {
           commit('setErrorMessage', error.message);
         });
     },
-    fetchNewSession({ state, commit }) {
+    fetchNewSession({ state, commit, dispatch }) {
       axios
         .post(`https://api.themoviedb.org/3/authentication/session/new?api_key=${state.personalAPIKey}`, {
           request_token: state.requestToken,
@@ -78,6 +78,7 @@ export default {
           commit('setSessionId', response.data.session_id);
           localStorage.sessionId = JSON.stringify(response.data.session_id);
           commit('setAuthorizeState', true);
+          dispatch('fetchUserDetails');
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);

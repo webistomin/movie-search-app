@@ -114,6 +114,8 @@
       overflow-y: scroll
       height: calc(100vh - 60px)
       position: relative
+      scrollbar-width: thin
+      scrollbar-color: $color-gold rgba(0, 0, 0, .3)
 
       &::after
         content: ""

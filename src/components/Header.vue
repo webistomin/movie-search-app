@@ -191,6 +191,8 @@
 
 <style lang="sass">
   .page-header
+    background-color: $color-brown
+
     &__decor
       margin-right: 8px
 

@@ -16,7 +16,12 @@
       </div>
       <div class="page-header__block page-header__block--search">
         <div class="page-header__wrapper">
-          <input type="text" class="page-header__input" title="Search a movie" placeholder="Search a movie...">
+          <input type="text"
+                 class="page-header__input"
+                 title="Search a movie"
+                 placeholder="Search a movie..."
+                 v-model="searchQuery"
+                 @input="debouncedGetAnswer">
           <svg class="page-header__icon page-header__icon--absolute" width="17" height="17">
             <use xlink:href="#icon-magnifier"></use>
           </svg>
@@ -94,12 +99,18 @@
 </template>
 
 <script>
+  import throttle from '../assets/js/throttle';
+  import debounce from '../assets/js/debounce';
+
   export default {
     name: 'Header',
     data() {
       return {
         isUserMenuOpened: false,
       };
+    },
+    created() {
+      this.debouncedGetAnswer = debounce(this.fetchMoviesWithSearchQuery, 500);
     },
     watch: {
       getAuthorizeState: {
@@ -113,6 +124,12 @@
       },
     },
     methods: {
+      fetchMoviesWithSearchQuery() {
+        this.$store.dispatch('fetchMoviesWithSearchQuery')
+          .then(() => {
+            this.$router.push('/search');
+          });
+      },
       logOut() {
         this.$store.dispatch('removeNewSession');
       },
@@ -133,6 +150,14 @@
       },
     },
     computed: {
+      searchQuery: {
+        get() {
+          return this.$store.getters.getSearchQuery;
+        },
+        set: throttle(function throttleMutation(movie) {
+          this.$store.commit('setSearchQuery', movie);
+        }, 500),
+      },
       getUserDetails() {
         return this.$store.getters.getUserDetails;
       },

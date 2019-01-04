@@ -159,6 +159,7 @@
           store.dispatch('fetchMovieReviews', to.params.id),
         ])
           .then(() => {
+            document.title = `${store.getters.getMovieDetails.title} | TMDb: Movie Searcher`;
             store.commit('setLoadingState', false);
           });
       });
@@ -175,6 +176,7 @@
       ])
         .then(() => {
           next();
+          document.title = `${this.$store.getters.getMovieDetails.title} | TMDb: Movie Searcher`;
           this.$store.commit('setLoadingState', false);
         });
     },
@@ -202,6 +204,7 @@
     //     this.$store.dispatch('fetchMovieReviews', this.$route.params.id),
     //   ])
     //     .then(() => {
+    //       document.title = `${this.$store.getters.getMovieDetails.title} | TMDb: Movie Searcher`;
     //       this.$store.commit('setLoadingState', false);
     //     });
     // },

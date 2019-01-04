@@ -7,7 +7,7 @@ import MoviePage from '../components/MoviePage';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -15,6 +15,7 @@ export default new Router({
       component: Home,
       meta: {
         noScroll: true,
+        title: 'Home',
       },
     },
     {
@@ -59,7 +60,16 @@ export default new Router({
       name: 'NotFound',
       component: NotFound,
       meta: {
+        title: 'Sorry. Page not found.',
         noScroll: true,
+      },
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: NavigationPage,
+      meta: {
+        title: 'Search results',
       },
     },
     {
@@ -78,11 +88,14 @@ export default new Router({
     },
   ],
   mode: 'history',
-  // scrollBehavior(to, from, savedPosition) {
-  //   if (savedPosition) {
-  //     return savedPosition;
-  //   }
-  //   return { x: 0, y: 0 };
-  // },
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'movie') {
+    document.title = `${to.meta.title} | TMDb: Movie Searcher`;
+  }
+  next();
+});
+
+export default router;
 

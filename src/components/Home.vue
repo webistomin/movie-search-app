@@ -7,10 +7,11 @@
 
 <script>
   import Header from './Header';
+  import NavigationPage from './NavigationPage';
 
   export default {
     name: 'Home',
-    components: { Header },
+    components: { NavigationPage, Header },
   };
 </script>
 

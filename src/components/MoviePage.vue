@@ -1,5 +1,6 @@
 <template>
-  <section class="movie" v-if="!$store.getters.getLoadingState && getMovieDetails.length !== 0">
+  <section class="movie"
+           v-if="!$store.getters.getLoadingState && getMovieDetails.length !== 0">
     <div class="movie__background"
          :style="{ 'background-image': 'url(' + getBackroundPath + ')' }">
       <h2 class="movie__tagline">{{getMovieDetails.tagline}}</h2>
@@ -33,14 +34,17 @@
       <h2 class="movie__title" v-if="getMovieDetails && getMovieDetails.title">
         {{getMovieDetails.title}}
       </h2>
-      <button class="movie__btn btn" @click="markMovieAsFavorite" v-if="getAuthorizeState">
+      <button class="movie__btn btn"
+              @click="markMovieAsFavorite"
+              v-if="getAuthorizeState">
         <svg class="movie__icon" width="17" height="17">
           <use xlink:href="#icon-heart" v-if="!isFavorite"></use>
           <use xlink:href="#icon-heartbreak" v-else></use>
         </svg>
         {{getFavoriteText}}
       </button>
-      <div class="movie__block" v-if="getMovieDetails && getMovieDetails.production_countries.length !== 0">
+      <div class="movie__block"
+           v-if="getMovieDetails && getMovieDetails.production_countries.length !== 0">
         <span class="movie__option">Country:</span>
         <ul class="movie__values">
           <li class="movie__value"
@@ -49,7 +53,8 @@
           </li>
         </ul>
       </div>
-      <div class="movie__block" v-if="getMovieDetails && getMovieDetails.production_companies.length !== 0">
+      <div class="movie__block"
+           v-if="getMovieDetails && getMovieDetails.production_companies.length !== 0">
         <span class="movie__option">Production&nbsp;companies:</span>
         <ul class="movie__values">
           <li class="movie__value"
@@ -58,13 +63,15 @@
           </li>
         </ul>
       </div>
-      <div class="movie__block" v-if="getMovieDetails && getMovieDetails.release_date">
+      <div class="movie__block"
+           v-if="getMovieDetails && getMovieDetails.release_date">
         <span class="movie__option">Release date:</span>
         <span class="movie__value">
           {{getMovieDetails.release_date | getFormattedDate}}
         </span>
       </div>
-      <div class="movie__block" v-if="getMovieDetails && getMovieDetails.genres.length !== 0">
+      <div class="movie__block"
+           v-if="getMovieDetails && getMovieDetails.genres.length !== 0">
         <span class="movie__option">Category:</span>
         <ul class="movie__values">
           <li class="movie__value"
@@ -310,6 +317,7 @@
       width: 100%
       height: 300px
       padding: 30px
+      background-color: $color-gold
       background-image: url("~/static/img/content/backdrop300.jpg")
       background-size: cover
       background-repeat: no-repeat

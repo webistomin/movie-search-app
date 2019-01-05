@@ -39,7 +39,7 @@
     },
     computed: {
       getPerspectiveValue() {
-        return this.moviesList.length * 278;
+        return this.moviesList.length > 6 ? this.moviesList.length * 278 : 2200;
       },
       getRowViewState() {
         return this.$store.getters.getRowViewState;

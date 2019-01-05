@@ -15,6 +15,5 @@
   };
 </script>
 
-<style lang="sass">
-
+<style>
 </style>

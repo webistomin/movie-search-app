@@ -3,7 +3,11 @@
     <router-link :to="`/movie/${movieId}`" class="best__link">
       <picture class="best__pic"
                :class="getBorderColor">
-        <img :src="`https://image.tmdb.org/t/p/w92/${moviePoster}`" alt="#" width="41" height="41" class="best__img">
+        <img :src="`https://image.tmdb.org/t/p/w92/${moviePoster}`"
+             alt="#"
+             width="41"
+             height="41"
+             class="best__img">
       </picture>
       <div class="best__block best__block--padding">
         <span class="best__name">{{movieTitle}}</span>
@@ -43,5 +47,4 @@
 </script>
 
 <style>
-
 </style>

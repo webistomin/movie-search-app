@@ -1,6 +1,7 @@
 <template>
   <section class="message"
-            :class="{'message--hidden' : !isVisible, 'message--visible' : isVisible}">
+            :class="{'message--hidden' : !isVisible,
+                     'message--visible' : isVisible}">
     <button class="message__btn" @click="removeMessage">Close</button>
     <p class="message__text">
       {{getMessage}}
@@ -46,7 +47,7 @@
     border-radius: 10px
     width: 300px
     text-align: center
-    z-index: 12
+    z-index: 20
 
     &--hidden
       visibility: hidden

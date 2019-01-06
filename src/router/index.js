@@ -4,6 +4,7 @@ import Home from '../components/Home';
 import NavigationPage from '../components/NavigationPage';
 import NotFound from '../components/NotFound';
 import MoviePage from '../components/MoviePage';
+import store from '../store/index';
 
 Vue.use(Router);
 
@@ -70,6 +71,13 @@ const router = new Router({
       component: NavigationPage,
       meta: {
         title: 'Search results',
+      },
+      beforeEnter(to, from, next) {
+        const searchQuery = store.getters.getSearchQuery;
+        if (searchQuery.length === 0) {
+          next('/');
+        }
+        next();
       },
     },
     {

@@ -2,11 +2,12 @@
   <div>
     <h2 class="movies__title">{{$route.meta.title}}</h2>
     <MoviesList :moviesList="getMoviesForCurrentRoute"
-                v-if="getMoviesForCurrentRoute"
+                v-if="getMoviesForCurrentRoute.length !== 0"
                 v-infinite-scroll="fetchMoreMovies"
                 infinite-scroll-disabled="isBusy"
                 infinite-scroll-distance="50"
                 infinite-scroll-immediate-check="false"/>
+    <p class="movies__error" v-else>Nothing found :(</p>
   </div>
 </template>
 
@@ -23,7 +24,7 @@
     },
     components: { MoviesList },
     directives: { infiniteScroll },
-    mounted() {
+    created() {
       switch (this.$route.meta.title) {
         case 'Now Playing':
           if (this.$store.getters.getNowPlayingMovies.length === 0) {
@@ -205,6 +206,24 @@
   };
 </script>
 
-<style>
+<style lang="sass">
+  .movies
+
+    &__title
+      font-family: $font-family--secondary
+      text-transform: uppercase
+      color: $color-text--secondary
+      text-align: center
+      font-size: 20px
+      margin: 0
+      padding-top: 20px
+      margin-bottom: 10px
+
+
+    &__error
+      font-size: 14px
+      text-align: center
+      padding: 20px
+      color: $color-text--secondary
 
 </style>

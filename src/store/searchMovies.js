@@ -28,6 +28,7 @@ export default {
   actions: {
     fetchMoviesWithSearchQuery({ state, commit, rootState }, payload) {
       if (state.searchQuery.length !== 0) {
+        commit('setLoadingState', true);
         const encodedQuery = encodeURI(state.searchQuery);
         axios
           .get(`https://api.themoviedb.org/3/search/movie?api_key=${rootState.shared.personalAPIKey}&language=en-US&query=${encodedQuery}&page=${state.currentPage}&include_adult=false`)
@@ -37,6 +38,11 @@ export default {
               shouldConcat: payload,
             });
             commit('setSearchTotalPages', response.data.total_pages);
+            commit('setLoadingState', false);
+          })
+          .catch((error) => {
+            commit('setErrorMessage', error.message);
+            commit('setLoadingState', false);
           });
       }
     },

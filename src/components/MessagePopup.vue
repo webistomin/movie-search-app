@@ -41,7 +41,7 @@
     position: fixed
     right: 20px
     top: 20px
-    padding: 40px 10px
+    padding: 30px 10px
     padding-right: 30px
     background-color: $color-gold
     border-radius: 10px

@@ -107,6 +107,8 @@
         margin: 0 auto
         margin-bottom: 10px
         word-break: break-word
+        font-size: 13px
+        line-height: 20px
 
       & .timePosted
         margin-bottom: 10px

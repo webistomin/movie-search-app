@@ -71,10 +71,10 @@ export default {
       this.$store.dispatch('fetchGenresList');
     }
 
-    if (!localStorage.requestToken) {
+    if (!sessionStorage.requestToken) {
       this.$store.dispatch('fetchRequestToken');
     } else {
-      this.$store.commit('setRequestToken', JSON.parse(localStorage.requestToken));
+      this.$store.commit('setRequestToken', JSON.parse(sessionStorage.requestToken));
     }
 
     if (localStorage.sessionId) {
@@ -90,17 +90,15 @@ export default {
         this.$route.name !== 'Favorite') {
       this.$store.dispatch('fetchFavoriteMovies', true);
     }
-
-    window.addEventListener('resize', this.handleResize);
-    this.handleResize();
-  },
-  destroyed() {
-    window.removeEventListener('resize', this.handleResize);
   },
   methods: {
-    handleResize() {
-      this.window.width = window.innerWidth;
-      this.window.height = window.innerHeight;
+    fixCrappyScrollBehavior() {
+      document.querySelector('.movies').scrollTop = 0;
+    },
+  },
+  watch: {
+    $route() {
+      setTimeout(this.fixCrappyScrollBehavior, 250);
     },
   },
 };

@@ -59,13 +59,23 @@
 
       &:hover,
       &:focus
-        .best__name
+        .best__name,
+        .best__rate
           color: $color-text--secondary
           transition: all 0.3s ease-in-out
 
+        .best__icon
+          fill: $color-text--secondary
+          transition: all 0.3s ease-in-out
+
       &:active
-        .best__name
+        .best__name,
+        .best__rate
           color: $color-action
+          transition: all 0.3s ease-in-out
+
+        .best__icon
+          fill: $color-action
           transition: all 0.3s ease-in-out
 
     &__name
@@ -76,6 +86,15 @@
       font-size: 12px
       color: $color-text
       margin-bottom: 8px
+      transition: all 0.3s ease-in-out
+
+    &__rate
+      font-size: 12px
+      color: $color-text
+      transition: all 0.3s ease-in-out
+
+    &__icon
+      fill: $color-text
       transition: all 0.3s ease-in-out
 
     &__img
@@ -100,14 +119,6 @@
       &--silver
         &::before
           background-color: $color-silver
-
-    &__rating
-      width: 63px
-      height: 9px
-      background-color: transparent
-      background-image: url("~/static/img/content/stars.svg")
-      background-size: contain
-      background-repeat: no-repeat
 
     &__block
       &--padding

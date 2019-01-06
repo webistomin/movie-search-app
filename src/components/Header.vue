@@ -49,7 +49,7 @@
       </div>
       <div class="page-header__block page-header__block--user">
         <div class="page-header__account">
-          <a :href="`https://www.themoviedb.org/authenticate/${getRequestToken}?redirect_to=http://localhost:8080/`"
+          <a :href="getAuthLink"
              class="page-header__btn btn"
              v-if="!getAuthorizeState">Log in</a>
           <template v-else>
@@ -173,6 +173,12 @@
       },
       getToggleClass() {
         return this.getNavigationState ? 'page-header__toggler--opened' : 'page-header__toggler--closed';
+      },
+      getAuthLink() {
+        const requestToken = this.getRequestToken;
+        const baseURL = 'http://localhost:8080';
+        const redirectPath = this.$route.fullPath;
+        return `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=${baseURL}${redirectPath}`;
       },
     },
   };

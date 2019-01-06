@@ -5,6 +5,7 @@
       :key="item.id"
       :movie-title="item.title.slice(0,10)"
       :movie-poster="item.poster_path"
+      :movie-rate="item.vote_average"
       :movie-id="item.id"
       :movie-count="index"
     />

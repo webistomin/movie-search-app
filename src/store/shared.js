@@ -63,7 +63,7 @@ export default {
         .get(`https://api.themoviedb.org/3/authentication/token/new?api_key=${state.personalAPIKey}`)
         .then((response) => {
           commit('setRequestToken', response.data.request_token);
-          localStorage.requestToken = JSON.stringify(response.data.request_token);
+          sessionStorage.requestToken = JSON.stringify(response.data.request_token);
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);

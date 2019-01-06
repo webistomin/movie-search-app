@@ -18,7 +18,7 @@
         <svg class="movies__icon" width="12" height="12">
           <use xlink:href="#icon-calendar"></use>
         </svg>
-        {{movieDate}}
+        {{movieDate | getFormattedDate}}
       </time>
       <ul class="movies__genres" v-if="getGenresList">
         <li class="movies__genre"

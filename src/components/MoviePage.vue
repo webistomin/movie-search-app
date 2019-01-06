@@ -1,8 +1,9 @@
 <template>
   <section class="movie"
+           ref="moviePage"
            v-if="!$store.getters.getLoadingState && getMovieDetails.length !== 0">
     <div class="movie__background"
-         :style="{ 'background-image': 'url(' + getBackroundPath + ')' }">
+         :style="{ 'background-image': 'url(' + getBackgroundPath + ')' }">
       <h2 class="movie__tagline">{{getMovieDetails.tagline}}</h2>
     </div>
     <div class="movie__inner">
@@ -92,7 +93,7 @@
         <span class="movie__option">Revenue:</span>
         <span class="movie__value">{{getMovieDetails.revenue | getFormattedPrice}}</span>
       </div>
-      <div class="movie__block" v-if="getMovieCredits.length !== 0">
+      <div class="movie__block" v-if="getMovieCredits.crew.length !== 0">
         <span class="movie__option">Crew:</span>
         <ul class="movie__values">
           <li class="movie__value"
@@ -101,7 +102,7 @@
           </li>
         </ul>
       </div>
-      <div class="movie__block" v-if="getMovieCredits.length !== 0">
+      <div class="movie__block" v-if="getMovieCredits.cast.length !== 0">
         <span class="movie__option">Actors:</span>
         <ul class="movie__values">
           <li class="movie__value"
@@ -200,21 +201,6 @@
           });
       },
     },
-    // created() {
-    //   this.$store.commit('setLoadingState', true);
-    //   Promise.all([
-    //     this.$store.dispatch('fetchMovieDetails', this.$route.params.id),
-    //     this.$store.dispatch('fetchMovieCredits', this.$route.params.id),
-    //     this.$store.dispatch('fetchMovieImages', this.$route.params.id),
-    //     this.$store.dispatch('fetchSimilarMovies', this.$route.params.id),
-    //     this.$store.dispatch('fetchRecommendedMovies', this.$route.params.id),
-    //     this.$store.dispatch('fetchMovieReviews', this.$route.params.id),
-    //   ])
-    //     .then(() => {
-    //       document.title = `${this.$store.getters.getMovieDetails.title} | TMDb: Movie Searcher`;
-    //       this.$store.commit('setLoadingState', false);
-    //     });
-    // },
     computed: {
       getMovieDetails() {
         return this.$store.getters.getMovieDetails;
@@ -231,7 +217,7 @@
       getRecommendedMovies() {
         return this.$store.getters.getRecommendedMovies;
       },
-      getBackroundPath() {
+      getBackgroundPath() {
         return this.getMovieDetails.backdrop_path ? `https://image.tmdb.org/t/p/w780/${this.getMovieDetails.backdrop_path}` : '/static/img/content/backdrop-default.jpg';
       },
       getImageSrc() {
@@ -267,23 +253,6 @@
       },
       getFavoriteText() {
         return this.isFavorite ? 'Remove' : 'Add to favorite';
-      },
-    },
-    filters: {
-      getFormattedPrice(value) {
-        switch (true) {
-          case Math.abs(Number(value)) >= 1.0e+9:
-            return `${Math.round(Math.abs(Number(value)) / 1.0e+9)} billion dollars`;
-          case Math.abs(Number(value)) >= 1.0e+6:
-            return `${Math.round(Math.abs(Number(value)) / 1.0e+6)} million dollars`;
-          case Math.abs(Number(value)) >= 1.0e+3:
-            return `${Math.round(Math.abs(Number(value)) / 1.0e+3)} thousand dollars`;
-          default:
-            return `${Math.abs(Number(value))} dollars`;
-        }
-      },
-      getFormattedDate(date) {
-        return new Date(Date.parse(date)).toDateString();
       },
     },
     components: {

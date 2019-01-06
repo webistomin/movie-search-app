@@ -12,6 +12,12 @@
 <script>
   export default {
     name: 'MessagePopup',
+    data() {
+      return {
+        timeout: null,
+        isStarted: false,
+      };
+    },
     computed: {
       isVisible() {
         return Boolean(this.$store.getters.getMessage);
@@ -24,12 +30,17 @@
       removeMessage() {
         this.$store.commit('setMessage', null);
       },
+      setMessageTimeout() {
+        this.isStarted = true;
+        this.timeout = setTimeout(() => {
+          this.$store.commit('setMessage', null);
+          this.isStarted = false;
+        }, 5000);
+      },
     },
     updated() {
-      if (this.getMessage) {
-        setTimeout(() => {
-          this.$store.commit('setMessage', null);
-        }, 5000);
+      if (this.isStarted) {
+        clearTimeout(this.timeout);
       }
     },
   };

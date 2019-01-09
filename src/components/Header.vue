@@ -55,7 +55,7 @@
           <template v-else>
             <div class="page-header__userblock" v-if="getUserDetails.length !== 0">
               <img
-                :src="`https://www.gravatar.com/avatar/${getUserDetails.avatar.gravatar.hash}`"
+                :src="getAvatarSrc"
                 width="32"
                 height="32"
                 :alt="getUserDetails.username"
@@ -139,6 +139,9 @@
       },
     },
     computed: {
+      getAvatarSrc() {
+        return `https://www.gravatar.com/avatar/${this.getUserDetails.avatar.gravatar.hash}`;
+      },
       searchQuery: {
         get() {
           return this.$store.getters.getSearchQuery;

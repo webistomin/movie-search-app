@@ -74,6 +74,13 @@
         const genresList = this.getGenresList;
         const movieGenres = [];
 
+        // ES6 test solution
+        // const test = genresList
+        //   .map(item => item.id)
+        //   .filter(item => genresIds.includes(item));
+        // const res = genresList.filter(item => test.includes(item.id)).map(item => item.name);
+        // return res;
+
         if (genresList.length !== 0 && genresIds.length !== 0) {
           for (let i = 0; i < genresIds.length; i += 1) {
             for (let j = 0; j < genresList.length; j += 1) {

@@ -6,6 +6,10 @@ import NotFound from '../components/NotFound';
 import MoviePage from '../components/MoviePage';
 import store from '../store/index';
 
+// const NotFound = () => import('./../components/NotFound');
+// const NavigationPage = () => import('../components/NavigationPage');
+// const MoviePage = () => import('../components/MoviePage');
+
 Vue.use(Router);
 
 const router = new Router({

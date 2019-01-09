@@ -249,7 +249,7 @@
       },
       isFavorite() {
         const favoriteMoviesId = this.getFavoriteMovies.map(item => item.id);
-        return favoriteMoviesId.indexOf(this.getMovieDetails.id) !== -1;
+        return favoriteMoviesId.includes(this.getMovieDetails.id);
       },
       getFavoriteText() {
         return this.isFavorite ? 'Remove' : 'Add to favorite';

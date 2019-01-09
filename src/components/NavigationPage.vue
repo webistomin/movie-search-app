@@ -2,11 +2,11 @@
   <div>
     <h2 class="movies__title">{{$route.meta.title}}</h2>
     <MoviesList :moviesList="getMoviesForCurrentRoute"
-                v-if="getMoviesForCurrentRoute.length !== 0"
+                v-if="getMoviesForCurrentRoute"
                 v-infinite-scroll="fetchMoreMovies"
                 infinite-scroll-disabled="isBusy"
                 infinite-scroll-distance="50"
-                infinite-scroll-immediate-check="false"/>
+                infinite-scroll-immediate-check="true"/>
     <p class="movies__error" v-else>Nothing found :(</p>
   </div>
 </template>

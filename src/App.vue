@@ -55,14 +55,6 @@ import Index from './components/Index';
 export default {
   name: 'app',
   components: { Index },
-  data() {
-    return {
-      window: {
-        width: 0,
-        height: 0,
-      },
-    };
-  },
   created() {
     this.$store.dispatch('fetchTweets');
     if (localStorage.genresList) {

@@ -226,6 +226,9 @@
           & .movies__name
             max-width: 300px
 
+          & .movies__desc
+            line-height: 18px
+
           & .movies__date
             display: block
 

@@ -273,6 +273,9 @@
     &:focus
       outline: none
 
+  .VueCarousel-pagination
+    display: none
+
   .movie
     width: 100%
     height: 100%
@@ -440,6 +443,9 @@
       &__inner
         max-width: 1000px
         margin: 0 auto
+
+      .VueCarousel-pagination
+        display: block
 
     @media (min-width: $screen-xl)
       &__background

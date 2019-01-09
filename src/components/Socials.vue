@@ -148,6 +148,7 @@
           margin-right: 20px
           border-radius: 50%
           transition: all 0.3s ease-in-out
+          outline: none
 
           &:hover,
           &:focus

@@ -2,7 +2,8 @@
   <main class="page-content" role="main">
     <Intro/>
     <section class="movies"
-             :class="{'movies--noscroll' : isNoScroll}">
+             :class="{'movies--noscroll' : isNoScroll, 'no-events': isScrolled}"
+             @scroll.passive="onScrolling">
       <preloader v-show="getLoadingState"></preloader>
       <transition name="fade" mode="out-in">
         <router-view :key="$route.fullPath"/>
@@ -23,6 +24,12 @@
 
   export default {
     name: 'PageContent',
+    data() {
+      return {
+        isScrolled: false,
+        timer: null,
+      };
+    },
     components: { MessagePopup, Preloader, MoviesPage, Socials, MoviesList, Intro },
     computed: {
       isNoScroll() {
@@ -35,10 +42,22 @@
         return this.$store.getters.getMessage;
       },
     },
+    methods: {
+      onScrolling() {
+        clearTimeout(this.timer);
+        this.isScrolled = true;
+        this.timer = setTimeout(() => {
+          this.isScrolled = false;
+        }, 100);
+      },
+    },
   };
 </script>
 
 <style lang="sass">
+  .no-events
+    pointer-events: none
+
   .fade-enter
     opacity: 0
 

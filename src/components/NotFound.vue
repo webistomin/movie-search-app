@@ -27,6 +27,7 @@
     background-repeat: no-repeat, repeat-y
     background-size: contain
     background-position: bottom
+    transform: translate3d(0, 0, 0)
 
     &::before
       position: absolute
@@ -69,7 +70,7 @@
         font-weight: bolder
         left: -2px
         position: absolute
-        top: -2px
+        transform: -2px
         width: 100%
         z-index: -1
         -webkit-animation: animate_glitch_1 .2s linear
@@ -103,35 +104,26 @@
 
     @-webkit-keyframes animate_glitch_1
       0%
-        top: 1px
-        left: 1px
+        transform: translateY(1px) translateX(1px)
       25%
-        top: 3px
-        left: 2px
+        transform: translateY(3px) translateX(2px)
       50%
-        top: -1px
-        left: -4px
+        transform: translateY(-1px) translateX(-4px)
       75%
-        top: 2px
-        left: 5px
+        transform: translateY(2px) translateX(5px)
       100%
-        top: 1px
-        left: -2px
+        transform: translateY(1px) translateX(-2px)
 
 
     @-webkit-keyframes animate_glitch_2
       0%
-        top: -1px
-        left: -1px
+        transform: translateY(-1px) translateX(-1px)
       25%
-        top: -3px
-        left: -2px
+        transform: translateY(-3px) translateX(-2px)
       50%
-        top: 1px
-        left: 4px
+        transform: translateY(1px) translateX(4px)
       100%
-        top: -1px
-        left: -1px
+        transform: translateY(-1px) translateX(-1px)
 
 
     @-moz-keyframes disappear
@@ -143,35 +135,26 @@
 
     @-moz-keyframes animate_glitch_1
       0%
-        top: 1px
-        left: 1px
+        transform: translateY(1px) translateX(1px)
       25%
-        top: 3px
-        left: 2px
+        transform: translateY(3px) translateX(2px)
       50%
-        top: -1px
-        left: -4px
+        transform: translateY(-1px) translateX(-4px)
       75%
-        top: 2px
-        left: 5px
+        transform: translateY(2px) translateX(5px)
       100%
-        top: 1px
-        left: -2px
+        transform: translateY(1px) translateX(2px)
 
 
     @-moz-keyframes animate_glitch_2
       0%
-        top: -1px
-        left: -1px
+        transform: translateY(-1px) translateX(-1px)
       25%
-        top: -3px
-        left: -2px
+        transform: translateY(-3px) translateX(-2px)
       50%
-        top: 1px
-        left: 4px
+        transform: translateY(1px) translateX(4px)
       100%
-        top: -1px
-        left: -1px
+        transform: translateY(-1px) translateX(-1px)
 
 
     @-o-keyframes disappear
@@ -183,35 +166,26 @@
 
     @-o-keyframes animate_glitch_1
       0%
-        top: 1px
-        left: 1px
+        transform: translateY(1px) translateX(1px)
       25%
-        top: 3px
-        left: 2px
+        transform: translateY(3px) translateX(2px)
       50%
-        top: -1px
-        left: -4px
+        transform: translateY(-1px) translateX(-4px)
       75%
-        top: 2px
-        left: 5px
+        transform: translateY(2px) translateX(5px)
       100%
-        top: 1px
-        left: -2px
+        transform: translateY(1px) translateX(-2px)
 
 
     @-o-keyframes animate_glitch_2
       0%
-        top: -1px
-        left: -1px
+        transform: translateY(-1px) translateX(-1px)
       25%
-        top: -3px
-        left: -2px
+        transform: translateY(-3px) translateX(-2px)
       50%
-        top: 1px
-        left: 4px
+        transform: translateY(1px) translateX(4px)
       100%
-        top: -1px
-        left: -1px
+        transform: translateY(-1px) translateX(-1px)
 
 
     @media (min-width: $screen-md)

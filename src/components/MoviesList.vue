@@ -199,7 +199,7 @@
             flex-shrink: 0
             transform: none
             margin-bottom: 10px
-            box-shadow: 1px 0px 0 0 $color-gold, -1px 0 0 0 $color-gold, 0 1px 0 0 $color-gold, 0 -1px 0 0 $color-gold
+            box-shadow: 1px 0 0 0 $color-gold, -1px 0 0 0 $color-gold, 0 1px 0 0 $color-gold, 0 -1px 0 0 $color-gold
             transition: all 0.6s ease-in-out
 
             &:hover

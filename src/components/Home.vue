@@ -19,6 +19,8 @@
   .home
     min-height: 200px
     height: 100%
+    box-sizing: border-box
+    padding: 0 30px
     position: relative
     display: flex
     justify-content: center

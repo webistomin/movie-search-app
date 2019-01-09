@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="movies__wrapper">
     <h2 class="movies__title">{{$route.meta.title}}</h2>
     <MoviesList :moviesList="getMoviesForCurrentRoute"
                 v-if="getMoviesForCurrentRoute"

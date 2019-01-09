@@ -3,12 +3,14 @@
     <div class="socials__block">
       <h2 class="socials__title title">{{getPageTitle}}</h2>
       <SocialsList
-        v-if="$route.name === 'movie' && !getLoadingState && getMovieReviews.length !== 0"
+        v-if="isSocialsVisible"
         :reviews-list="getMovieReviews"/>
-      <TwitterList v-else-if="getTweets.length !== 0 && $route.name !== 'movie'"
+      <TwitterList v-else-if="isTwitterPostsVisible"
                    :tweets-list="getTweets"
       />
-      <p class="socials__error" v-else-if="!getLoadingState">Nothing to see here :(</p>
+      <p class="socials__error" v-else-if="!getLoadingState">
+        Nothing to see here :(
+      </p>
     </div>
   </aside>
 </template>
@@ -21,6 +23,12 @@
     name: 'Socials',
     components: { TwitterList, SocialsList },
     computed: {
+      isTwitterPostsVisible() {
+        return this.getTweets.length !== 0 && this.$route.name !== 'movie';
+      },
+      isSocialsVisible() {
+        return this.$route.name === 'movie' && !this.getLoadingState && this.getMovieReviews.length !== 0;
+      },
       getPageTitle() {
         return this.$route.name === 'movie' ? 'Last reviews' : 'Last news';
       },

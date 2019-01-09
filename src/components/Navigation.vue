@@ -1,54 +1,16 @@
 <template>
   <nav class="main-nav"
        :class="getNavigationClass">
-    <ul class="main-nav__list">
-      <li class="main__nav__item">
-        <router-link to="/now-playing" 
-                     class="main-nav__link"
-                     :active-class="'main-nav__link--active'">
-          <svg class="main-nav__icon" width="17" height="17">
-            <use xlink:href="#icon-calendar"></use>
-          </svg>
-          Now Playing
-        </router-link>
-      </li>
-      <li class="main__nav__item">
-        <router-link to="/popular"
-                     class="main-nav__link"
-                     :active-class="'main-nav__link--active'">
-          <svg class="main-nav__icon" width="17" height="17">
-            <use xlink:href="#icon-popular"></use>
-          </svg>
-          Popular
-        </router-link>
-      </li>
-      <li class="main__nav__item">
-        <router-link to="/top-rated"
-                     class="main-nav__link"
-                     :active-class="'main-nav__link--active'">
-          <svg class="main-nav__icon" width="17" height="17">
-            <use xlink:href="#icon-top"></use>
-          </svg>
-          Top Rated
-        </router-link>
-      </li>
-      <li class="main__nav__item">
-        <router-link to="/upcoming"
-                     class="main-nav__link"
-                     :active-class="'main-nav__link--active'">
-          <svg class="main-nav__icon" width="17" height="17">
-            <use xlink:href="#icon-trailer"></use>
-          </svg>
-          Upcoming
-        </router-link>
-      </li>
-    </ul>
+    <NavigationList/>
   </nav>
 </template>
 
 <script>
+  import NavigationList from './NavigationList';
+
   export default {
     name: 'Navigation',
+    components: { NavigationList },
     computed: {
       getNavigationState() {
         return this.$store.getters.getNavigationState;

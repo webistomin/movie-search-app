@@ -1,5 +1,6 @@
 <template>
   <nav class="main-nav"
+       role="navigation"
        :class="getNavigationClass">
     <NavigationList/>
   </nav>

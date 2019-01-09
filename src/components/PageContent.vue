@@ -1,5 +1,5 @@
 <template>
-  <main class="page-content">
+  <main class="page-content" role="main">
     <Intro/>
     <section class="movies"
              :class="{'movies--noscroll' : isNoScroll}">

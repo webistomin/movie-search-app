@@ -1,6 +1,6 @@
 <template>
   <ul class="socials__list"
-      v-if="reviewsList && reviewsList.length !== 0 && !getLoadingState">
+      v-if="isListVisible">
     <socials-list-item
       v-for="review of reviewsList"
       :key="review.id"
@@ -22,6 +22,9 @@
       },
     },
     computed: {
+      isListVisible() {
+        return this.reviewsList && this.reviewsList.length !== 0 && !this.getLoadingState;
+      },
       getLoadingState() {
         return this.$store.getters.getLoadingState;
       },

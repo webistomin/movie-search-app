@@ -1,7 +1,7 @@
 <template>
   <section class="home">
     <h2 class="home__title">Powered by The Movie Database</h2>
-    <a href="#" class="home__link" rel="noopener nofollow">View code</a>
+    <a href="#" class="home__link" rel="noopener nofollow" target="_blank">View code</a>
   </section>
 </template>
 

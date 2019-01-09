@@ -1,5 +1,5 @@
 <template>
-  <header class="page-header">
+  <header class="page-header" role="banner">
     <div class="page-header__inner">
       <div class="page-header__block page-header__block--heading">
         <h1 class="page-header__logo">

@@ -32,6 +32,9 @@
     background-size: contain
     background-position: bottom
 
+    @supports (background: -webkit-image-set(url("~/static/img/content/home-bg.webp") 1x))
+      background-image: url("~/static/img/content/home-bg.webp"), url("~/static/img/content/home-bg.svg"), radial-gradient(at 90% top, #252621 0%, #0a1526 40%)
+
     &::before
       position: absolute
       content: ""

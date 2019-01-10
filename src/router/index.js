@@ -1,14 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '../components/Home';
-// import NavigationPage from '../components/NavigationPage';
-// import NotFound from '../components/NotFound';
-// import MoviePage from '../components/MoviePage';
+import NavigationPage from '../components/NavigationPage';
+import NotFound from '../components/NotFound';
+import MoviePage from '../components/MoviePage';
 import store from '../store/index';
-
-const NotFound = () => import('./../components/NotFound');
-const NavigationPage = () => import('../components/NavigationPage');
-const MoviePage = () => import('../components/MoviePage');
 
 Vue.use(Router);
 

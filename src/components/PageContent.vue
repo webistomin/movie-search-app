@@ -83,7 +83,6 @@
       overflow-y: scroll
       height: calc(100vh - 60px)
 
-
       &--noscroll
         overflow: hidden
 

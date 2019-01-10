@@ -165,8 +165,6 @@
       flex-shrink: 0
       overflow-y: scroll
       height: calc(100vh - 60px)
-      scrollbar-width: thin
-      scrollbar-color: $color-gold rgba(0, 0, 0, .3)
 
       &--noscroll
         overflow: hidden

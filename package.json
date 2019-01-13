@@ -123,10 +123,7 @@
       "**/src/*.{js,vue}",
       "!**/node_modules/**"
     ],
-    "coverageReporters": [
-      "html",
-      "text-summary"
-    ],
+    "coverageReporters": ["json", "lcov", "text", "clover"],
     "setupFiles": ["jest-localstorage-mock"]
   }
 }

@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for root/Users/webistomin/Desktop/movie-search-app/src/store/userBlock.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\..\..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\..\..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\..\..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\..\..\..\..\index.html">All files</a> / <a href="index.html">root/Users/webistomin/Desktop/movie-search-app/src/store</a> userBlock.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/26</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import axios from 'axios';
+&nbsp;
+export default {
+  state: {
+    userDetails: [],
+    favoriteMovies: [],
+    currentPage: 1,
+    totalPages: null,
+  },
+  mutations: {
+    setUserDetails(state, payload) {
+<span class="cstat-no" title="statement not covered" >      state.userDetails = payload;</span>
+    },
+    setFavoriteMovies(state, payload) {
+<span class="cstat-no" title="statement not covered" >      if (payload.shouldConcat) {</span>
+<span class="cstat-no" title="statement not covered" >        state.favoriteMovies = state.favoriteMovies.concat(payload.movies);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        state.favoriteMovies = payload.movies;</span>
+      }
+    },
+    setFavoriteCurrentPage(state) {
+<span class="cstat-no" title="statement not covered" >      state.currentPage += 1;</span>
+    },
+    setTotalPages(state, payload) {
+<span class="cstat-no" title="statement not covered" >      state.totalPages = payload;</span>
+    },
+  },
+  actions: {
+    async markMovieAsFavorite({ commit, rootState, state }, payload) {
+      const userId = <span class="cstat-no" title="statement not covered" >state.userDetails.id;</span>
+      const personalAPIKey = <span class="cstat-no" title="statement not covered" >rootState.shared.personalAPIKey;</span>
+      const sessionID = <span class="cstat-no" title="statement not covered" >rootState.shared.sessionId;</span>
+      const message = <span class="cstat-no" title="statement not covered" >payload.favoriteState ? 'Film has been added to favorite list' : 'Film has been removed from favorite list';</span>
+<span class="cstat-no" title="statement not covered" >      await axios</span>
+        .post(`https://api.themoviedb.org/3/account/${userId}/favorite?api_key=${personalAPIKey}&amp;session_id=${sessionID}`,
+          {
+            media_type: 'movie',
+            media_id: payload.movieID,
+            favorite: payload.favoriteState,
+          })
+        .then(<span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >          commit('setMessage', message);</span>
+        })
+        .catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; {
+<span class="cstat-no" title="statement not covered" >          commit('setErrorMessage', error.message);</span>
+        });
+    },
+    fetchUserDetails({ commit, rootState }) {
+<span class="cstat-no" title="statement not covered" >      axios</span>
+        .get(`https://api.themoviedb.org/3/account?api_key=${rootState.shared.personalAPIKey}&amp;session_id=${rootState.shared.sessionId}`)
+        .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
+<span class="cstat-no" title="statement not covered" >          commit('setUserDetails', response.data);</span>
+        })
+        .catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; {
+<span class="cstat-no" title="statement not covered" >          commit('setErrorMessage', error.message);</span>
+        });
+    },
+    async fetchFavoriteMovies({ commit, rootState, state }, payload) {
+      const accountID = <span class="cstat-no" title="statement not covered" >state.userDetails.id;</span>
+<span class="cstat-no" title="statement not covered" >      await axios</span>
+        .get(`https://api.themoviedb.org/3/account/${accountID}/favorite/movies?api_key=${rootState.shared.personalAPIKey}&amp;session_id=${rootState.shared.sessionId}&amp;language=en-US&amp;sort_by=created_at.asc&amp;page=${state.currentPage}`)
+        .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
+<span class="cstat-no" title="statement not covered" >          commit('setFavoriteMovies', {</span>
+            movies: response.data.results,
+            shouldConcat: payload,
+          });
+<span class="cstat-no" title="statement not covered" >          commit('setTotalPages', response.data.total_pages);</span>
+<span class="cstat-no" title="statement not covered" >          commit('setLoadingState', false);</span>
+        })
+        .catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; {
+<span class="cstat-no" title="statement not covered" >          commit('setErrorMessage', error.message);</span>
+        });
+    },
+  },
+  getters: {
+    getUserDetails(state) {
+<span class="cstat-no" title="statement not covered" >      return state.userDetails;</span>
+    },
+    getFavoriteMovies(state) {
+<span class="cstat-no" title="statement not covered" >      return state.favoriteMovies;</span>
+    },
+    getFavoriteTotalPages(state) {
+<span class="cstat-no" title="statement not covered" >      return state.totalPages;</span>
+    },
+    getFavoriteCurrentPage(state) {
+<span class="cstat-no" title="statement not covered" >      return state.currentPage;</span>
+    },
+  },
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jan 13 2019 11:13:55 GMT+0300 (GMT+03:00)
+</div>
+</div>
+<script src="..\..\..\..\..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\..\..\..\..\sorter.js"></script>
+</body>
+</html>

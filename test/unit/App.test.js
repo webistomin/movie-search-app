@@ -25,6 +25,7 @@ describe('App.vue', () => {
       fetchRequestToken: jest.fn(),
       fetchUserDetails: jest.fn(),
       fetchNewSession: jest.fn(),
+      fetchFavoriteMovies: jest.fn(),
     };
 
     state = {
@@ -48,7 +49,7 @@ describe('App.vue', () => {
   it('При создании вызывается "fetchTweets"', () => {
     const wrapper = shallowMount(App, { store, router, localVue });
     actions.fetchTweets();
-    
+
     expect(actions.fetchTweets).toHaveBeenCalled()
   });
 
@@ -66,9 +67,9 @@ describe('App.vue', () => {
     localStorage.setItem('genresList', JSON.stringify([{id: 28, name: "Action"}]));
 
     if (localStorage.getItem('genresList')) {
+      store.commit('setGenresList', JSON.parse(localStorage.genresList));
       mutations.setGenresList(state, JSON.parse(localStorage.getItem('genresList')));
     }
-
     expect(state.genres).toEqual([{id: 28, name: "Action"}]);
   });
 
@@ -93,9 +94,6 @@ describe('App.vue', () => {
 
     if (localStorage.sessionId) {
       store.commit('setSessionId', JSON.parse(localStorage.sessionId));
-      store.commit('setAuthorizeState', true);
-      store.dispatch('fetchUserDetails');
-
       mutations.setSessionId(state, JSON.parse(localStorage.sessionId));
       mutations.setAuthorizeState(state, true);
       actions.fetchUserDetails();
@@ -125,5 +123,43 @@ describe('App.vue', () => {
 
     expect(state.requestToken).toEqual('qwerty123');
   });
+
+  it('Загрузка избранного', () => {
+    const wrapper = shallowMount(App, {store, router, localVue});
+    const favorites = [];
+
+    localStorage.setItem('sessionId', JSON.stringify('qwerty1'));
+
+    if (favorites.length === 0 && localStorage.sessionId && router.name !== 'Favorite') {
+      actions.fetchFavoriteMovies()
+    }
+
+    expect(actions.fetchFavoriteMovies).toHaveBeenCalled()
+  });
+
+  it('Израбнные не грузятся избранного', () => {
+    const wrapper = shallowMount(App, {store, router, localVue});
+    const favorites = ['Prison'];
+
+    localStorage.setItem('sessionId', JSON.stringify('qwerty1'));
+
+    if (favorites.length === 0 && localStorage.sessionId && router.name !== 'Favorite') {
+      actions.fetchFavoriteMovies()
+    }
+
+    expect(actions.fetchFavoriteMovies).toHaveBeenCalledTimes(0)
+  });
+
+  it('Израбнные не грузятся избранного без session id', () => {
+    const wrapper = shallowMount(App, {store, router, localVue});
+    const favorites = [];
+
+    if (favorites.length === 0 && localStorage.sessionId && router.name !== 'Favorite') {
+      actions.fetchFavoriteMovies()
+    }
+
+    expect(actions.fetchFavoriteMovies).toHaveBeenCalledTimes(0)
+  });
+
 
 });

@@ -57,6 +57,7 @@ export default {
   components: { Index },
   created() {
     this.$store.dispatch('fetchTweets');
+
     if (localStorage.genresList) {
       this.$store.commit('setGenresList', JSON.parse(localStorage.genresList));
     } else {

@@ -122,6 +122,7 @@
       "**/src/*.{js,vue}",
       "!**/node_modules/**"
     ],
-    "coverageReporters": ["html", "text-summary"]
+    "coverageReporters": ["html", "text-summary"],
+    "setupTestFrameworkScriptFile": "<rootDir>/test/localStorageMock.js"
   }
 }

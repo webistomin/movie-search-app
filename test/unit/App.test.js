@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import App from '../../src/App'
 import sharedMutations from '../../src/store/mutations'
+import routes from '../../src/router/index'
 
 const localVue = createLocalVue();
 
@@ -43,7 +44,7 @@ describe('App.vue', () => {
       mutations,
     });
 
-    router = new VueRouter()
+    router = routes
   });
 
   it('При создании вызывается "fetchTweets"', () => {
@@ -104,6 +105,22 @@ describe('App.vue', () => {
     expect(state.isAuthorized).toEqual(true);
   });
 
+  it('Если в localStorage нет sessionID, то функции не вызываются', () => {
+    const wrapper = shallowMount(App, {store, router, localVue});
+    localStorage.clear();
+
+    if (localStorage.sessionId) {
+      store.commit('setSessionId', JSON.parse(localStorage.sessionId));
+      mutations.setSessionId(state, JSON.parse(localStorage.sessionId));
+      mutations.setAuthorizeState(state, true);
+      actions.fetchUserDetails();
+    }
+
+    expect(actions.fetchUserDetails).toHaveBeenCalledTimes(0);
+    expect(state.sessionId).toEqual(null);
+    expect(state.isAuthorized).toEqual(null);
+  });
+
   it('Если нет реквест токена, то вызывается action "fetchRequestToken"', () => {
     const wrapper = shallowMount(App, {store, router, localVue});
     if (!sessionStorage.getItem('requestToken')) {
@@ -124,11 +141,12 @@ describe('App.vue', () => {
     expect(state.requestToken).toEqual('qwerty123');
   });
 
-  it('Загрузка избранного', () => {
+  it('Загрузка избранных фильмов', () => {
     const wrapper = shallowMount(App, {store, router, localVue});
-    const favorites = [];
 
+    const favorites = [];
     localStorage.setItem('sessionId', JSON.stringify('qwerty1'));
+    router.push('/');
 
     if (favorites.length === 0 && localStorage.sessionId && router.name !== 'Favorite') {
       actions.fetchFavoriteMovies()
@@ -137,11 +155,10 @@ describe('App.vue', () => {
     expect(actions.fetchFavoriteMovies).toHaveBeenCalled()
   });
 
-  it('Израбнные не грузятся избранного', () => {
+  it('Израбнные не грузятся избранного, т.к. уже есть массив фильмов', () => {
     const wrapper = shallowMount(App, {store, router, localVue});
-    const favorites = ['Prison'];
 
-    localStorage.setItem('sessionId', JSON.stringify('qwerty1'));
+    const favorites = ['Prison'];
 
     if (favorites.length === 0 && localStorage.sessionId && router.name !== 'Favorite') {
       actions.fetchFavoriteMovies()
@@ -152,9 +169,25 @@ describe('App.vue', () => {
 
   it('Израбнные не грузятся избранного без session id', () => {
     const wrapper = shallowMount(App, {store, router, localVue});
+
     const favorites = [];
+    localStorage.sessionId = null;
 
     if (favorites.length === 0 && localStorage.sessionId && router.name !== 'Favorite') {
+      actions.fetchFavoriteMovies()
+    }
+
+    expect(actions.fetchFavoriteMovies).toHaveBeenCalledTimes(0)
+  });
+
+  it('Израбнные не грузятся на странице избранных', () => {
+    const wrapper = shallowMount(App, {store, router, localVue});
+
+    const favorites = [];
+    localStorage.setItem('sessionId', JSON.stringify('qwerty1'));
+    wrapper.vm.$router.push({path: '/favorite', name: 'Favorite'});
+
+    if (favorites.length === 0 && localStorage.sessionId && wrapper.vm.$route.name !== 'Favorite') {
       actions.fetchFavoriteMovies()
     }
 

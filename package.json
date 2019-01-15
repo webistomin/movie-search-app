@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "eslint-plugin-jest": "^22.1.3",
     "twitter-fetcher": "^18.0.2",
     "vue": "^2.5.2",
     "vue-carousel": "^0.16.2",
@@ -120,10 +121,17 @@
     },
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "**/src/*.{js,vue}",
+      "**/src/**/*.{js,vue}",
       "!**/node_modules/**"
     ],
-    "coverageReporters": ["json", "lcov", "text", "clover"],
-    "setupFiles": ["jest-localstorage-mock"]
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover"
+    ],
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
   }
 }

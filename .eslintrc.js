@@ -8,11 +8,13 @@ module.exports = {
   },
   env: {
     browser: true,
+    "jest/globals": true,
   },
-  extends: 'airbnb-base',
+  extends: ['airbnb-base', "plugin:jest/recommended"],
   // required to lint *.vue files
   plugins: [
-    'html'
+    'html',
+    "jest"
   ],
   // check if imports actually resolve
   'settings': {

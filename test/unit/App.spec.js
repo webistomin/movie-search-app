@@ -2,6 +2,7 @@ import { shallowMount, createLocalVue, mount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import App from '../../src/App';
 import routes from '../../src/router/';
+import projectStore from '../../src/store';
 
 
 describe('App.js', () => {
@@ -9,6 +10,7 @@ describe('App.js', () => {
   let store;
   let state;
   let mutations;
+  let getters;
   let router;
   let vm;
   let mockedRoute;
@@ -20,11 +22,40 @@ describe('App.js', () => {
 
     actions = {
       fetchNewSession: jest.fn(),
-      fetchNewTweets: jest.fn(),
+      fetchGenresList: jest.fn(),
+      fetchRequestToken: jest.fn(),
+      fetchTweets: jest.fn(),
+      fetchFavoriteMovies: jest.fn(),
+    };
+
+    mutations = {
+      setRequestToken: (state, payload) => {
+        state.requestToken = payload;
+      },
+      setSessionId: (state, payload) => {
+        state.sessionId = payload;
+      },
+      setFavoriteMovies: (state, payload) => {
+        state.favoriteMovies = payload;
+      },
+    };
+
+    state = {
+      requestToken: null,
+      sessionId: null,
+      favoriteMovies: [],
+    };
+
+    getters = {
+      getSessionId: state => state.sessionId,
+      getFavoriteMovies: state => state.favoriteMovies,
     };
 
     store = new Vuex.Store({
+      state,
+      mutations,
       actions,
+      getters,
     });
 
     localVue = createLocalVue();
@@ -63,7 +94,76 @@ describe('App.js', () => {
         localVue,
         router,
       }).vm;
-      expect(actions.fetchNewTweets).toHaveBeenCalled();
+      expect(actions.fetchTweets).toHaveBeenCalled();
+    });
+  });
+
+  describe('test "fetchRequestToken" action', () => {
+    it('if there is no request token in sessionStorage, then call action "fetchRequestToken"', () => {
+      vm = shallowMount(App, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      sessionStorage.removeItem('requestToken');
+      expect(actions.fetchRequestToken).toHaveBeenCalled();
+    });
+
+    // it('if there is request token in sessionStorage, then call mutation "setRequestToken"', () => {
+    //   vm = shallowMount(App, {
+    //     store,
+    //     localVue,
+    //     router,
+    //   }).vm;
+    //   sessionStorage.setItem('requestToken', 'qwerty123');
+    //   console.log(sessionStorage.getItem('requestToken'));
+    //   expect(state.requestToken).toEqual('qwerty123');
+    // });
+  });
+
+  describe('test "fetchFavoriteMovies" action', () => {
+    it('if getSessionId && getFavoriteMovies.length === 0 && $route.name !== "Favorite", then call action "fetchFavoriteMovies"', () => {
+      store.commit('setSessionId', 'qwerty123');
+      vm = shallowMount(App, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      expect(actions.fetchFavoriteMovies).toHaveBeenCalled();
+    });
+
+    it('if there is no sessionId, doesnt call action', () => {
+      vm = shallowMount(App, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      expect(actions.fetchFavoriteMovies).not.toHaveBeenCalled();
+    });
+
+    it('if there is favorite movies, doesnt call action', () => {
+      store.commit('setSessionId', 'qwerty123');
+      store.commit('setFavoriteMovies', [{ id: 0, title: 'Prison Break' }]);
+      vm = shallowMount(App, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      expect(actions.fetchFavoriteMovies).not.toHaveBeenCalled();
+    });
+
+    it('if route.name === favorite, doesnt call action', () => {
+      store.commit('setSessionId', 'qwerty123');
+      mockedRoute = { path: '/favorite', name: 'Favorite', query: { approved: 'true' } };
+      vm = shallowMount(App, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      expect(actions.fetchFavoriteMovies).not.toHaveBeenCalled();
     });
   });
 });

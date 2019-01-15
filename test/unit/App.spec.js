@@ -19,6 +19,7 @@ describe('App.js', () => {
   beforeEach(() => {
     localStorage.clear();
     jest.clearAllMocks();
+    jest.resetModules();
 
     actions = {
       fetchNewSession: jest.fn(),
@@ -164,6 +165,34 @@ describe('App.js', () => {
         },
       }).vm;
       expect(actions.fetchFavoriteMovies).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('test "fixCrappyScrollBehavior" on route change', () => {
+    jest.useFakeTimers();
+    it('call fixCrappyScrollBehavior on route change', () => {
+      vm = shallowMount(App, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      vm.$router.push('/now-playing');
+      expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 250);
+    });
+
+    it('set scrollTo correct', () => {
+      document.body.innerHTML = `
+       <div>
+        <ul class="movies"></ul>
+       </div> 
+      `;
+      vm = shallowMount(App, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      vm.fixCrappyScrollBehavior();
+      expect(document.querySelector('.movies').scrollTop).toEqual(0);
     });
   });
 });

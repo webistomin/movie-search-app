@@ -63,7 +63,6 @@ export default {
     } else {
       this.$store.dispatch('fetchGenresList');
     }
-
     if (!sessionStorage.requestToken) {
       this.$store.dispatch('fetchRequestToken');
     } else {

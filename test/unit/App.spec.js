@@ -1,9 +1,7 @@
-import { shallowMount, createLocalVue, mount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import App from '../../src/App';
 import routes from '../../src/router/';
-import projectStore from '../../src/store';
-
 
 describe('App.js', () => {
   let actions;
@@ -27,6 +25,7 @@ describe('App.js', () => {
       fetchRequestToken: jest.fn(),
       fetchTweets: jest.fn(),
       fetchFavoriteMovies: jest.fn(),
+      fetchUserDetails: jest.fn(),
     };
 
     mutations = {
@@ -39,17 +38,26 @@ describe('App.js', () => {
       setFavoriteMovies: (state, payload) => {
         state.favoriteMovies = payload;
       },
+      setGenresList: (state, payload) => {
+        state.genresList = payload;
+      },
+      setAuthorizeState: (state, payload) => {
+        state.isAuthorized = payload;
+      },
     };
 
     state = {
       requestToken: null,
       sessionId: null,
       favoriteMovies: [],
+      genresList: [],
+      isAuthorized: false,
     };
 
     getters = {
       getSessionId: state => state.sessionId,
       getFavoriteMovies: state => state.favoriteMovies,
+      getAuthorizeState: state => state.isAuthorized,
     };
 
     store = new Vuex.Store({
@@ -101,25 +109,24 @@ describe('App.js', () => {
 
   describe('test "fetchRequestToken" action', () => {
     it('if there is no request token in sessionStorage, then call action "fetchRequestToken"', () => {
+      sessionStorage.removeItem('requestToken');
       vm = shallowMount(App, {
         store,
         localVue,
         router,
       }).vm;
-      sessionStorage.removeItem('requestToken');
       expect(actions.fetchRequestToken).toHaveBeenCalled();
     });
 
-    // it('if there is request token in sessionStorage, then call mutation "setRequestToken"', () => {
-    //   vm = shallowMount(App, {
-    //     store,
-    //     localVue,
-    //     router,
-    //   }).vm;
-    //   sessionStorage.setItem('requestToken', 'qwerty123');
-    //   console.log(sessionStorage.getItem('requestToken'));
-    //   expect(state.requestToken).toEqual('qwerty123');
-    // });
+    it('if there is request token in sessionStorage, then call mutation "setRequestToken"', () => {
+      sessionStorage.setItem('requestToken', JSON.stringify('qwerty123'));
+      vm = shallowMount(App, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      expect(state.requestToken).toEqual('qwerty123');
+    });
   });
 
   describe('test "fetchFavoriteMovies" action', () => {
@@ -193,6 +200,54 @@ describe('App.js', () => {
       }).vm;
       vm.fixCrappyScrollBehavior();
       expect(document.querySelector('.movies').scrollTop).toEqual(0);
+    });
+  });
+
+  describe('test "fetchGenresList" action', () => {
+    it('if there is no genres list in localStorage, then call action "fetchGenresList"', () => {
+      localStorage.removeItem('genresList');
+      vm = shallowMount(App, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      expect(actions.fetchGenresList).toHaveBeenCalled();
+    });
+
+    it('if there is genres list in sessionStorage, then call mutation "setGenresList"', () => {
+      localStorage.setItem('genresList', JSON.stringify({ id: 0, title: 'Action' }));
+      vm = shallowMount(App, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      expect(state.genresList).toEqual({ id: 0, title: 'Action' });
+    });
+  });
+
+  describe('test "fetchUserDetails" action', () => {
+    it('if there is sessionId in localStorage, then call action "fetchUserDetails"', () => {
+      localStorage.setItem('sessionId', JSON.stringify('qwerty123'));
+      vm = shallowMount(App, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      expect(state.isAuthorized).toEqual(true);
+      expect(state.sessionId).toEqual('qwerty123');
+      expect(actions.fetchUserDetails).toHaveBeenCalled();
+    });
+
+    it('if there is no sessionId in localStorage, then action "fetchUserDetails" doest call', () => {
+      localStorage.removeItem('sessionId');
+      vm = shallowMount(App, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      expect(state.isAuthorized).toEqual(false);
+      expect(state.sessionId).toEqual(null);
+      expect(actions.fetchUserDetails).not.toHaveBeenCalled();
     });
   });
 });

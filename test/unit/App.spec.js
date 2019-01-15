@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import App from '../../src/App';
 import routes from '../../src/router/';
 
-describe('App.js', () => {
+describe('App.vue', () => {
   let actions;
   let store;
   let state;
@@ -70,6 +70,15 @@ describe('App.js', () => {
     localVue = createLocalVue();
     localVue.use(Vuex);
     router = routes;
+  });
+
+  it('Matches snapshot', () => {
+    vm = shallowMount(App, {
+      store,
+      localVue,
+      router,
+    }).vm;
+    expect(vm.$el).toMatchSnapshot();
   });
 
   describe('test "fetchNewSession" action', () => {

@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BestListItem Matches snapshot 1`] = `
+<li
+  class="best__item"
+>
+  <router-link-stub
+    class="best__link"
+    to="/movie/0"
+  >
+    <picture
+      class="best__pic best__pic--silver"
+    >
+      <img
+        alt="Prison Break"
+        class="best__img"
+        height="41"
+        src="https://image.tmdb.org/t/p/w92/https://pmctvline2.files.wordpress.com/2016/01/prison-break-returns-fox.jpg?w=620&h=420&crop=1"
+        width="41"
+      />
+    </picture>
+     
+    <div
+      class="best__block best__block--padding"
+    >
+      <span
+        class="best__name"
+      >
+        Prison Break
+      </span>
+       
+      <span
+        class="best__rate"
+      >
+        <svg
+          class="best__icon"
+          height="12"
+          width="12"
+        >
+          <use
+            xlink:href="#icon-like"
+          />
+        </svg>
+        
+        10
+    
+      </span>
+    </div>
+  </router-link-stub>
+</li>
+`;

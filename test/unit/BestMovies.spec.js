@@ -60,7 +60,7 @@ describe('App.vue', () => {
   });
 
   describe('test "fetchPopularMovies" action', () => {
-    it('if route.name.approved !== "popular", then call action', () => {
+    it('if route.name !== "popular", then call action', () => {
       vm = shallowMount(BestMovies, {
         store,
         localVue,
@@ -69,7 +69,7 @@ describe('App.vue', () => {
       expect(actions.fetchPopularMovies).toHaveBeenCalled();
     });
 
-    it('if route.name.approved === "popular", then doesnt call action', () => {
+    it('if route.name === "popular", then doesnt call action', () => {
       mockedRoute = { path: '/popular', name: 'popular' };
       vm = shallowMount(BestMovies, {
         store,
@@ -82,7 +82,7 @@ describe('App.vue', () => {
       expect(actions.fetchPopularMovies).not.toHaveBeenCalled();
     });
 
-    it('if route.name.approved !== "popular" and !== "movie", then commit mutation', async () => {
+    it('if route.name !== "popular" and !== "movie", then commit mutation', async () => {
       mockedRoute = { path: '/', name: 'Home' };
       vm = shallowMount(BestMovies, {
         store,
@@ -96,7 +96,7 @@ describe('App.vue', () => {
       expect(state.loadingState).toEqual(false);
     });
 
-    it('if route.name.approved !== "popular" and !== "movie", then commit mutation', async () => {
+    it('if route.name === "movie", then doesnt commit mutation', async () => {
       mockedRoute = { path: '/movie/297802', name: 'movie' };
       vm = shallowMount(BestMovies, {
         store,
@@ -108,6 +108,15 @@ describe('App.vue', () => {
       }).vm;
       await actions.fetchPopularMovies;
       expect(state.loadingState).toEqual(null);
+    });
+
+    it('getPopularMovies getter work correctly', () => {
+      vm = shallowMount(BestMovies, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      expect(vm.getPopularMovies).toEqual([{ id: 0, title: 'Prison Break' }]);
     });
   });
 });

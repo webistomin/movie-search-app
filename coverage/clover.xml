@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1547802099352" clover="3.2.0">
-  <project timestamp="1547802099352" name="All files">
-    <metrics statements="474" coveredstatements="68" conditionals="138" coveredconditionals="22" methods="159" coveredmethods="10" elements="771" coveredelements="100" complexity="0" loc="474" ncloc="474" packages="5" files="36" classes="36">
+<coverage generated="1547803611401" clover="3.2.0">
+  <project timestamp="1547803611401" name="All files">
+    <metrics statements="472" coveredstatements="66" conditionals="138" coveredconditionals="22" methods="159" coveredmethods="10" elements="769" coveredelements="98" complexity="0" loc="472" ncloc="472" packages="5" files="36" classes="36">
       <package name="src">
         <metrics statements="25" coveredstatements="18" conditionals="13" coveredconditionals="13" methods="3" coveredmethods="3"/>
         <file name="App.vue" path="C:\Users\webistomin\Desktop\movie-search-app\src\App.vue">
@@ -77,7 +77,7 @@
         </file>
       </package>
       <package name="src.components">
-        <metrics statements="238" coveredstatements="38" conditionals="103" coveredconditionals="8" methods="105" coveredmethods="5"/>
+        <metrics statements="236" coveredstatements="36" conditionals="103" coveredconditionals="8" methods="105" coveredmethods="5"/>
         <file name="BestList.vue" path="C:\Users\webistomin\Desktop\movie-search-app\src\components\BestList.vue">
           <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="16" count="2" type="stmt"/>
@@ -88,16 +88,14 @@
           <line num="55" count="5" type="cond" truecount="2" falsecount="0"/>
         </file>
         <file name="BestMovies.vue" path="C:\Users\webistomin\Desktop\movie-search-app\src\components\BestMovies.vue">
-          <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+          <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
           <line num="11" count="2" type="stmt"/>
-          <line num="16" count="5" type="stmt"/>
-          <line num="17" count="5" type="cond" truecount="2" falsecount="0"/>
-          <line num="18" count="4" type="stmt"/>
-          <line num="20" count="4" type="stmt"/>
-          <line num="21" count="4" type="cond" truecount="2" falsecount="0"/>
-          <line num="22" count="3" type="stmt"/>
-          <line num="23" count="3" type="stmt"/>
-          <line num="30" count="5" type="stmt"/>
+          <line num="16" count="6" type="stmt"/>
+          <line num="17" count="6" type="cond" truecount="2" falsecount="0"/>
+          <line num="18" count="5" type="stmt"/>
+          <line num="20" count="5" type="cond" truecount="2" falsecount="0"/>
+          <line num="21" count="4" type="stmt"/>
+          <line num="28" count="6" type="stmt"/>
         </file>
         <file name="Header.vue" path="C:\Users\webistomin\Desktop\movie-search-app\src\components\Header.vue">
           <metrics statements="30" coveredstatements="2" conditionals="8" coveredconditionals="0" methods="22" coveredmethods="0"/>

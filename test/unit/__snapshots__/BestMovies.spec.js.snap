@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App.vue Matches snapshot 1`] = `
+<section
+  class="best"
+>
+  <div
+    class="best__block"
+  >
+    <h2
+      class="best__title title"
+    >
+      Today best choice
+    </h2>
+  </div>
+   
+  <bestlist-stub
+    movieslist="[object Object]"
+  />
+</section>
+`;

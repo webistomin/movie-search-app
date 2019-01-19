@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header.vue Matches snapshot 1`] = `
+<section
+  class="message message--hidden"
+>
+  <button
+    class="message__btn"
+  >
+    Close
+  </button>
+   
+  <p
+    class="message__text"
+  >
+    
+    
+  
+  </p>
+</section>
+`;

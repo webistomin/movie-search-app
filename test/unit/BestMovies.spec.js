@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import BestMovies from '../../src/components/BestMovies';
 import routes from '../../src/router/';
 
-describe('App.vue', () => {
+describe('BestMovies.vue', () => {
   let actions;
   let store;
   let state;

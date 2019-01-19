@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount, createLocalVue, mount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import Header from '../../src/components/Header';
 import routes from '../../src/router/';
@@ -11,7 +11,6 @@ describe('Header.vue', () => {
   let getters;
   let router;
   let vm;
-  let mockedRoute;
   let localVue;
 
   beforeEach(() => {
@@ -37,6 +36,9 @@ describe('Header.vue', () => {
       setNavigationState: (state, payload) => {
         state.isNavigationOpened = payload;
       },
+      setSearchQuery: (state, payload) => {
+        state.searchQuery = payload;
+      },
     };
 
     state = {
@@ -44,10 +46,13 @@ describe('Header.vue', () => {
       isRowView: false,
       isGridView: true,
       isNavigationOpened: false,
+      userDetails: { avatar: { gravatar: { hash: 'qwerty123' } } },
+      searchQuery: null,
     };
 
     getters = {
       getNavigationState: state => state.isNavigationOpened,
+      getUserDetails: state => state.userDetails,
     };
 
     store = new Vuex.Store({
@@ -170,6 +175,102 @@ describe('Header.vue', () => {
       store.commit('setNavigationState', false);
       vm.toggleAppNavigation();
       expect(state.isNavigationOpened).toEqual(true);
+    });
+  });
+
+  describe('test "toggleUserMenu" method', () => {
+    it('set "isUserMenuOpened" to contrasting value', () => {
+      vm = shallowMount(Header, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      vm.toggleUserMenu();
+      expect(vm.$data.isUserMenuOpened).toEqual(true);
+    });
+  });
+
+  describe('test "getAvatarSrc" computed', () => {
+    it('return correct avatar', () => {
+      vm = shallowMount(Header, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      expect(vm.getAvatarSrc).toEqual('https://www.gravatar.com/avatar/qwerty123');
+    });
+  });
+
+  describe('test "getUserMenuClass" computed', () => {
+    it('return "page-header__list--opened" if user menu opened', () => {
+      vm = shallowMount(Header, {
+        store,
+        localVue,
+        router,
+        data() {
+          return {
+            isUserMenuOpened: true,
+          };
+        },
+      }).vm;
+      expect(vm.getUserMenuClass).toEqual('page-header__list--opened');
+    });
+
+    it('return "page-header__list--closed" if user menu closed', () => {
+      vm = shallowMount(Header, {
+        store,
+        localVue,
+        router,
+        data() {
+          return {
+            isUserMenuOpened: false,
+          };
+        },
+      }).vm;
+      expect(vm.getUserMenuClass).toEqual('page-header__list--closed');
+    });
+  });
+
+  describe('test "getUserButtonClass" computed', () => {
+    it('return "page-header__button--opened" if user menu opened', () => {
+      vm = shallowMount(Header, {
+        store,
+        localVue,
+        router,
+        data() {
+          return {
+            isUserMenuOpened: true,
+          };
+        },
+      }).vm;
+      expect(vm.getUserButtonClass).toEqual('page-header__button--opened');
+    });
+
+    it('return "page-header__button--closed" if user menu closed', () => {
+      vm = shallowMount(Header, {
+        store,
+        localVue,
+        router,
+        data() {
+          return {
+            isUserMenuOpened: false,
+          };
+        },
+      }).vm;
+      expect(vm.getUserButtonClass).toEqual('page-header__button--closed');
+    });
+  });
+
+  describe('test "searchQuery" computed', () => {
+    it('commit "setSearchQuery" after throttling input', () => {
+      vm = mount(Header, {
+        store,
+        localVue,
+        router,
+      });
+      const input = vm.find('.page-header__input');
+      input.setValue('Prison break');
+      expect(state.searchQuery).toEqual('Prison break');
     });
   });
 });

@@ -1,0 +1,564 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header.vue Matches snapshot 1`] = `
+<section
+  class="movie"
+>
+  <div
+    class="movie__background"
+    style="background-image: url(https://image.tmdb.org/t/p/w780//pbXgLEYh8rlG2Km5IGZPnhcnuSz.jpg);"
+  >
+    <h2
+      class="movie__tagline"
+    >
+      Fearless lives forever
+    </h2>
+  </div>
+   
+  <div
+    class="movie__inner"
+  >
+    <figure
+      class="movie__pic"
+    >
+      <picture>
+        <source
+          media="(min-width: 1900px)"
+          srcset="https://image.tmdb.org/t/p/w342//lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg"
+        />
+         
+        <img
+          alt="Bohemian Rhapsody"
+          class="movie__img"
+          src="https://image.tmdb.org/t/p/w185//lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg"
+        />
+      </picture>
+       
+      <figcaption
+        class="movie__rate"
+      >
+        <svg
+          class="circular-chart green"
+          viewBox="0 0 36 36"
+        >
+          <path
+            class="circle-bg"
+            d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+           
+          <path
+            class="circle"
+            d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+            stroke-dasharray="82, 100"
+          />
+           
+          <text
+            class="percentage"
+            x="18"
+            y="20.35"
+          >
+            
+            8.2
+          
+          </text>
+        </svg>
+      </figcaption>
+    </figure>
+     
+    <h2
+      class="movie__title"
+    >
+      
+      Bohemian Rhapsody
+    
+    </h2>
+     
+    <!---->
+     
+    <div
+      class="movie__block"
+    >
+      <span
+        class="movie__option"
+      >
+        Country:
+      </span>
+       
+      <ul
+        class="movie__values"
+      >
+        <li
+          class="movie__value"
+        >
+          
+          United Kingdom
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          United States of America
+        
+        </li>
+      </ul>
+    </div>
+     
+    <div
+      class="movie__block"
+    >
+      <span
+        class="movie__option"
+      >
+        Production companies:
+      </span>
+       
+      <ul
+        class="movie__values"
+      >
+        <li
+          class="movie__value"
+        >
+          
+          GK Films
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Regency Enterprises
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Queen Films
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Tribeca Productions
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          New Regency Pictures
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          20th Century Fox
+        
+        </li>
+      </ul>
+    </div>
+     
+    <div
+      class="movie__block"
+    >
+      <span
+        class="movie__option"
+      >
+        Release date:
+      </span>
+       
+      <span
+        class="movie__value"
+      >
+        
+        2018-10-24
+      
+      </span>
+    </div>
+     
+    <div
+      class="movie__block"
+    >
+      <span
+        class="movie__option"
+      >
+        Category:
+      </span>
+       
+      <ul
+        class="movie__values"
+      >
+        <li
+          class="movie__value"
+        >
+          
+          Drama
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Music
+        
+        </li>
+      </ul>
+    </div>
+     
+    <div
+      class="movie__block"
+    >
+      <span
+        class="movie__option"
+      >
+        Runtime:
+      </span>
+       
+      <span
+        class="movie__value"
+      >
+        135 minutes
+      </span>
+    </div>
+     
+    <div
+      class="movie__block"
+    >
+      <span
+        class="movie__option"
+      >
+        Budget:
+      </span>
+       
+      <span
+        class="movie__value"
+      >
+        52000000
+      </span>
+    </div>
+     
+    <div
+      class="movie__block"
+    >
+      <span
+        class="movie__option"
+      >
+        Revenue:
+      </span>
+       
+      <span
+        class="movie__value"
+      >
+        606043563
+      </span>
+    </div>
+     
+    <div
+      class="movie__block"
+    >
+      <span
+        class="movie__option"
+      >
+        Crew:
+      </span>
+       
+      <ul
+        class="movie__values"
+      >
+        <li
+          class="movie__value"
+        >
+          
+          Anthony McCarten
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Newton Thomas Sigel
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Jim Beach
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Robert De Niro
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Graham King
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Bryan Singer
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Brian May
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Denis O'Sullivan
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Jane Rosenthal
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Arnon Milchan
+        
+        </li>
+      </ul>
+    </div>
+     
+    <div
+      class="movie__block"
+    >
+      <span
+        class="movie__option"
+      >
+        Actors:
+      </span>
+       
+      <ul
+        class="movie__values"
+      >
+        <li
+          class="movie__value"
+        >
+          
+          Rami Malek
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Gwilym Lee
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Ben Hardy
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Joseph Mazzello
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Lucy Boynton
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Aidan Gillen
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Tom Hollander
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Mike Myers
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Allen Leech
+        
+        </li>
+        <li
+          class="movie__value"
+        >
+          
+          Aaron McCusker
+        
+        </li>
+      </ul>
+    </div>
+     
+    <h2
+      class="movie__title movie__title--decor"
+    >
+      
+      The Plot
+    
+    </h2>
+     
+    <p
+      class="movie__desc"
+    >
+      
+      Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass guitarist John Deacon take the music world by storm when they form the rock 'n' roll band Queen in 1970. Hit songs become instant classics. When Mercury's increasingly wild lifestyle starts to spiral out of control, Queen soon faces its greatest challenge yet – finding a way to keep the band together amid the success and excess.
+    
+    </p>
+     
+    <h2
+      class="movie__title movie__title--decor"
+    >
+      
+      Photos
+    
+    </h2>
+     
+    <carousel-stub
+      autoplay="true"
+      easing="ease"
+      loop="true"
+      minswipedistance="8"
+      mousedrag="true"
+      navigateto="0"
+      navigationclicktargetsize="8"
+      navigationnextlabel="&#9654"
+      navigationprevlabel="&#9664"
+      paginationactivecolor="#ffd564"
+      paginationcolor="#efefef"
+      paginationenabled="true"
+      paginationpadding="10"
+      paginationsize="10"
+      perpage="2"
+      perpagecustom="320,1,1199,3"
+      resistancecoef="20"
+      scrollperpage="true"
+      spacepadding="0"
+      spacepaddingmaxoffsetfactor="0"
+      speed="500"
+      touchdrag="true"
+    >
+      <slide-stub>
+        <img
+          alt=""
+          class="movie__img"
+          src="https://image.tmdb.org/t/p/w185//lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg"
+        />
+      </slide-stub>
+      <slide-stub>
+        <img
+          alt=""
+          class="movie__img"
+          src="https://image.tmdb.org/t/p/w185//bAjrW8O01W1q1HOquQXxfcsMByX.jpg"
+        />
+      </slide-stub>
+      <slide-stub>
+        <img
+          alt=""
+          class="movie__img"
+          src="https://image.tmdb.org/t/p/w185//jRZTdUz1D5DuWHR6wZpG90ahmc.jpg"
+        />
+      </slide-stub>
+      <slide-stub>
+        <img
+          alt=""
+          class="movie__img"
+          src="https://image.tmdb.org/t/p/w185//rxrRnl0pD4bEOh4xErdZuEkhr5s.jpg"
+        />
+      </slide-stub>
+      <slide-stub>
+        <img
+          alt=""
+          class="movie__img"
+          src="https://image.tmdb.org/t/p/w185//gbmkFWdtihe1VfydTDsieQ6VfGL.jpg"
+        />
+      </slide-stub>
+      <slide-stub>
+        <img
+          alt=""
+          class="movie__img"
+          src="https://image.tmdb.org/t/p/w185//mJiCdzaj55vmCgAwfLplbAaSYM5.jpg"
+        />
+      </slide-stub>
+      <slide-stub>
+        <img
+          alt=""
+          class="movie__img"
+          src="https://image.tmdb.org/t/p/w185//7fcYIxmXyZm0xV0sHYV2GNN9i3v.jpg"
+        />
+      </slide-stub>
+      <slide-stub>
+        <img
+          alt=""
+          class="movie__img"
+          src="https://image.tmdb.org/t/p/w185//aRpNd9Bg7iqz1F9bG0RsiXRsYH6.jpg"
+        />
+      </slide-stub>
+    </carousel-stub>
+     
+    <h2
+      class="movie__title movie__title--decor"
+    >
+      
+      Similar movies
+    
+    </h2>
+     
+    <movieslist-stub
+      movieslist="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
+    />
+     
+    <h2
+      class="movie__title movie__title--decor"
+    >
+      
+      Recomendations
+    
+    </h2>
+     
+    <movieslist-stub
+      movieslist="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
+    />
+  </div>
+</section>
+`;

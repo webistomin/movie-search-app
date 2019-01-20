@@ -2,6 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import MoviePage from '../../src/components/MoviePage';
 import routes from '../../src/router/';
+import {priceFilter, dateFilter} from '../../src/assets/js/filters';
 
 describe('Header.vue', () => {
   let actions;
@@ -63,6 +64,8 @@ describe('Header.vue', () => {
     });
 
     localVue = createLocalVue();
+    localVue.filter('getFormattedPrice', priceFilter);
+    localVue.filter('getFormattedDate', dateFilter);
     localVue.use(Vuex);
     router = routes;
   });
@@ -95,7 +98,7 @@ describe('Header.vue', () => {
         localVue,
         router,
       }).vm;
-      MoviePage.beforeRouteEnter(undefined, undefined, actions.next);
+      MoviePage.beforeRouteUpdate(undefined, undefined, actions.next);
       expect(actions.next).toHaveBeenCalled();
     });
   });
@@ -247,22 +250,8 @@ describe('Header.vue', () => {
         router,
       }).vm;
       vm.markMovieAsFavorite();
-      expect(await actions.markMovieAsFavorite).toHaveBeenCalledWith({ favoriteState: true, movieID: 424694 },
-      );
+      expect(await actions.markMovieAsFavorite).toHaveBeenCalled();
       expect(actions.fetchFavoriteMovies).toHaveBeenCalled();
     });
-
-    // it('Delete favorite movie if it in list', async () => {
-    //   vm = shallowMount(MoviePage, {
-    //     store,
-    //     localVue,
-    //     router,
-    //   }).vm;
-    //   state.movieDetails.id = 360920;
-    //   vm.markMovieAsFavorite();
-    //   expect(await actions.markMovieAsFavorite).toHaveBeenCalledWith({ favoriteState: false, movieID: 360920 },
-    //   );
-    //   expect(actions.fetchFavoriteMovies).toHaveBeenCalled();
-    // });
   });
 });

@@ -192,7 +192,6 @@
       markMovieAsFavorite() {
         const movieID = this.getMovieDetails.id;
         const favoriteState = !this.isFavorite;
-        console.log(movieID, favoriteState);
         this.$store.dispatch('markMovieAsFavorite', {
           movieID,
           favoriteState,

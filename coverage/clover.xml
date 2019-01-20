@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1547973545850" clover="3.2.0">
-  <project timestamp="1547973545850" name="All files">
-    <metrics statements="471" coveredstatements="145" conditionals="138" coveredconditionals="44" methods="158" coveredmethods="60" elements="767" coveredelements="249" complexity="0" loc="471" ncloc="471" packages="5" files="35" classes="35">
+<coverage generated="1547996983098" clover="3.2.0">
+  <project timestamp="1547996983098" name="All files">
+    <metrics statements="470" coveredstatements="151" conditionals="138" coveredconditionals="45" methods="158" coveredmethods="63" elements="766" coveredelements="259" complexity="0" loc="470" ncloc="470" packages="5" files="35" classes="35">
       <package name="src">
         <metrics statements="25" coveredstatements="18" conditionals="13" coveredconditionals="13" methods="3" coveredmethods="3"/>
         <file name="App.vue" path="C:\Users\webistomin\Desktop\movie-search-app\src\App.vue">
@@ -37,7 +37,7 @@
         </file>
       </package>
       <package name="src.assets.js">
-        <metrics statements="28" coveredstatements="12" conditionals="8" coveredconditionals="1" methods="8" coveredmethods="4"/>
+        <metrics statements="27" coveredstatements="16" conditionals="8" coveredconditionals="2" methods="8" coveredmethods="6"/>
         <file name="debounce.js" path="C:\Users\webistomin\Desktop\movie-search-app\src\assets\js\debounce.js">
           <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
           <line num="3" count="17" type="stmt"/>
@@ -46,15 +46,14 @@
           <line num="6" count="1" type="stmt"/>
         </file>
         <file name="filters.js" path="C:\Users\webistomin\Desktop\movie-search-app\src\assets\js\filters.js">
-          <metrics statements="8" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
+          <metrics statements="7" coveredstatements="4" conditionals="4" coveredconditionals="1" methods="2" coveredmethods="2"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="42" type="cond" truecount="1" falsecount="3"/>
           <line num="6" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
+          <line num="8" count="42" type="stmt"/>
           <line num="10" count="0" type="stmt"/>
           <line num="12" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
+          <line num="16" count="21" type="stmt"/>
         </file>
         <file name="throttle.js" path="C:\Users\webistomin\Desktop\movie-search-app\src\assets\js\throttle.js">
           <metrics statements="16" coveredstatements="8" conditionals="4" coveredconditionals="1" methods="3" coveredmethods="2"/>
@@ -77,7 +76,7 @@
         </file>
       </package>
       <package name="src.components">
-        <metrics statements="236" coveredstatements="101" conditionals="103" coveredconditionals="28" methods="105" coveredmethods="52"/>
+        <metrics statements="236" coveredstatements="103" conditionals="103" coveredconditionals="28" methods="105" coveredmethods="53"/>
         <file name="BestList.vue" path="C:\Users\webistomin\Desktop\movie-search-app\src\components\BestList.vue">
           <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="16" count="2" type="stmt"/>
@@ -160,17 +159,17 @@
           <line num="43" count="1" type="stmt"/>
         </file>
         <file name="MoviePage.vue" path="C:\Users\webistomin\Desktop\movie-search-app\src\components\MoviePage.vue">
-          <metrics statements="38" coveredstatements="29" conditionals="10" coveredconditionals="10" methods="22" coveredmethods="18"/>
+          <metrics statements="38" coveredstatements="31" conditionals="10" coveredconditionals="10" methods="22" coveredmethods="19"/>
           <line num="152" count="5" type="stmt"/>
           <line num="153" count="5" type="stmt"/>
           <line num="154" count="5" type="stmt"/>
-          <line num="159" count="2" type="stmt"/>
-          <line num="160" count="2" type="stmt"/>
+          <line num="159" count="1" type="stmt"/>
+          <line num="160" count="1" type="stmt"/>
           <line num="161" count="0" type="stmt"/>
           <line num="170" count="0" type="stmt"/>
           <line num="171" count="0" type="stmt"/>
-          <line num="175" count="0" type="stmt"/>
-          <line num="176" count="0" type="stmt"/>
+          <line num="175" count="1" type="stmt"/>
+          <line num="176" count="1" type="stmt"/>
           <line num="177" count="0" type="stmt"/>
           <line num="186" count="0" type="stmt"/>
           <line num="187" count="0" type="stmt"/>
@@ -489,7 +488,7 @@
           <line num="19" count="0" type="stmt"/>
           <line num="22" count="0" type="stmt"/>
           <line num="25" count="0" type="stmt"/>
-          <line num="28" count="2" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
           <line num="31" count="0" type="stmt"/>
           <line num="34" count="0" type="stmt"/>
           <line num="37" count="0" type="stmt"/>

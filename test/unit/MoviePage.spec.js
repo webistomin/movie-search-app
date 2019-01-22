@@ -98,7 +98,7 @@ describe('Header.vue', () => {
         localVue,
         router,
       }).vm;
-      MoviePage.beforeRouteUpdate(undefined, undefined, actions.next);
+      MoviePage.beforeRouteUpdate('/movie/424694', undefined, actions.next);
       expect(actions.next).toHaveBeenCalled();
     });
   });

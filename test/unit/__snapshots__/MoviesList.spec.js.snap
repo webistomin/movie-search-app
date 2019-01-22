@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BestMovies.vue Matches snapshot 1`] = `
+<ul
+  class="movies__list movies__list--grid"
+>
+  <movie-item-stub
+    moviedate="2018-10-24"
+    movieid="424694"
+    movieimg="https://image.tmdb.org/t/p/w185//lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg"
+    movieoverview="Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass guita..."
+    movierate="8.2"
+    movietitle="Bohemian Rhapsody"
+  />
+</ul>
+`;

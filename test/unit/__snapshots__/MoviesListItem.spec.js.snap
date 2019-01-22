@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header.vue Matches snapshot 1`] = `
+<li
+  class="movies__item"
+>
+  <img
+    alt="BUMBLEBEE"
+    class="movies__img"
+    height="278"
+    src="https://image.tmdb.org/t/p/w185//fw02ONlDhrYjTSZV8XO6hhU3ds3.jpg"
+    width="185"
+  />
+   
+  <div
+    class="movies__block"
+  >
+    <span
+      class="movies__name"
+    >
+      BUMBLEBEE
+    </span>
+     
+    <p
+      class="movies__desc"
+    >
+      On the run in the year 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken. When Charlie revives him, she quickly learns this is no ordinary yellow VW bug.
+    </p>
+     
+    <span
+      class="movies__rate"
+    >
+      <svg
+        class="movies__icon"
+        height="12"
+        width="12"
+      >
+        <use
+          xlink:href="#icon-like"
+        />
+      </svg>
+      
+      7.5 average
+    
+    </span>
+     
+    <time
+      class="movies__date"
+    >
+      <svg
+        class="movies__icon"
+        height="12"
+        width="12"
+      >
+        <use
+          xlink:href="#icon-calendar"
+        />
+      </svg>
+      
+      Mon Jan 01 2018
+    
+    </time>
+     
+    <ul
+      class="movies__genres"
+    />
+     
+    <router-link-stub
+      class="movies__btn btn"
+      event="click"
+      tag="a"
+      to="/movie/424783"
+    >
+      Read more
+    </router-link-stub>
+  </div>
+</li>
+`;

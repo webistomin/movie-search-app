@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/10</span>
+        <span class='fraction'>10/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>6/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/10</span>
+        <span class='fraction'>10/10</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -214,31 +214,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">95x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -315,13 +315,13 @@
       },
     },
     computed: {
-<span class="fstat-no" title="function not covered" >      getGenresList() {</span>
-<span class="cstat-no" title="statement not covered" >        return this.$store.getters.getGenresList;</span>
+      getGenresList() {
+        return this.$store.getters.getGenresList;
       },
-<span class="fstat-no" title="function not covered" >      getMovieGenres() {</span>
-<span class="cstat-no" title="statement not covered" >        const genresIds = this.movieGenres;</span>
-<span class="cstat-no" title="statement not covered" >        const genresList = this.getGenresList;</span>
-<span class="cstat-no" title="statement not covered" >        const movieGenres = [];</span>
+      getMovieGenres() {
+        const genresIds = this.movieGenres;
+        const genresList = this.getGenresList;
+        const movieGenres = [];
 &nbsp;
         // ES6 test solution
         // const test = genresList
@@ -330,17 +330,17 @@
         // const res = genresList.filter(item =&gt; test.includes(item.id)).map(item =&gt; item.name);
         // return res;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        if (genresList.length !== 0 &amp;&amp; genresIds.length !== 0) {</span>
-<span class="cstat-no" title="statement not covered" >          for (let i = 0; i &lt; genresIds.length; i += 1) {</span>
-<span class="cstat-no" title="statement not covered" >            for (let j = 0; j &lt; genresList.length; j += 1) {</span>
-<span class="cstat-no" title="statement not covered" >              if (genresIds[i] === genresList[j].id) {</span>
-<span class="cstat-no" title="statement not covered" >                movieGenres.push(genresList[j].name);</span>
+        if (genresList.length !== 0 &amp;&amp; genresIds.length !== 0) {
+          for (let i = 0; i &lt; genresIds.length; i += 1) {
+            for (let j = 0; j &lt; genresList.length; j += 1) {
+              if (genresIds[i] === genresList[j].id) {
+                movieGenres.push(genresList[j].name);
               }
             }
           }
         }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        return movieGenres;</span>
+        return movieGenres;
       },
     },
   };
@@ -355,7 +355,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jan 21 2019 13:58:58 GMT+0300 (GMT+03:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jan 22 2019 13:08:29 GMT+0300 (GMT+03:00)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

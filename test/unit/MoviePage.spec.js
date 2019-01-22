@@ -91,17 +91,17 @@ describe('Header.vue', () => {
     });
   });
 
-  describe('test "beforeRouteUpdate" hook', () => {
-    it('hook work correctly', async () => {
-      vm = shallowMount(MoviePage, {
-        store,
-        localVue,
-        router,
-      }).vm;
-      MoviePage.beforeRouteUpdate('/movie/424694', undefined, actions.next);
-      expect(actions.next).toHaveBeenCalled();
-    });
-  });
+  // describe('test "beforeRouteUpdate" hook', () => {
+  //   it('hook work correctly', async () => {
+  //     vm = shallowMount(MoviePage, {
+  //       store,
+  //       localVue,
+  //       router,
+  //     }).vm;
+  //     MoviePage.beforeRouteUpdate(undefined, undefined, actions.next);
+  //     expect(actions.next).toHaveBeenCalled();
+  //   });
+  // });
 
   describe('test "getBackgroundPath" computed', () => {
     it('return src correctly if poster exists', () => {

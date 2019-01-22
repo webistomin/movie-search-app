@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header.vue Matches snapshot 1`] = `
+<ul
+  class="main-nav__list"
+>
+  <navigationlistitem-stub
+    linkicon="icon-calendar"
+    linkpath="/now-playing"
+    linktitle="Now Playing"
+  />
+  <navigationlistitem-stub
+    linkicon="icon-popular"
+    linkpath="/popular"
+    linktitle="Popular"
+  />
+  <navigationlistitem-stub
+    linkicon="icon-top"
+    linkpath="/top-rated"
+    linktitle="Top Rated"
+  />
+  <navigationlistitem-stub
+    linkicon="icon-trailer"
+    linkpath="/upcoming"
+    linktitle="Upcoming"
+  />
+</ul>
+`;

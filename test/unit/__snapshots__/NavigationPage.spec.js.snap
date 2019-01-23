@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BestMovies.vue Matches snapshot 1`] = `
+<div
+  class="movies__wrapper"
+>
+  <h2
+    class="movies__title"
+  >
+    Home
+  </h2>
+   
+  <movieslist-stub
+    infinite-scroll-disabled="isBusy"
+    infinite-scroll-distance="50"
+    infinite-scroll-immediate-check="true"
+    movieslist=""
+  />
+</div>
+`;

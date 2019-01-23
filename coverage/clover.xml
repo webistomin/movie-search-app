@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1548237284731" clover="3.2.0">
-  <project timestamp="1548237284731" name="All files">
+<coverage generated="1548238400596" clover="3.2.0">
+  <project timestamp="1548238400596" name="All files">
     <metrics statements="470" coveredstatements="258" conditionals="138" coveredconditionals="110" methods="158" coveredmethods="97" elements="766" coveredelements="465" complexity="0" loc="470" ncloc="470" packages="5" files="35" classes="35">
       <package name="src">
         <metrics statements="25" coveredstatements="18" conditionals="13" coveredconditionals="13" methods="3" coveredmethods="3"/>
@@ -202,8 +202,8 @@
         <file name="MoviesList.vue" path="C:\Users\webistomin\Desktop\movie-search-app\src\components\MoviesList.vue">
           <metrics statements="6" coveredstatements="6" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="5"/>
           <line num="21" count="10" type="stmt"/>
-          <line num="34" count="17" type="cond" truecount="2" falsecount="0"/>
-          <line num="37" count="17" type="cond" truecount="2" falsecount="0"/>
+          <line num="34" count="30" type="cond" truecount="2" falsecount="0"/>
+          <line num="37" count="30" type="cond" truecount="2" falsecount="0"/>
           <line num="42" count="7" type="cond" truecount="2" falsecount="0"/>
           <line num="45" count="8" type="stmt"/>
           <line num="48" count="8" type="stmt"/>

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header.vue Matches snapshot 1`] = `
+<main
+  class="page-content"
+  role="main"
+>
+  <intro-stub />
+   
+  <section
+    class="movies movies--noscroll"
+  >
+    <preloader-stub
+      style="display: none;"
+    />
+     
+    <router-view-stub
+      mode="out-in"
+      name="fade"
+    />
+  </section>
+   
+  <socials-stub />
+   
+  <messagepopup-stub />
+</main>
+`;

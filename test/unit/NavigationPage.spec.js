@@ -32,6 +32,24 @@ describe('BestMovies.vue', () => {
       setLoadingState: (state, payload) => {
         state.loadingState = payload;
       },
+      setNowPlayingCurrentPage: (state) => {
+        state.nowPlayingCurrentPage += 1;
+      },
+      setPopularCurrentPage: (state) => {
+        state.popularCurrentPage += 1;
+      },
+      setTopRatedCurrentPage: (state) => {
+        state.topRatedCurrentPage += 1;
+      },
+      setUpcomingCurrentPage: (state) => {
+        state.upcomingCurrentPage += 1;
+      },
+      setFavoriteCurrentPage: (state) => {
+        state.favoriteCurrentPage += 1;
+      },
+      setSearchCurrentPage: (state) => {
+        state.searchCurrentPage += 1;
+      },
     };
 
     state = {
@@ -42,6 +60,18 @@ describe('BestMovies.vue', () => {
       upcomingMovies: [],
       topRatedMovies: [],
       searchMovies: [],
+      favoriteCurrentPage: 1,
+      favoriteTotalPages: 10,
+      nowPlayingCurrentPage: 1,
+      nowPlayingTotalPages: 10,
+      popularCurrentPage: 1,
+      popularTotalPages: 10,
+      upcomingCurrentPage: 1,
+      upcomingTotalPages: 10,
+      topRatedCurrentPage: 1,
+      topRatedTotalPages: 10,
+      searchCurrentPage: 1,
+      searchTotalPages: 10,
     };
 
     getters = {
@@ -51,6 +81,19 @@ describe('BestMovies.vue', () => {
       getUpcomingMovies: state => state.upcomingMovies,
       getTopRatedMovies: state => state.topRatedMovies,
       getSearchMovies: state => state.searchMovies,
+      getLoadingState: state => state.loadingState,
+      getFavoriteCurrentPage: state => state.favoriteCurrentPage,
+      getFavoriteTotalPages: state => state.favoriteTotalPages,
+      getNowPlayingCurrentPage: state => state.nowPlayingCurrentPage,
+      getNowPlayingTotalPages: state => state.nowPlayingTotalPages,
+      getPopularCurrentPage: state => state.popularCurrentPage,
+      getPopularTotalPages: state => state.popularTotalPages,
+      getTopRatedCurrentPage: state => state.topRatedCurrentPage,
+      getTopRatedTotalPages: state => state.topRatedTotalPages,
+      getUpcomingCurrentPage: state => state.upcomingCurrentPage,
+      getUpcomingTotalPages: state => state.upcomingTotalPages,
+      getSearchCurrentPage: state => state.searchCurrentPage,
+      getSearchTotalPages: state => state.searchTotalPages,
     };
 
     store = new Vuex.Store({
@@ -304,6 +347,42 @@ describe('BestMovies.vue', () => {
       }).vm;
       expect(state.loadingState).toEqual(false);
       expect(await actions.fetchPopularMovies).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('test fetchMoreMovies method', () => {
+    it('fetch Now Playing movies if route.meta.title === Now Playing', async () => {
+      mockedRoute = { meta: { title: 'Now Playing' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchNowPlayingMovies.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(await actions.fetchNowPlayingMovies).toHaveBeenCalled();
+      expect(vm.isBusy).toEqual(false);
+    });
+    it('doesnt fetch Now Playing movies if route.meta.title === Now Playing and total pages < current page', () => {
+      state.nowPlayingCurrentPage = 11;
+      state.nowPlayingTotalPages = 8;
+      mockedRoute = { meta: { title: 'Now Playing' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchNowPlayingMovies.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(actions.fetchNowPlayingMovies).not.toHaveBeenCalled();
     });
   });
 });

@@ -384,5 +384,221 @@ describe('BestMovies.vue', () => {
       expect(vm.isBusy).toEqual(true);
       expect(actions.fetchNowPlayingMovies).not.toHaveBeenCalled();
     });
+
+    it('fetch Popular movies if route.meta.title === Popular', async () => {
+      mockedRoute = { meta: { title: 'Popular' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchPopularMovies.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(await actions.fetchPopularMovies).toHaveBeenCalled();
+      expect(vm.isBusy).toEqual(false);
+    });
+    it('doesnt fetch Popular movies if route.meta.title === Popular and total pages < current page', () => {
+      state.popularCurrentPage = 11;
+      state.popularTotalPages = 8;
+      mockedRoute = { meta: { title: 'Popular' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchPopularMovies.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(actions.fetchPopularMovies).not.toHaveBeenCalled();
+    });
+
+    it('fetch Top Rated movies if route.meta.title === Top Rated', async () => {
+      mockedRoute = { meta: { title: 'Top Rated' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchTopRatedMovies.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(await actions.fetchTopRatedMovies).toHaveBeenCalled();
+      expect(vm.isBusy).toEqual(false);
+    });
+    it('doesnt fetch Top Rated movies if route.meta.title === Top Rated and total pages < current page', () => {
+      state.topRatedCurrentPage = 11;
+      state.topRatedTotalPages = 8;
+      mockedRoute = { meta: { title: 'Top Rated' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchTopRatedMovies.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(actions.fetchTopRatedMovies).not.toHaveBeenCalled();
+    });
+
+    it('fetch Upcoming movies if route.meta.title === Upcoming', async () => {
+      mockedRoute = { meta: { title: 'Upcoming' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchUpcomingMovies.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(await actions.fetchUpcomingMovies).toHaveBeenCalled();
+      expect(vm.isBusy).toEqual(false);
+    });
+    it('doesnt fetch Upcoming movies if route.meta.title === Upcoming and total pages < current page', () => {
+      state.upcomingCurrentPage = 11;
+      state.upcomingTotalPages = 8;
+      mockedRoute = { meta: { title: 'Upcoming' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchUpcomingMovies.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(actions.fetchUpcomingMovies).not.toHaveBeenCalled();
+    });
+
+    it('fetch Favorite movies if route.meta.title === Favorite', async () => {
+      mockedRoute = { meta: { title: 'Favorite' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchFavoriteMovies.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(await actions.fetchFavoriteMovies).toHaveBeenCalled();
+      expect(vm.isBusy).toEqual(false);
+    });
+    it('doesnt fetch Favorite movies if route.meta.title === Favorite and total pages < current page', () => {
+      state.favoriteCurrentPage = 11;
+      state.favoriteTotalPages = 8;
+      mockedRoute = { meta: { title: 'Favorite' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchFavoriteMovies.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(actions.fetchFavoriteMovies).not.toHaveBeenCalled();
+    });
+
+    it('fetch Search results movies if route.meta.title === Search results', async () => {
+      mockedRoute = { meta: { title: 'Search results' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchMoviesWithSearchQuery.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(await actions.fetchMoviesWithSearchQuery).toHaveBeenCalled();
+      expect(vm.isBusy).toEqual(false);
+    });
+    it('doesnt fetch Search results movies if route.meta.title === Search results and total pages < current page', () => {
+      state.searchCurrentPage = 11;
+      state.searchTotalPages = 8;
+      mockedRoute = { meta: { title: 'Search results' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchMoviesWithSearchQuery.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(actions.fetchMoviesWithSearchQuery).not.toHaveBeenCalled();
+    });
+
+    it('fetch Popular movies if default', async () => {
+      mockedRoute = { meta: { title: 'default' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchPopularMovies.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(await actions.fetchPopularMovies).toHaveBeenCalled();
+      expect(vm.isBusy).toEqual(false);
+    });
+    it('doesnt fetch Popular movies if default and total pages < current page', () => {
+      state.popularCurrentPage = 11;
+      state.popularTotalPages = 8;
+      mockedRoute = { meta: { title: 'default' } };
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+        beforeCreate() {
+          this._route = mockedRoute;
+        },
+      }).vm;
+      actions.fetchPopularMovies.mockClear();
+      vm.fetchMoreMovies();
+      expect(vm.isBusy).toEqual(true);
+      expect(actions.fetchPopularMovies).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('test getLoadingState computed', () => {
+    it('return loading state', () => {
+      vm = shallowMount(NavigationPage, {
+        store,
+        localVue,
+        router,
+      }).vm;
+      state.loadingState = false;
+      expect(vm.getLoadingState).toEqual(false);
+    });
   });
 });

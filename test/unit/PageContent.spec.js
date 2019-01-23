@@ -77,7 +77,7 @@ describe('Header.vue', () => {
 
   describe('test "isNoScroll" computed', () => {
     it('return true if meta.noScroll exists', () => {
-      mockedRoute = {meta: {noScroll: true}};
+      mockedRoute = { meta: { noScroll: true } };
       vm = shallowMount(PageContent, {
         store,
         localVue,

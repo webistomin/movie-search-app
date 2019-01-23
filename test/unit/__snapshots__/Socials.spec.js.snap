@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header.vue Matches snapshot 1`] = `
+<aside
+  class="socials"
+  id="socials"
+>
+  <div
+    class="socials__block"
+  >
+    <h2
+      class="socials__title title"
+    >
+      Last news
+    </h2>
+     
+    <twitterlist-stub
+      tweetslist="[object Object]"
+    />
+  </div>
+</aside>
+`;

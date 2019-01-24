@@ -200,7 +200,7 @@ describe('App.vue', () => {
       document.body.innerHTML = `
        <div>
         <ul class="movies"></ul>
-       </div> 
+       </div>
       `;
       vm = shallowMount(App, {
         store,

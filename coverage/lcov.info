@@ -921,8 +921,8 @@ FNDA:0,(anonymous_4)
 FNDA:0,(anonymous_5)
 FNDA:0,(anonymous_6)
 FNDA:0,(anonymous_7)
-DA:19,0
-DA:22,0
+DA:19,1
+DA:22,1
 DA:25,0
 DA:28,1
 DA:31,0
@@ -962,7 +962,7 @@ DA:126,0
 DA:129,0
 DA:132,0
 LF:40
-LH:1
+LH:3
 BRF:0
 BRH:0
 end_of_record

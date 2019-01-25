@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import NavigationPage from '../../src/components/NavigationPage';
-import routes from '../../src/router/';
+import NavigationPage from '../../../src/components/NavigationPage';
+import routes from '../../../src/router/';
 
 describe('BestMovies.vue', () => {
   let actions;

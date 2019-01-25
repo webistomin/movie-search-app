@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import App from '../../src/App';
-import routes from '../../src/router/';
+import App from '../../../src/App';
+import routes from '../../../src/router/';
 
 describe('App.vue', () => {
   let actions;

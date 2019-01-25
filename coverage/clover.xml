@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1548403095179" clover="3.2.0">
-  <project timestamp="1548403095179" name="All files">
-    <metrics statements="417" coveredstatements="247" conditionals="124" coveredconditionals="116" methods="145" coveredmethods="104" elements="686" coveredelements="467" complexity="0" loc="417" ncloc="417" packages="3" files="28" classes="28">
+<coverage generated="1548404333583" clover="3.2.0">
+  <project timestamp="1548404333583" name="All files">
+    <metrics statements="417" coveredstatements="249" conditionals="124" coveredconditionals="116" methods="145" coveredmethods="104" elements="686" coveredelements="469" complexity="0" loc="417" ncloc="417" packages="3" files="28" classes="28">
       <package name="src">
         <metrics statements="18" coveredstatements="18" conditionals="13" coveredconditionals="13" methods="3" coveredmethods="3"/>
         <file name="App.vue" path="C:\Users\webistomin\Desktop\movie-search-app\src\App.vue">
@@ -320,7 +320,7 @@
         </file>
       </package>
       <package name="src.store">
-        <metrics statements="163" coveredstatements="2" conditionals="8" coveredconditionals="0" methods="37" coveredmethods="0"/>
+        <metrics statements="163" coveredstatements="4" conditionals="8" coveredconditionals="0" methods="37" coveredmethods="0"/>
         <file name="moviePage.js" path="C:\Users\webistomin\Desktop\movie-search-app\src\store\moviePage.js">
           <metrics statements="30" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="0"/>
           <line num="14" count="0" type="stmt"/>
@@ -404,9 +404,9 @@
           <line num="61" count="0" type="stmt"/>
         </file>
         <file name="shared.js" path="C:\Users\webistomin\Desktop\movie-search-app\src\store\shared.js">
-          <metrics statements="40" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
+          <metrics statements="40" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
           <line num="25" count="0" type="stmt"/>
           <line num="28" count="1" type="stmt"/>
           <line num="31" count="0" type="stmt"/>

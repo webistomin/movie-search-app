@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import MessagePopup from '../../src/components/MessagePopup';
-import routes from '../../src/router/';
+import MessagePopup from '../../../src/components/MessagePopup';
+import routes from '../../../src/router/';
 
 describe('Header.vue', () => {
   let actions;

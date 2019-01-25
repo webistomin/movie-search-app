@@ -1,8 +1,8 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import MovieListItem from '../../src/components/MoviesListItem';
-import routes from '../../src/router/';
-import { priceFilter, dateFilter } from '../../src/assets/js/filters';
+import MovieListItem from '../../../src/components/MoviesListItem';
+import routes from '../../../src/router/';
+import { priceFilter, dateFilter } from '../../../src/assets/js/filters';
 
 describe('Header.vue', () => {
   let actions;

@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import BestListItem from '../../src/components/BestListItem';
+import BestListItem from '../../../src/components/BestListItem';
 
 describe('BestListItem', () => {
   let vm;

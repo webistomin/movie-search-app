@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue, mount } from '@vue/test-utils';
 import Vuex from 'vuex';
-import Header from '../../src/components/Header';
-import routes from '../../src/router/';
+import Header from '../../../src/components/Header';
+import routes from '../../../src/router/';
 
 describe('Header.vue', () => {
   let actions;

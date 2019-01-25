@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/11</span>
+        <span class='fraction'>11/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>7/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/11</span>
+        <span class='fraction'>11/11</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -167,34 +167,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -275,35 +275,35 @@
 &lt;script&gt;
   export default {
     name: 'MessagePopup',
-<span class="fstat-no" title="function not covered" >    data() {</span>
-<span class="cstat-no" title="statement not covered" >      return {</span>
+    data() {
+      return {
         timeout: null,
         isStarted: false,
       };
     },
     computed: {
-<span class="fstat-no" title="function not covered" >      isVisible() {</span>
-<span class="cstat-no" title="statement not covered" >        return Boolean(this.$store.getters.getMessage);</span>
+      isVisible() {
+        return Boolean(this.$store.getters.getMessage);
       },
-<span class="fstat-no" title="function not covered" >      getMessage() {</span>
-<span class="cstat-no" title="statement not covered" >        return this.$store.getters.getMessage;</span>
+      getMessage() {
+        return this.$store.getters.getMessage;
       },
     },
     methods: {
-<span class="fstat-no" title="function not covered" >      removeMessage() {</span>
-<span class="cstat-no" title="statement not covered" >        this.$store.commit('setMessage', null);</span>
+      removeMessage() {
+        this.$store.commit('setMessage', null);
       },
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      setMessageTimeout() {</span></span>
-<span class="cstat-no" title="statement not covered" >        this.isStarted = true;</span>
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        this.timeout = setTimeout(() =&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >          this.$store.commit('setMessage', null);</span>
-<span class="cstat-no" title="statement not covered" >          this.isStarted = false;</span>
+      setMessageTimeout() {
+        this.isStarted = true;
+        this.timeout = setTimeout(() =&gt; {
+          this.$store.commit('setMessage', null);
+          this.isStarted = false;
         }, 5000);
       },
     },
-<span class="fstat-no" title="function not covered" >    updated() {</span>
-<span class="cstat-no" title="statement not covered" >      if (this.isStarted) {</span>
-<span class="cstat-no" title="statement not covered" >        clearTimeout(this.timeout);</span>
+    updated() {
+      if (this.isStarted) {
+        clearTimeout(this.timeout);
       }
     },
   };
@@ -376,7 +376,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jan 24 2019 16:29:30 GMT+0300 (GMT+03:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Jan 25 2019 10:58:15 GMT+0300 (GMT+03:00)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

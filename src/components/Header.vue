@@ -247,6 +247,7 @@
       height: 20px
       background-color: transparent
       position: relative
+      outline: none
 
       &:hover,
       &:focus
@@ -451,6 +452,10 @@
 
 
     @media (min-width: $screen-sm)
+
+      &__btn
+        margin-left: auto
+        margin-right: 0
 
       &__inner
         display: flex

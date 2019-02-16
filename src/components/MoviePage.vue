@@ -121,10 +121,12 @@
         Photos
       </h2>
       <carousel v-if="getMovieImages.length !== 0"
-                :perPageCustom="[[320, 1], [1199, 3]]"
+                :perPageCustom="[[320, 1], [660, 2], [1199, 3]]"
                 :mouse-drag="true"
                 :autoplay="true"
                 :loop="true"
+                :speed="1000"
+                :scrollPerPage="false"
                 paginationActiveColor="#ffd564">
         <slide v-for="poster of getMovieImages" :key="poster.file_path">
           <img :src="`https://image.tmdb.org/t/p/w185/${poster.file_path}`" alt="" class="movie__img">
@@ -275,6 +277,9 @@
 
   .VueCarousel-pagination
     display: none
+
+  .VueCarousel-dot-button
+    outline: none
 
   .movie
     width: 100%

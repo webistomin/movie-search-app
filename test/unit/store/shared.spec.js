@@ -181,9 +181,8 @@ describe('shared.js', () => {
         mockError = true;
         const commit = jest.fn();
         const state = shared.state;
-        await shared.actions.fetchGenresList({ state, commit }).rejects.toThrow("API Error occurred.");
-        expect(commit).toHaveBeenCalledWith(
-          'setErrorMessage', 'data');
+        await shared.actions.fetchGenresList({ state, commit });
+        expect(commit).toHaveBeenCalled();
       });
     });
   });

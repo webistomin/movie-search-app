@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1548413265060" clover="3.2.0">
-  <project timestamp="1548413265060" name="All files">
-    <metrics statements="418" coveredstatements="271" conditionals="124" coveredconditionals="116" methods="145" coveredmethods="106" elements="687" coveredelements="493" complexity="0" loc="418" ncloc="418" packages="3" files="28" classes="28">
+<coverage generated="1548414015893" clover="3.2.0">
+  <project timestamp="1548414015893" name="All files">
+    <metrics statements="418" coveredstatements="269" conditionals="124" coveredconditionals="116" methods="145" coveredmethods="105" elements="687" coveredelements="490" complexity="0" loc="418" ncloc="418" packages="3" files="28" classes="28">
       <package name="src">
         <metrics statements="18" coveredstatements="18" conditionals="13" coveredconditionals="13" methods="3" coveredmethods="3"/>
         <file name="App.vue" path="C:\Users\webistomin\Desktop\movie-search-app\src\App.vue">
@@ -320,7 +320,7 @@
         </file>
       </package>
       <package name="src.store">
-        <metrics statements="164" coveredstatements="26" conditionals="8" coveredconditionals="0" methods="37" coveredmethods="2"/>
+        <metrics statements="164" coveredstatements="24" conditionals="8" coveredconditionals="0" methods="37" coveredmethods="1"/>
         <file name="moviePage.js" path="C:\Users\webistomin\Desktop\movie-search-app\src\store\moviePage.js">
           <metrics statements="30" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="0"/>
           <line num="14" count="0" type="stmt"/>
@@ -404,7 +404,7 @@
           <line num="61" count="0" type="stmt"/>
         </file>
         <file name="shared.js" path="C:\Users\webistomin\Desktop\movie-search-app\src\store\shared.js">
-          <metrics statements="41" coveredstatements="25" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="2"/>
+          <metrics statements="41" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="1"/>
           <line num="19" count="1" type="stmt"/>
           <line num="22" count="1" type="stmt"/>
           <line num="25" count="1" type="stmt"/>
@@ -415,9 +415,9 @@
           <line num="40" count="1" type="stmt"/>
           <line num="43" count="1" type="stmt"/>
           <line num="46" count="1" type="stmt"/>
-          <line num="51" count="2" type="stmt"/>
-          <line num="54" count="1" type="stmt"/>
-          <line num="55" count="1" type="stmt"/>
+          <line num="51" count="1" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="55" count="0" type="stmt"/>
           <line num="58" count="1" type="stmt"/>
           <line num="59" count="1" type="stmt"/>
           <line num="63" count="0" type="stmt"/>

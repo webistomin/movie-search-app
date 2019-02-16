@@ -52,6 +52,7 @@
     &__error
       color: $color-gold
       text-align: center
+      padding: 30px 0
 
     &__title
       padding-top: 24px
@@ -244,4 +245,7 @@
 
       &__item
         align-items: center
+
+      &__error
+        padding: 0
 </style>

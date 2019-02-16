@@ -14,7 +14,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "twitter-fetcher": "^18.0.2",
-    "vue": "^2.5.2",
+    "vue": "^2.6.0-beta.2",
     "vue-carousel": "^0.16.2",
     "vue-infinite-scroll": "^2.0.2",
     "vue-router": "^3.0.1",
@@ -91,7 +91,7 @@
     "vue-jest": "^3.0.2",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.3",
-    "vue-template-compiler": "^2.5.21",
+    "vue-template-compiler": "^2.6.0-beta.2",
     "webpack": "^3.7.1",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-middleware": "^1.12.0",

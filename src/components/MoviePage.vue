@@ -465,4 +465,7 @@
         width: 80px
         height: 80px
 
+      &__title
+        margin: 50px 0
+
 </style>

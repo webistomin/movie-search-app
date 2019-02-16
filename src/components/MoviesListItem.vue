@@ -1,13 +1,15 @@
 <template>
   <li class="movies__item">
-    <img :src="movieImg"
-         width="185" height="278"
-         :alt="movieTitle"
-         class="movies__img"
-         v-if="movieImg">
+    <picture>
+      <source media="(min-width: 1600px)" :srcset="getPosterHiRes">
+      <img :src="getPosterSrc"
+           :alt="movieTitle"
+           class="movies__img"
+           v-if="movieImg">
+    </picture>
     <div class="movies__block">
       <span class="movies__name" v-if="movieTitle">{{movieTitle}}</span>
-      <p class="movies__desc" v-if="movieOverview">{{movieOverview}}</p>
+      <p class="movies__desc" v-if="movieOverview">{{getMovieOverview}}</p>
       <span class="movies__rate" v-if="movieRate">
         <svg class="movies__icon" width="12" height="12">
           <use xlink:href="#icon-like"></use>
@@ -92,6 +94,22 @@
         }
 
         return movieGenres;
+      },
+      getPosterSrc() {
+        return this.movieImg ? `https://image.tmdb.org/t/p/w185/${this.movieImg}` : '/static/img/content/image-not-found.svg';
+      },
+      getPosterHiRes() {
+        return this.movieImg ? `https://image.tmdb.org/t/p/w342/${this.movieImg}` : '/static/img/content/image-not-found.svg';
+      },
+      getMovieOverview() {
+        const screenWidth = window.innerWidth;
+        if (screenWidth >= 1600) {
+          return this.getGridViewState ? `${this.movieOverview.slice(0, 350)}...` : this.movieOverview;
+        }
+        return this.getGridViewState ? `${this.movieOverview.slice(0, 80)}...` : this.movieOverview;
+      },
+      getGridViewState() {
+        return this.$store.getters.getGridViewState;
       },
     },
   };

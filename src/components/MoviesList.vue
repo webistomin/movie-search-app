@@ -9,8 +9,8 @@
       :key="item.id"
       :movie-id="item.id"
       :movie-title="item.title"
-      :movie-overview="getMovieOverview(item.overview)"
-      :movie-img="getPosterSrc(item.poster_path)"
+      :movie-overview="item.overview"
+      :movie-img="item.poster_path"
       :movie-genres="item.genre_ids"
       :movie-rate="item.vote_average"
       :movie-date="item.release_date"/>
@@ -27,14 +27,6 @@
       moviesList: {
         type: Array,
         required: true,
-      },
-    },
-    methods: {
-      getMovieOverview(overview) {
-        return this.getGridViewState ? `${overview.slice(0, 80)}...` : overview;
-      },
-      getPosterSrc(poster) {
-        return poster ? `https://image.tmdb.org/t/p/w185/${poster}` : '/static/img/content/image-not-found.svg';
       },
     },
     computed: {
@@ -88,7 +80,7 @@
 
           &:hover
             transform: rotateY(180deg)
-            box-shadow: 1px 0px 0 0 $color-gold, -1px 0 0 0 $color-gold, 0 1px 0 0 $color-gold, 0 -1px 0 0 $color-gold
+            box-shadow: 2px 0px 0 0 $color-gold, -2px 0 0 0 $color-gold, 0 2px 0 0 $color-gold, 0 -2px 0 0 $color-gold
 
         & .movies__img
           backface-visibility: hidden
@@ -197,11 +189,14 @@
             flex-shrink: 0
             transform: none
             margin-bottom: 10px
-            box-shadow: 1px 0 0 0 $color-gold, -1px 0 0 0 $color-gold, 0 1px 0 0 $color-gold, 0 -1px 0 0 $color-gold
+            box-shadow: 2px 0 0 0 $color-gold, -2px 0 0 0 $color-gold, 0 2px 0 0 $color-gold, 0 -2px 0 0 $color-gold
             transition: all 0.6s ease-in-out
 
             &:hover
               transform: none
+
+            picture
+              flex-shrink: 0
 
           & .movies__block
             transform: none
@@ -242,11 +237,26 @@
         padding-top: 0
 
     @media (min-width: $screen-xl)
+      &__title
+        margin-bottom: 30px
+        padding-top: 40px
 
       &__list
-        &--row
-          flex-direction: row
-
+        &--grid
           & .movies__item
-            width: 530px
+            width: 300px
+
+          & .movies__desc
+            max-height: 232px
+            font-size: 14px
+            line-height: 20px
+
+        &--row
+          & .movies__item
+            margin-bottom: 30px
+
+          & .movies__desc
+            max-height: 100px
+            font-size: 14px
+            line-height: 20px
 </style>

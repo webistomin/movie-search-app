@@ -559,6 +559,9 @@
         z-index: 10
         background-color: $color-brown
 
+      &__btn
+        margin: 0 auto
+
     @media (min-width: $screen-lg)
       &__decor
         display: inline

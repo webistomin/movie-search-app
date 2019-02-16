@@ -48,7 +48,7 @@
         this.isScrolled = true;
         this.timer = setTimeout(() => {
           this.isScrolled = false;
-        }, 100);
+        }, 80);
       },
     },
   };

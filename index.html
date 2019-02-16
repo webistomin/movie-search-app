@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,12 +27,9 @@
         for (var file of chunk.files) {
           if (file.match(/\.(js|css)$/)) { %>
     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
-    <link rel="preload" href="/static/fonts/aleo-bold-webfont.woff2" as="font" type="font/woff2">
-    <link rel="preload" href="/static/fonts/aleo-bold-webfont.woff" as="font" type="font/woff">
-    <link rel="preload" href="/static/fonts/roboto-v18-latin-700.woff2" as="font" type="font/woff2">
-    <link rel="preload" href="/static/fonts/roboto-v18-latin-700.woff" as="font" type="font/woff">
-    <link rel="preload" href="/static/fonts/roboto-v18-latin-regular.woff2" as="font" type="font/woff2">
-    <link rel="preload" href="/static/fonts/roboto-v18-latin-regular.woff" as="font" type="font/woff">
+    <link rel="preload" href="/static/fonts/aleo-bold-webfont.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/static/fonts/roboto-v18-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/static/fonts/aleo-bold-webfont.woff2" as="font" type="font/woff2" crossorigin>
   </head>
   <body>
     <noscript>

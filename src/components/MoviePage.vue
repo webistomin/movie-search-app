@@ -9,7 +9,7 @@
     <div class="movie__inner">
       <figure class="movie__pic">
         <picture>
-          <source media="(min-width: 1900px)" :srcset="getImageHiResSrc">
+          <source media="(min-width: 1600px)" :srcset="getImageHiResSrc">
           <img :src="getImageSrc" :alt="getMovieDetails.title" class="movie__img">
         </picture>
         <figcaption class="movie__rate" v-if="getMovieDetails.vote_average">
@@ -121,7 +121,7 @@
         Photos
       </h2>
       <carousel v-if="getMovieImages.length !== 0"
-                :perPageCustom="[[320, 1], [660, 2], [1199, 3]]"
+                :perPageCustom="[[320, 1], [660, 2], [1199, 3], [1600, 4]]"
                 :mouse-drag="true"
                 :autoplay="true"
                 :loop="true"

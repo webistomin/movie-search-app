@@ -2,12 +2,12 @@
   <div class="movies__wrapper">
     <h2 class="movies__title">{{$route.meta.title}}</h2>
     <MoviesList :moviesList="getMoviesForCurrentRoute"
-                v-if="getMoviesForCurrentRoute"
+                v-if="getMoviesForCurrentRoute.length !== 0"
                 v-infinite-scroll="fetchMoreMovies"
                 infinite-scroll-disabled="isBusy"
                 infinite-scroll-distance="50"
-                :infinite-scroll-immediate-check="true"/>
-    <p class="movies__error" v-else>Nothing found :(</p>
+                infinite-scroll-immediate-check="true"/>
+    <p class="movies__error" v-else-if="!getLoadingState">Nothing found :(</p>
   </div>
 </template>
 
@@ -221,7 +221,7 @@
 
 
     &__error
-      font-size: 14px
+      font-size: 20px
       text-align: center
       padding: 20px
       color: $color-text--secondary

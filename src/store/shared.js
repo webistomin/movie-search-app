@@ -56,7 +56,7 @@ export default {
         })
         .catch((error) => {
           commit('setErrorMessage', error.message);
-          console.log('1');
+          // console.log('1');
         });
     },
     fetchRequestToken({ state, commit }) {

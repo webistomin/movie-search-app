@@ -4,8 +4,7 @@
       <source media="(min-width: 1600px)" :srcset="getPosterHiRes">
       <img :src="getPosterSrc"
            :alt="movieTitle"
-           class="movies__img"
-           v-if="movieImg">
+           class="movies__img">
     </picture>
     <div class="movies__block">
       <span class="movies__name" v-if="movieTitle">{{movieTitle}}</span>
@@ -51,7 +50,7 @@
         required: true,
       },
       movieImg: {
-        type: String,
+        validator: prop => typeof prop === 'string' || prop === null,
         required: true,
       },
       movieGenres: {

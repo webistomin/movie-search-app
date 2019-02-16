@@ -72,7 +72,7 @@
         & .movies__item
           position: relative
           box-sizing: border-box
-          min-width: 176px
+          width: 176px
           text-align: center
           margin-bottom: 10px
           transition: all 0.6s ease-in-out
@@ -179,6 +179,10 @@
         justify-content: space-between
         perspective: 1200px
         padding: 10px
+
+        &--grid
+          .movies__item
+            width: 185px
 
         &--row
           flex-direction: column

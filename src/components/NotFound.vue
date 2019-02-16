@@ -194,4 +194,8 @@
 
       &__title
         font-size: 80px
+
+    @media (min-width: $screen-xl)
+      &__box
+        min-height: 300px
 </style>

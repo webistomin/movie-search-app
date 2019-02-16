@@ -179,7 +179,7 @@
       },
       getAuthLink() {
         const requestToken = this.getRequestToken;
-        const baseURL = 'http://localhost:8080';
+        const baseURL = 'http://movieapp-4c3d8.firebaseapp.com';
         const redirectPath = this.$route.fullPath;
         return `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=${baseURL}${redirectPath}`;
       },

@@ -5,8 +5,8 @@
                :class="getBorderColor">
         <img :src="getPosterSrc"
              :alt="movieTitle"
-             width="41"
-             height="41"
+             width="92"
+             height="138"
              class="best__img">
       </picture>
       <div class="best__block best__block--padding">

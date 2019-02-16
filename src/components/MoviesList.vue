@@ -245,11 +245,17 @@
         &--grid
           & .movies__item
             width: 300px
+            margin-bottom: 20px
 
           & .movies__desc
             max-height: 232px
             font-size: 14px
             line-height: 20px
+
+          & .movies__btn
+            width: 180px
+            margin-left: auto
+            margin-right: auto
 
         &--row
           & .movies__item
@@ -259,4 +265,14 @@
             max-height: 100px
             font-size: 14px
             line-height: 20px
+
+          & .movies__btn
+            max-width: 200px
+
+    @media (min-width: $screen-xxl)
+      &__list
+        &--grid
+          & .movies__item
+            width: 342px
+            margin-bottom: 30px
 </style>

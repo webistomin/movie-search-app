@@ -103,6 +103,8 @@
     &__pic
       position: relative
       margin-right: 10px
+      width: 41px
+      height: 41px
 
       &::before
         width: 3px
@@ -146,4 +148,23 @@
         padding-top: 23px
         padding-bottom: 22px
         padding-left: 44px
+
+    @media (min-width: $screen-xl)
+      &__list
+        flex-direction: column
+        padding-left: 44px
+        padding-right: 44px
+        align-items: flex-start
+
+      &__pic
+        width: initial
+        height: initial
+
+      &__item
+        margin-bottom: 10px
+
+
+
+
+
 </style>

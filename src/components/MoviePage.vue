@@ -121,7 +121,7 @@
         Photos
       </h2>
       <carousel v-if="getMovieImages.length !== 0"
-                :perPageCustom="[[320, 1], [660, 2], [1199, 3], [1600, 4]]"
+                :perPageCustom="[[320, 1], [660, 2], [1199, 3], [1900, 4]]"
                 :mouse-drag="true"
                 :autoplay="true"
                 :loop="true"
@@ -129,7 +129,12 @@
                 :scrollPerPage="false"
                 paginationActiveColor="#ffd564">
         <slide v-for="poster of getMovieImages" :key="poster.file_path">
-          <img :src="`https://image.tmdb.org/t/p/w185/${poster.file_path}`" alt="" class="movie__img">
+
+          <picture>
+            <source media="(min-width: 1600px)" :srcset="`https://image.tmdb.org/t/p/w342/${poster.file_path}`">
+            <img :src="`https://image.tmdb.org/t/p/w185/${poster.file_path}`"
+                 :alt="getMovieDetails.title" class="movie__img">
+          </picture>
         </slide>
       </carousel>
       <h2 class="movie__title movie__title--decor" v-if="getSimilarMovies.length !== 0">
@@ -446,7 +451,7 @@
         right: 25px
 
       &__inner
-        max-width: 1000px
+        /*max-width: 1000px*/
         margin: 0 auto
 
       .VueCarousel-pagination

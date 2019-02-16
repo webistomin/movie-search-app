@@ -565,4 +565,15 @@
     @media (min-width: $screen-lg)
       &__decor
         display: inline
+
+    @media (min-width: $screen-xl)
+      &__block
+        &--heading
+          padding-top: 30px
+          padding-bottom: 30px
+
+        &--search,
+        &--user
+          padding-top: 24.5px
+          padding-bottom: 24.5px
 </style>
